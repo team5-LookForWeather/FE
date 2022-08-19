@@ -1,0 +1,15 @@
+{
+    "development" : {
+        "host" : "localhost",
+        "database" : "lookForWeather",
+        "username" : "user",
+        "password" : "SeSAC4web!",
+        "dialect" : "mysql"
+    },
+    "production" : {
+
+    },
+    "test" :{
+
+    }
+}

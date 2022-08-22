@@ -1,6 +1,20 @@
 const express = require("express");
 const router = express.Router();
 const user = require("../controller/UserController");
+const multer = require('multer');
+
+// router.get('/', function any(req, res, next) {
+
+// });
+
+
+// router.get("/", user.get_users);
+// router.post("/write", user.post_user);
+// router.get("/get", user.get_user);
+// router.patch("/edit", user.patch_user);
+// router.delete("/delete", user.delete_user);
+
+
 
 // login
 router.get("/", user.login);

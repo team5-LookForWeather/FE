@@ -1,0 +1,227 @@
+:root {
+    /* color */
+    --background-color: #ededed;
+    --white-color: #fff;
+    --blue-color: #0359AE;
+    --lightgray-color: #d9d9d9;
+    --darkgray-color: rgb(59, 59, 59);
+}
+
+body {
+    background-color: var(--background-color);
+    margin: 0;
+}
+.navbar {
+    height: 100px;
+    background-color: var(--white-color);
+    margin: 0;
+    text-align: center;
+    font-size: 100px
+}
+.main {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+
+/* comment */
+.comment {
+    background-color: var(--white-color);
+    border-radius: 20px;
+    width: 645px;
+    height: 750px;
+    margin: 80px 10px 80px 240px;
+    padding: 22px 50px 50px 50px;
+}
+
+.comment_scroll {
+    width: 535px;
+    overflow: hidden;
+    height: 600px;
+    -ms-overflow-style: none;
+}
+.comment_list {
+    list-style: none;
+    padding: 0px;
+}
+.user_comment {
+    margin: 35px 45px;
+}
+.comment_nickname {
+    margin-top: 40px;
+    margin-bottom: 10px;
+}
+.user_comment_nickname {
+    margin-top: 40px;
+    margin-bottom: 10px;
+    text-align: right;
+}
+/* 화면 작아질 경우 배경색 겹침 */
+.user_comment_comment {
+    background-color: var(--lightgray-color);
+    border-radius: 20px;
+    padding: 10px 20px;
+    width: 415px;
+    position: relative;
+    top: 10px;
+    word-break: break-all;
+    line-height: 20px;
+}
+
+/* post comment */
+
+.post_comment_line {
+    border-bottom: var(--darkgray-color) solid 1px;
+    width: 435px;
+    margin: 10px 50px;
+}
+.post_comment{
+    border-radius: 20px;
+    width: 435px;
+    padding: 22px 0px;
+    margin: 10px 50px;
+    display: flex;
+    justify-content: space-between;
+}
+#post_comment_input {
+    width: 310px;
+    border: none;
+    background-color: var(--lightgray-color);
+    border-radius: 20px;
+    padding: 10px 20px;
+}
+.post_comment_btn {
+    border: none;
+    background-color: var(--lightgray-color);
+    border-radius: 20px;
+    padding: 10px 20px;
+}
+
+/* diary */
+.diary {
+    background-color: var(--white-color);
+    border-radius: 20px;
+    width: 455px;
+    height: 750px;
+    margin: 80px 240px 80px 10px;
+    padding: 22px 50px 50px 50px;
+}
+
+/* section calendar */
+
+.sec_cal {
+    width: 360px;
+    margin: 0 auto;
+    /* font-family: "NotoSansR"; */
+}
+
+.sec_cal .cal_nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 700;
+    font-size: 48px;
+    line-height: 78px;
+}
+
+.sec_cal .cal_nav .year-month {
+    width: 300px;
+    text-align: center;
+    line-height: 1;
+}
+
+.sec_cal .cal_nav .nav {
+    display: flex;
+    border: 1px solid #333333;
+    border-radius: 5px;
+}
+
+.sec_cal .cal_nav .go-prev,
+.sec_cal .cal_nav .go-next {
+    display: block;
+    width: 50px;
+    height: 78px;
+    font-size: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.sec_cal .cal_nav .go-prev::before,
+.sec_cal .cal_nav .go-next::before {
+    content: "";
+    display: block;
+    width: 20px;
+    height: 20px;
+    border: 3px solid #000;
+    border-width: 3px 3px 0 0;
+    transition: border 0.1s;
+}
+
+.sec_cal .cal_nav .go-prev:hover::before,
+.sec_cal .cal_nav .go-next:hover::before {
+    border-color: #ed2a61;
+}
+
+.sec_cal .cal_nav .go-prev::before {
+    transform: rotate(-135deg);
+}
+
+.sec_cal .cal_nav .go-next::before {
+    transform: rotate(45deg);
+}
+
+.sec_cal .cal_wrap {
+    padding-top: 40px;
+    position: relative;
+    margin: 0 auto;
+}
+
+.sec_cal .cal_wrap .days {
+    display: flex;
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #ddd;
+}
+
+.sec_cal .cal_wrap::after {
+    top: 368px;
+}
+
+.sec_cal .cal_wrap .day {
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    width: calc(100% / 7);
+    text-align: left;
+    color: #999;
+    font-size: 12px;
+    text-align: center;
+    border-radius:5px
+}
+
+.current.today {background: rgb(242 242 242);}
+
+.sec_cal .cal_wrap .dates {
+    display: flex;
+    flex-flow: wrap;
+    height: 290px;
+}
+
+.sec_cal .cal_wrap .day:nth-child(7n -1) {
+    color: #3c6ffa;
+}
+
+.sec_cal .cal_wrap .day:nth-child(7n) {
+    color: #ed2a61;
+}
+
+.sec_cal .cal_wrap .day.disable {
+    color: #ddd;
+}
+
+
+
+
+

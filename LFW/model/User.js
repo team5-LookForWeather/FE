@@ -1,9 +1,9 @@
 const User = (Sequelize, DataTypes) => {
 
     const model = Sequelize.define(
-        'user',
+        'User',
         {
-            id : {
+            user_id : {
                 type: DataTypes.STRING(15),
                 allowNull: false,
                 primaryKey: true
@@ -21,7 +21,7 @@ const User = (Sequelize, DataTypes) => {
                 allowNull: false
             },
             tel: {
-                type: DataTypes.STRING(13),
+                type: DataTypes.INTEGER(13),
                 allowNull: true,
                 defaultValue: ""
             },

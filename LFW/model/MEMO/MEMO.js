@@ -1,19 +1,21 @@
-const User_comments = (Sequelize, DataTypes) => {
+const Memo = (Sequelize, DataTypes) => {
 
     const model = Sequelize.define(
-        'User_comments',
+        'Memo',
         {
-            comment_id : {
+            memo_id : {
                 type: DataTypes.INTEGER,
                 autoIncrement: true,
                 allowNull: false,
                 primaryKey: true  
             },
             user_id: {
-                type: DataTypes.STRING(15)
+                type: DataTypes.STRING(15),
+                allowNull: false
             },
-            comment: {
-                type: DataTypes.TEXT('medium')
+            memo: {
+                type: DataTypes.TEXT('medium'),
+                allowNull: true
             },
             create_time: {
                 type: DataTypes.DATE,
@@ -21,20 +23,20 @@ const User_comments = (Sequelize, DataTypes) => {
             },
             update_time: {
                 type: DataTypes.DATE,
-                allowNull: false
+                allowNull: true
             },
             delete_time: {
                 type: DataTypes.DATE,
-                allowNull: false
+                allowNull: true
             }
         },
         {
             timestamps: false,
-            tableName: 'user_comments',
+            tableName: 'Memo',
             freezeTableName: true
         }
     );
     return model;
 }
 
-module.exports = User_comments;
+module.exports = Memo;

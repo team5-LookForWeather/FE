@@ -1,7 +1,7 @@
 {
     "development" : {
         "host" : "localhost",
-        "database" : "lookForWeather",
+        "database" : "LFW",
         "username" : "user",
         "password" : "SeSAC4web!",
         "dialect" : "mysql"

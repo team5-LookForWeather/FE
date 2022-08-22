@@ -2,13 +2,16 @@
   "dependencies": {
     "body-parser": "^1.20.0",
     "ejs": "^3.1.8",
-    "express": "^4.18.1"
+    "express": "^4.18.1",
+    "express-session": "^1.17.3",
+    "mysql2": "^2.3.3",
+    "sequelize": "^6.21.4",
+    "sequelize-cli": "^6.4.1"
   },
   "name": "sesac-lfw",
   "description": "날씨 기반 옷 추천을 해주는 LookForWeather 프로젝트입니다. ❤️‍🔥\r Test",
   "version": "1.0.0",
   "main": "index.js",
-  "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },

@@ -1,20 +1,34 @@
-const User_OOTD_like = (Sequelize, DataTypes) => {
+const OOTD_like = (Sequelize, DataTypes) => {
 
     const model = Sequelize.define(
-        'user_OOTD_like',
+        'OOTD_like',
         {
-            id : {
+            OOTD_like_id : {
+                type: DataTypes.INTEGER,
+                allowNull: false,
+                primaryKey: true,
+                autoIncrement: true,
+            },
+            OOTD_id : {
+                type: DataTypes.INTEGER,
+                allowNull: false
+            },
+            user_id : {
                 type: DataTypes.STRING(15),
-                primaryKey: true
+                allowNull: false
+            },
+            OOTD_like: {
+                type: DataTypes.INTEGER,
+                allowNull: true
             }
         },
         {
             timestamps: false,
-            tableName: 'user_OOTD_like',
+            tableName: 'OOTD_like',
             freezeTableName: true
         }
     );
     return model;
 }
 
-module.exports = User_OOTD_like;
+module.exports = OOTD_like;

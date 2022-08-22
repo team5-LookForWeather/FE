@@ -13,22 +13,22 @@ db.sequelize = sequelize;
 db.Sequelize = Sequelize;
 
 db.User = require("./User")(sequelize, Sequelize);
-db.User_OOTD = require("./User_OOTD")(sequelize, Sequelize);
-db.User_OOTD_picture = require("./User_OOTD_picture")(sequelize, Sequelize);
-db.User_OOTD_like = require("./User_OOTD_like")(sequelize, Sequelize);
-db.User_OOTD_comment = require("./User_OOTD_comment")(sequelize, Sequelize);
-db.User_comments = require("./User_comments")(sequelize, Sequelize);
+db.OOTD = require("../OOTD/OOTD")(sequelize, Sequelize);
+db.OOTD_picture = require("../OOTD/OOTD_picture")(sequelize, Sequelize);
+db.OOTD_like = require("../OOTD/OOTD_like")(sequelize, Sequelize);
+db.OOTD_comment = require("../OOTD/OOTD_comment")(sequelize, Sequelize);
+db.Memo = require("../MEMO/memo")(sequelize, Sequelize);
 
-db.User.hasMany(db.User_OOTD, {
-    foreignKey: "user_id",
-    sourceKey: "id",
-    onDelete: "cascade"
-});
-db.User_OOTD.belongsTo(db.User, {
-    foreignKey: "user_id",
-    sourceKey: "id",
-    onDelete: "cascade"
-})
+// db.User.hasMany(db.User_OOTD, {
+//     foreignKey: "user_id",
+//     sourceKey: "id",
+//     onDelete: "cascade"
+// });
+// db.User_OOTD.belongsTo(db.User, {
+//     foreignKey: "user_id",
+//     sourceKey: "id",
+//     onDelete: "cascade"
+// })
 
 // db.User.hasMany(db.User_OOTD_, {
 //     foreignKey: "user_id",

@@ -1,10 +1,10 @@
-const User_OOTD = (Sequelize, DataTypes) => {
+const OOTD = (Sequelize, DataTypes) => {
 
     const model = Sequelize.define(
-        'user_OOTD',
+        'OOTD',
         {
-            id : {
-                type: DataTypes.INTEGER(3),
+            OOTD_id : {
+                type: DataTypes.INTEGER,
                 autoIncrement: true,
                 allowNull: false,
                 primaryKey: true
@@ -14,9 +14,15 @@ const User_OOTD = (Sequelize, DataTypes) => {
                 type: DataTypes.STRING(15),
                 allowNull: false
             },
-            title: {
-                type: DataTypes.STRING(60),
+            OOTD_img: {
+                type: DataTypes.STRING(200),
                 allowNull: false
+            },
+            hashTag: {
+                type: DataTypes.STRING(20),
+                allowNull: true,
+                defaultValue: ""
+
             },
             create_time: {
                 type: DataTypes.DATE,
@@ -24,20 +30,32 @@ const User_OOTD = (Sequelize, DataTypes) => {
             },
             update_time: {
                 type: DataTypes.DATE,
-                allowNull: false
+                allowNull: true,
+                defaultValue: ""
             },
             delete_time: {
                 type: DataTypes.DATE,
-                allowNull: false
+                allowNull: true,
+                defaultValue: ""
+            },
+            comment: {
+                type: DataTypes.TEXT('medium'),
+                allowNull: true,
+                defaultValue: ""
+            },
+            like: {
+                type: DataTypes.INTEGER,
+                allowNull: true,
+                defaultValue: ""
             }
         },
         {
             timestamps: false,
-            tableName: 'user_OOTD',
+            tableName: 'OOTD',
             freezeTableName: true
         }
     );
     return model;
 }
 
-module.exports = User_OOTD;
+module.exports = OOTD;

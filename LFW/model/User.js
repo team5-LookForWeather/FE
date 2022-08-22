@@ -35,7 +35,7 @@ const User = (Sequelize, DataTypes) => {
                 defaultValue: ""
             },
             age: {
-                type: DataTypes.int(3),
+                type: DataTypes.INTEGER(3),
                 allowNull: false
             }          
         },

@@ -4,7 +4,7 @@ const User_OOTD = (Sequelize, DataTypes) => {
         'user_OOTD',
         {
             id : {
-                type: DataTypes.int,
+                type: DataTypes.INTEGER(3),
                 autoIncrement: true,
                 allowNull: false,
                 primaryKey: true
@@ -19,15 +19,15 @@ const User_OOTD = (Sequelize, DataTypes) => {
                 allowNull: false
             },
             create_time: {
-                type: DataTypes.date,
+                type: DataTypes.DATE(),
                 allowNull: false
             },
             update_time: {
-                type: DataTypes.date,
+                type: DataTypes.DATE(),
                 allowNull: false
             },
             delete_time: {
-                type: DataTypes.date,
+                type: DataTypes.DATE(),
                 allowNull: false
             }
         },

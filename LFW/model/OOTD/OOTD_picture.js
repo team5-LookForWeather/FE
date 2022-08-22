@@ -1,23 +1,29 @@
-const User_OOTD_picture = (Sequelize, DataTypes) => {
+const OOTD_picture = (Sequelize, DataTypes) => {
 
     const model = Sequelize.define(
-        'user_OOTD_picture',
+        'OOTD_picture',
         {
+            OOTD_img : {
+                type: DataTypes.STRING(200),
+                primaryKey: true,
+                allowNull: false,
+            },
             OOTD_id : {
                 type: DataTypes.INTEGER,
-                primaryKey: true
+                allowNull: false
             },
-            filename : {
-                type: DataTypes.STRING(20)
+            user_id : {
+                type: DataTypes.STRING(15),
+                allowNull: false
             }
         },
         {
             timestamps: false,
-            tableName: 'user_OOTD_picture',
+            tableName: 'OOTD_picture',
             freezeTableName: true
         }
     );
     return model;
 }
 
-module.exports = User_OOTD_picture;
+module.exports = OOTD_picture;

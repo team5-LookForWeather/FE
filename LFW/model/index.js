@@ -30,16 +30,16 @@ db.User_OOTD.belongsTo(db.User, {
     onDelete: "cascade"
 })
 
-db.User.hasMany(db.User_, {
-    foreignKey: "user_id",
-    sourceKey: "id",
-    onDelete: "cascade"
-});
-db.OOTD.belongsTo(db.User, {
-    foreignKey: "user_id",
-    sourceKey: "id",
-    onDelete: "cascade"
-})
+// db.User.hasMany(db.User_OOTD_, {
+//     foreignKey: "user_id",
+//     sourceKey: "id",
+//     onDelete: "cascade"
+// });
+// db.OOTD.belongsTo(db.User, {
+//     foreignKey: "user_id",
+//     sourceKey: "id",
+//     onDelete: "cascade"
+// })
 
 
 module.exports = db;

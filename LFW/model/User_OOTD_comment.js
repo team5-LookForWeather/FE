@@ -4,17 +4,17 @@ const User_OOTD_comment = (Sequelize, DataTypes) => {
         'User_OOTD_comment',
         {
             comment_id : {
-                type: DataTypes.int,
+                type: DataTypes.INTEGER,
                 autoIncrement: true,
                 allowNull: false,
                 primaryKey: true
             },
             comment: {
-                type: DataTypes.text('medium'),
+                type: DataTypes.TEXT('medium'),
                 allowNull: false
             },
             OOTD_id: {
-                type: DataTypes.int,
+                type: DataTypes.INTEGER,
                 allowNull: false
             }
         },

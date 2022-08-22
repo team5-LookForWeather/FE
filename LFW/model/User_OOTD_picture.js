@@ -4,7 +4,8 @@ const User_OOTD_picture = (Sequelize, DataTypes) => {
         'user_OOTD_picture',
         {
             OOTD_id : {
-                type: DataTypes.int,
+                type: DataTypes.INTEGER,
+                primaryKey: true
             },
             filename : {
                 type: DataTypes.STRING(20)

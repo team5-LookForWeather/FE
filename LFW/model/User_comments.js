@@ -4,7 +4,7 @@ const User_comments = (Sequelize, DataTypes) => {
         'User_comments',
         {
             comment_id : {
-                type: DataTypes.int,
+                type: DataTypes.INTEGER,
                 autoIncrement: true,
                 allowNull: false,
                 primaryKey: true  
@@ -13,18 +13,18 @@ const User_comments = (Sequelize, DataTypes) => {
                 type: DataTypes.STRING(15)
             },
             comment: {
-                type: DataTypes.text('medium')
+                type: DataTypes.TEXT('medium')
             },
             create_time: {
-                type: DataTypes.date,
+                type: DataTypes.DATE,
                 allowNull: false
             },
             update_time: {
-                type: DataTypes.date,
+                type: DataTypes.DATE,
                 allowNull: false
             },
             delete_time: {
-                type: DataTypes.date,
+                type: DataTypes.DATE,
                 allowNull: false
             }
         },

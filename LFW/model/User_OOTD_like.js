@@ -4,7 +4,8 @@ const User_OOTD_like = (Sequelize, DataTypes) => {
         'user_OOTD_like',
         {
             id : {
-                type: DataTypes.string(15)
+                type: DataTypes.STRING(15),
+                primaryKey: true
             }
         },
         {

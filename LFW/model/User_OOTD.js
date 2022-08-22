@@ -19,15 +19,15 @@ const User_OOTD = (Sequelize, DataTypes) => {
                 allowNull: false
             },
             create_time: {
-                type: DataTypes.DATE(),
+                type: DataTypes.DATE,
                 allowNull: false
             },
             update_time: {
-                type: DataTypes.DATE(),
+                type: DataTypes.DATE,
                 allowNull: false
             },
             delete_time: {
-                type: DataTypes.DATE(),
+                type: DataTypes.DATE,
                 allowNull: false
             }
         },

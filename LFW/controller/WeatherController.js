@@ -3,21 +3,21 @@ const axios = require("axios")
 
 /* weather페이지 */
 exports.weather_index = (req, res) => {
-    res.render("weather");
+    res.render("weatherAPI");
 }
 
 /* 현위치로 날씨정보 받아오기 */
 exports.getlocation = async (req, res) => {
-    console.log('바보');
+    console.log('날씨정보api 작동중');
     try {
-        console.log(req.data);
-        // var { latitude, longitude } = req.data;
+        console.log(req.body);
+        var { latitude, longitude } = req.body;
 
         /* 위경도 -> xy 좌표변환 ( code:"toXY", v1:위도, v2:경도)) */
         function dfsXYConv(code, v1, v2) {
             const { PI, tan, log, cos, pow, floor, sin, sqrt, atan, abs, atan2 } = Math;
 
-            // LCC DFS 좌표변환을 위한 기초 자료
+            /* LCC DFS 좌표변환을 위한 기초 자료 */
             const RE = 6371.00877; // 지구 반경(km)
             const GRID = 5.0; // 격자 간격(km)
             const SLAT1 = 30.0; // 투영 위도1(degree)
@@ -57,31 +57,10 @@ exports.getlocation = async (req, res) => {
                 theta *= sn;
                 rs.nx = floor(ra * sin(theta) + XO + 0.5);
                 rs.ny = floor(ro - ra * cos(theta) + YO + 0.5);
-            } else {
-                rs.nx = v1;
-                rs.ny = v2;
-                const xn = v1 - XO;
-                const yn = ro - v2 + YO;
-                ra = sqrt(xn * xn + yn * yn);
-                if (sn < 0.0) ra = -ra;
-                let alat = pow((re * sf / ra), (1.0 / sn));
-                alat = 2.0 * atan(alat) - PI * 0.5;
-
-                if (abs(xn) <= 0.0) {
-                    theta = 0.0;
-                } else {
-                    if (abs(yn) <= 0.0) {
-                        theta = PI * 0.5;
-                        if (xn < 0.0) theta = -theta;
-                    } else theta = atan2(xn, yn);
-                }
-                const alon = theta / sn + olon;
-                rs.lat = alat * RADDEG;
-                rs.lon = alon * RADDEG;
             }
             return rs;
         }
-        var rs = await dfsXYConv("toXY", req.data.latitude, req, data.longitude);
+        var rs = await dfsXYConv("toXY", latitude, longitude);
         Number(rs.nx); Number(rs.ny);
 
         /* 날씨api 요청메세지 */
@@ -122,7 +101,7 @@ exports.getlocation = async (req, res) => {
 
 
             var serviceKey = "Su%2FjD4AQWu0vPPnQkcm0dVbiPxWqLgUu6AN6Snk4oK0JGGr38kehRNwGQtPIWP9iZ7BzO%2FQccEWTlb5yAxsUPw%3D%3D",
-                numOfRows = 12,
+                numOfRows = 290, //* 날씨항목 요청개수 (시간당12,하루당290)
                 base_date = yyyy + "" + mm + "" + dd,
                 base_time = hours + "00",
                 _nx = nx, _ny = ny;
@@ -145,8 +124,9 @@ exports.getlocation = async (req, res) => {
         }).then((result) => {
             return result.data.response.body;
         }).then((data) => {
-            console.log(data.items);
-            res.json(data.items);   //* 날씨정보 전송
+            let item = data.items;
+            console.log('날씨정보 확인 : ', item);
+            res.json(item);       //* 날씨정보 전송
         })
     } catch (error) {
         if (error.response) {

@@ -1,3 +1,4 @@
+<!-- 날씨정보 가져오는 함수가 담긴 파일입니다. -->
 <!DOCTYPE html>
 <html>
 
@@ -19,16 +20,20 @@
         };
 
 
-        function locationSuccess(p) {
-            // var latitude = p.coords.latitude, longitude = p.coords.longitude;
+        async function locationSuccess(p) {
+            var latitude = p.coords.latitude, longitude = p.coords.longitude;
+            console.log(latitude, longitude);
 
             // 사용자 위경도 전송
+
+
+
             await axios({
                 method: 'post',
-                url: "http://localhost:8000/weather/getlocation",
+                url: "localhost:8000/weather/getlocation",
                 data: {
-                    latitude: p.coords.latitude,
-                    longitude: p.coords.longitude
+                    latitude: latitude,
+                    longitude: longitude
                 }
             }).then(function (response) {
                 console.log(response.data);

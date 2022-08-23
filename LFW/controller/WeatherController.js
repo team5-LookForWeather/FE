@@ -1,18 +1,19 @@
-const models = require("../model");
+// const models = require("../model");
 const axios = require("axios")
 
-//* weather메뉴
-exports.get = (req, res) => {
+/* weather페이지 */
+exports.weather_index = (req, res) => {
     res.render("weather");
 }
 
-//* 위치검색
-//^ 현위치 검색
-exports.post("/getlocation", async function (req, res) {
+/* 현위치로 날씨정보 받아오기 */
+exports.getlocation = async (req, res) => {
+    console.log('바보');
     try {
-        var { latitude, longitude } = req.data;
+        console.log(req.data);
+        // var { latitude, longitude } = req.data;
 
-        // LCC DFS 좌표변환 ( code : "toXY"(위경도->좌표, v1:위도, v2:경도))
+        /* 위경도 -> xy 좌표변환 ( code:"toXY", v1:위도, v2:경도)) */
         function dfsXYConv(code, v1, v2) {
             const { PI, tan, log, cos, pow, floor, sin, sqrt, atan, abs, atan2 } = Math;
 
@@ -80,10 +81,10 @@ exports.post("/getlocation", async function (req, res) {
             }
             return rs;
         }
-        var rs = await dfsXYConv("toXY", latitude, longitude);
+        var rs = await dfsXYConv("toXY", req.data.latitude, req, data.longitude);
         Number(rs.nx); Number(rs.ny);
 
-        // 날씨정보 요청
+        /* 날씨api 요청메세지 */
         function reqURL(nx, ny) {
             var today = new Date();
             var yyyy = today.getFullYear();
@@ -136,8 +137,8 @@ exports.post("/getlocation", async function (req, res) {
             return requrl;
         }
         var reqMSG = await reqURL(rs.nx, rs.ny);
-        console.log(reqMSG);
 
+        /* 날씨api 요청 */
         await axios({
             method: "get",
             url: reqMSG,
@@ -145,7 +146,7 @@ exports.post("/getlocation", async function (req, res) {
             return result.data.response.body;
         }).then((data) => {
             console.log(data.items);
-            res.json(data.items);
+            res.json(data.items);   //* 날씨정보 전송
         })
     } catch (error) {
         if (error.response) {
@@ -165,22 +166,18 @@ exports.post("/getlocation", async function (req, res) {
         }
         console.log(error.config);
     };
-})
+}
 
 
-//^ 지역 검색
+/* 지역검색으로 날씨정보 받아오기 */
 exports.searchlocation = (req, res) => {
+    console.log('바보');
 
 }
 
-//* 날씨api 요청 
 
 
-//* 날씨정보 전송
-
-
-
-
+/* 지우지 말아주세요 (규리쌤 코드) */
 // function getAxios() {
 //     let params = {
 //         serviceKey: "Su%2FjD4AQWu0vPPnQkcm0dVbiPxWqLgUu6AN6Snk4oK0JGGr38kehRNwGQtPIWP9iZ7BzO%2FQccEWTlb5yAxsUPw%3D%3D",
@@ -201,10 +198,6 @@ exports.searchlocation = (req, res) => {
 //         console.log(result);
 //     })
 // }
-
-
-
-
 
  // await axios({
     //     method: "get",

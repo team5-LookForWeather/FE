@@ -110,7 +110,7 @@ exports.getlocation = async (req, res) => {
             requrl += "&pageNo=1&numOfRows=" + numOfRows;
             requrl += "&dataType=JSON";
             requrl += "&base_date=" + base_date;
-            requrl += "&base_time=" + base_time;
+            requrl += "&base_time=" + '0'+200;
             requrl += "&nx=" + _nx + "&ny=" + _ny;
 
             return requrl;

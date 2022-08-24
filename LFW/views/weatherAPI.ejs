@@ -36,8 +36,31 @@
                 // 날씨정보 JSON파일로 받기 ( 팀노션 - API관리 참고 )
                 // 한시간당 12항목 (numOfRows = 12) 받을 수 있습니다 
                 // response.data 가공해서 쓰세요
+                /* -배열안에 들어가는 데이터 명시-
+                baseDate : 발표시각의 날짜
+                baseTime : 발표시각의 시분
+                category : 데이터 종류
+                fcstDate : 예보시각의 날짜
+                fcstTime : 예보시각의 시분
+                fcstValue : 예보 값
+                nx, ny : 기상청 지역코드 
+                **/
                 console.log('날씨정보 확인');
                 console.log(response.data);
+
+                
+                //alert(response.data.item[0].fcstValue);
+                var TMP = response.data.item[0].fcstValue // 현재온도
+                var SKY = response.data.item[5].fcstValue // 하늘상태(SKY) 코드 : 맑음(1), 구름많음(3), 흐림(4) 
+                var REH = response.data.item[10].fcstValue // 습도
+                var TMN = response.data.item[10].fcstValue // 
+                var TMX = response.data.item[10].fcstValue
+
+
+
+                $('.temp').append(TMP);
+                $('.icon').append(SKY);
+                $('.humidity').append(REH);
             });
         }
 
@@ -50,15 +73,29 @@
             };
             var errorMsg = errorTypes[error.code];
             console.log(errorMsg)
+            
         }   // locationError
-
-
 
     </script>
 </head>
 
 <body>
     <button type="button" onclick="getLocation();">현재위치 가져오기</button>
+    <div class="time">현재시간:</div>
+    <div class="temp">현재온도:</div>
+    <div class="lowtemp">일최저기온:</div>
+    <div class="hightemp">일최고기온:</div>
+    <div class="icon">아이콘:</div>
+    <div class="humidity">습도:</div>
+    
+    <script>
+            let date = new Date();
+            let month = date.getMonth() + 1;
+            let day = date.getDate();
+            let hours = date.getHours();
+            let minutes = date.getMinutes();
+            document.querySelector('.time').innerHTML = `${month}월 ${day}일 ${hours}시 ${minutes}분`;
+    </script>
 </body>
 
 </html>

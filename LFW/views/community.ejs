@@ -9,7 +9,7 @@
         integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <script src="https://kit.fontawesome.com/9ad05a77c3.js" crossorigin="anonymous"></script>
 
-    <script defer src="/LFW/public/js/common.js"></script>
+    <script defer src="js/common.js"></script>
     <!-- <script src="./community.js" defer></script> -->
     <link rel="stylesheet" href="/css/community.css">
 
@@ -31,7 +31,7 @@
                 // 서버에서
                 // res.send( { nickname: 'aa', content: '1234'});
                 // 프론트에서
-                // data.nickname
+                // data.nicknameb
                 // data.content
                 let html = `
                 <li class="new_comment">
@@ -54,13 +54,12 @@
                 method: 'delete',
                 url: 'http://localhost:8000/visitor/delete',
                 data: {
-
+                    comment: form.comment.value
                 }
             }).then((rep) => {return rep.data;})
             .then((data) => {
-                alert(data);
                 var userComment = document.getElementsByClassName('new_comment');
-                
+
                 $(userComment).remove();
 
             });
@@ -78,7 +77,7 @@
                             <div class="moblie_logo">
                                 <h1 class="logo">
                                     <a href="#">
-                                        <img src="/LFW/public/image/logo-5.png" alt="룩포웨더">
+                                        <img src="image/logo-5.png" alt="룩포웨더">
                                     </a>
                                 </h1>
                             </div>
@@ -92,7 +91,7 @@
                                 <div class="pc_logo">
                                     <h1 class="logo">
                                         <a href="#">
-                                            <img src="./image/logo-5.png" alt="룩포웨더">
+                                            <img src="/image/logo-5.png" alt="룩포웨더">
                                         </a>
                                     </h1>
                                 </div>
@@ -168,7 +167,20 @@
                                 <div class="comment_nickname">user01</div>
                                 <span class="comment_comment">서울 민소매에 얇은 남방 + 여름슬랙스 비도 조금씩 오고 너무 습해.</span>
 
-                                <img src="image/community/icon-off.png" class="like">
+                                <div>
+                                    <button class="reply">
+                                        답글달기
+                                    </button>
+                                    
+                                    <img src="image/community/icon-off.png" class="like2" >
+                                </div>
+
+                                <form id="form_comment" class="reply_closed" onclick="clickshow(this,'categories')">
+                                    <div class="post_comment">
+                                    <input id="post_comment_input" type="text" placeholder="댓글 달기..." name="comment"/>
+                                    <button type="button" class="post_comment_btn" onclick="writeComment()" >게시</button>
+                                    </div>
+                                </form>
                             </div>
 
                         </li>
@@ -181,7 +193,7 @@
                                     <button class="reply">
                                         답글달기
                                     </button>
-                                    <img src="image/community/icon-off.png" class="like2">
+                                    <img src="image/community/icon-off.png" class="like2" >
                                 </div>
                             </div>
                         </li>
@@ -257,6 +269,61 @@
             </div>
         </footer>          
     </div>
-</body>
 
+    <style>
+    </style>
+    <script>
+        // 좋아요 기능
+        $(".like2").click((obj) => {
+            if ( $(obj.target).hasClass("like2") ){
+                $(obj.target).removeClass("like2");
+                $(obj.target).addClass("nolike2");
+            } else {
+                $(obj.target).removeClass("nolike2");
+                $(obj.target).addClass("like2");
+
+            }
+            // let target = obj.target;
+            // console.log( target.src );
+            // if ( target.src == "image/community/icon-off.png" ) {
+            //     target.src = 'image/community/icon-on.png';
+            // }
+            // else {
+            //     target.src = "image/community/icon-off.png";
+            // }
+        })
+
+
+        // 답글 달기
+        // function replyWrite(){
+
+        //     function clickshow(elem,ID) {
+        //     var menu = document.getElementById(ID);
+        //     if (elem.className !='reply_closed') {
+        //         elem.className = 'reply_closed';
+        //         menu.style.display = "none";
+        //     } else {
+        //         elem.className ='reply_opened';
+        //         menu.style.display ="block";
+        //     }}
+
+
+        //     // 입력창 숨기기
+        //     const newReply = document.getElementsByClassName('user_comment')[0];
+        //     const newComment = document.createElement('div');
+
+        //     <form id="form_comment">
+        //         <div class="post_comment">
+        //         <input id="post_comment_input" type="text" placeholder="댓글 달기..." name="comment"/>
+        //         <button type="button" class="post_comment_btn" onclick="writeComment()" >게시</button>
+        //         </div>
+        //     </form>
+            
+        //     newCommentLocation.appendChild(newComment);
+        //     commentInput.value = '';
+        // }
+
+        
+    </script>
+</body>
 </html>

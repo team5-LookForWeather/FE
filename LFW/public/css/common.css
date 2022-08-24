@@ -65,6 +65,18 @@ img {
 	max-width: 100%;
 }
 
+footer {
+    width:100%;
+    background:var(--black2-color);
+    z-index:20;
+    /* 컨텐츠 적을 시 absolute */
+    position: absolute;
+    left:0;
+    bottom:0;
+    /* 컨텐츠 많을 시 relative */
+    /* position:relative; */
+}
+
 
 /*=========================================================
     컨테이너

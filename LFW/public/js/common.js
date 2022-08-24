@@ -37,9 +37,9 @@ let prevScrollTop = 0;
 document.addEventListener("scroll", function () {
     let nextScrollTop = window.pageYOffset || 0; // pageYOffset -> IE 8 이하 빼고 다 됨.
     if (nextScrollTop > prevScrollTop) {
-        headerMoving("down");
+       // headerMoving("down");
     } else if (nextScrollTop < prevScrollTop) {
-        headerMoving("up");
+        //headerMoving("up");
     }
     prevScrollTop = nextScrollTop;
 });     

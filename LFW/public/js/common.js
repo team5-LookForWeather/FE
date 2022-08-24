@@ -46,7 +46,7 @@ document.addEventListener("scroll", function () {
 
 
 //footer 토글
-$('#footer > .layout > .site-box > .relate-site > .box-1').click(function() {
+$('footer > .layout > .site-box > .relate-site > .box-1').click(function() {
     var $this = $(this);
     $this.toggleClass('active');
 });

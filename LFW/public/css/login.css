@@ -2,27 +2,6 @@
     폰트 패밀리
 =========================================================*/
 @font-face {
-    font-family: 'GmarketSansLight';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansLight.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: 'GmarketSansMedium';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: 'GmarketSansBold';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansBold.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
-}
-
-@font-face {
     font-family: 'MaplestoryOTFLight';
     src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@2.1/MaplestoryOTFLight.woff') format('woff');
     font-weight: normal;
@@ -47,9 +26,16 @@
     --font-Bold:'MaplestoryOTFBold';
 
     /* 컬러 */
+    --background-color:#ededed;
     --white-color:#fff;
     --black-color:#0a0a0a;
+    --black2-color:#111;
+
     --gray-color:#757575;
+    --gray-color2:#414141;
+    --gray-color3:#676767;
+    --gray-color4:#595959;
+
     --main-color:#0359AE;
     --sub-color:#0359AE;
     --error-color:#e00012;
@@ -139,6 +125,7 @@ img#logo{
     background:var(--white-color);
     position:relative;
     margin-top:10px;
+    border-radius: 20px;
 }
 
 

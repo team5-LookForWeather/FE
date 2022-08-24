@@ -2,12 +2,12 @@
     "development" : {
         "host" : "localhost",
         "database" : "LFW",
-        "username" : "user",
-        "password" : "SeSAC4web!",
+        "username" : "LFW",
+        "password" : "SeSAC4web!", 
         "dialect" : "mysql"
     },
     "production" : {
-
+        
     },
     "test" :{
 

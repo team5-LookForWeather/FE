@@ -70,30 +70,30 @@ exports.getlocation = async (req, res) => {
             var mm = today.getMonth() + 1;
             var dd = today.getDate();
             var hours = today.getHours();
-            var minutes = today.getMinutes();
+            //var minutes = today.getMinutes();
 
             //basetime: 0200, 0500, 0800, 1100, 1400, 1700, 2000, 2300
-            if (hours < 2 || (hours == 2 && minutes < 10)) {    //새벽2시 이전은 전날로 계산
+            // if (hours < 2 || (hours == 2 && minutes < 10)) {    //새벽2시 이전은 전날로 계산
                 today.setDate(today.getDate() - 1);
                 yyyy = today.getFullYear();
                 mm = today.getMonth() + 1;
                 dd = today.getDate();
-                hours = 23;
-            } else if (hours < 5 || (hours == 5 && minutes < 10)) {
-                hours = 2;
-            } else if (hours < 8 || (hours == 8 && minutes < 10)) {
-                hours = 5;
-            } else if (hours < 11 || (hours == 11 && minutes < 10)) {
-                hours = 8;
-            } else if (hours < 14 || (hours == 14 && minutes < 10)) {
-                hours = 11;
-            } else if (hours < 17 || (hours == 17 && minutes < 10)) {
-                hours = 14;
-            } else if (hours < 20 || (hours == 20 && minutes < 10)) {
-                hours = 17;
-            } else if (hours < 23 || (hours == 23 && minutes < 10)) {
-                hours = 20;
-            } else { hours = 23; }
+                //hours = 23;
+            // } else if (hours < 5 || (hours == 5 && minutes < 10)) {
+            //     hours = 2;
+            // } else if (hours < 8 || (hours == 8 && minutes < 10)) {
+            //     hours = 5;
+            // } else if (hours < 11 || (hours == 11 && minutes < 10)) {
+            //     hours = 8;
+            // } else if (hours < 14 || (hours == 14 && minutes < 10)) {
+            //     hours = 11;
+            // } else if (hours < 17 || (hours == 17 && minutes < 10)) {
+            //     hours = 14;
+            // } else if (hours < 20 || (hours == 20 && minutes < 10)) {
+            //     hours = 17;
+            // } else if (hours < 23 || (hours == 23 && minutes < 10)) {
+            //     hours = 20;
+            // } else { hours = 23; }
 
             if (mm < 10) { mm = '0' + mm }
             if (dd < 10) { dd = '0' + dd }
@@ -101,9 +101,9 @@ exports.getlocation = async (req, res) => {
 
 
             var serviceKey = "Su%2FjD4AQWu0vPPnQkcm0dVbiPxWqLgUu6AN6Snk4oK0JGGr38kehRNwGQtPIWP9iZ7BzO%2FQccEWTlb5yAxsUPw%3D%3D",
-                numOfRows = 290, //* 날씨항목 요청개수 (시간당12,하루당290)
+                numOfRows = 544, //* 날씨항목 요청개수 (시간당12,하루당290)
                 base_date = yyyy + "" + mm + "" + dd,
-                base_time = hours + "00",
+                //base_time = hours + "00",
                 _nx = nx, _ny = ny;
             let requrl = "http://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getVilageFcst";
             requrl += "?serviceKey=" + serviceKey;

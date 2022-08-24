@@ -57,10 +57,10 @@ html, body {
 }
 
 body{
+	height: 100%;    
 	margin:0;
 	padding:0;
-	/* display: flex;
-	flex-direction: column; */
+	background:var(--background-color);
 }
 
 ol, ul{
@@ -85,10 +85,10 @@ img {
 	position: relative;
 }
 
-/* #body-content {
-	margin-top: 100px;
-	padding-bottom: 152px;
-} */
+#body-content {
+	/* margin-top: 100px;
+	padding-bottom: 152px; */
+}
 
 footer {
 	width:100%;
@@ -96,23 +96,12 @@ footer {
     z-index:20;
 	
 	/* 컨텐츠 적을 시 absolute */
-	position: absolute;
+	/* position: absolute;
 	left:0;
-	bottom:0;
+	bottom:0; */
 
 	/* 컨텐츠 많을 시 relative */
-	/* position:relative; */
-}
-
-
-section{
-	width:100%;
-	/* border:1px solid #ddd; */
-
-}
-
-.page-content{
-	background: var(--background-color);
+	position:relative;
 }
 
 /*=========================================================
@@ -756,8 +745,11 @@ body {
 }
 
 .main {
-    display: flex;
-    justify-content: center;
+    /* display: flex;
+    justify-content: center; */
+	width:100%;
+    margin-top:5%;
+    margin-bottom:5%;
 }
 
 /* title */
@@ -786,15 +778,25 @@ body {
 }
 
 
+section{
+	width:100%;
+    margin-top:5%;
+    margin-bottom:5%;
+}
+
 /* comment */
 .comment {
     background-color: var(--white-color);
-    border-radius: 20px;
+    /* border-radius: 20px;
     width: 1120px;
-    height: 935px;
+    height: 935px; */
     /* margin: 80px 10px 80px 240px; */
-    margin: 80px auto;
-    padding: 22px 50px 50px 50px;
+    /* margin: 80px auto;
+    padding: 22px 50px 50px 50px; */
+
+	background:var(--white-color);
+    border-radius: 20px;
+    padding:2% 5%;
 }
 
 
@@ -803,7 +805,7 @@ body {
 /* 임의의 영역 생성 */
 .comment_scroll {
     /* width: 520px;  */
-    width: 1020px; 
+    /* width: 1020px;  */
     overflow: scroll;
     height: 600px;
     overflow-x: hidden;

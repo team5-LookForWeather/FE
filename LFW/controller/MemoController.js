@@ -1,7 +1,8 @@
-
+const models = require("../model");
+const { sequelize } = require("../model/index");
 
 exports.memo_index = (req, res) => {
-    console.log('바보');
+    res.render("community");
 }
 
 

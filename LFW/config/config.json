@@ -7,7 +7,7 @@
         "dialect" : "mysql"
     },
     "production" : {
-
+        
     },
     "test" :{
 

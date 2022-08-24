@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/9ad05a77c3.js" crossorigin="anonymous"></script>
+
+    <script defer src="./js/common.js"></script>
+    <script src="./community.js" defer></script>
+    <link rel="stylesheet" href="./community.css" />
+    <title>Comment</title>
+</head>
+<body>
+<!-- header -->
+    <div id="body-wrapper">
+        <div id="body-content">
+            <header id="act_header">
+                <div class="headerArea">
+                    <div class="container">
+                        <div class="nav">
+                            <div class="moblie_logo">
+                                <h1 class="logo">
+                                    <a href="#">
+                                        <img src="./image/logo-5.png" alt="룩포웨더">
+                                    </a>
+                                </h1>
+                            </div>
+
+
+                            <div class="nav-icon">
+                                <div></div>
+                            </div>
+
+                            <ul class="navbar">
+                                <div class="pc_logo">
+                                    <h1 class="logo">
+                                        <a href="#">
+                                            <img src="./image/logo-5.png" alt="룩포웨더">
+                                        </a>
+                                    </h1>
+                                </div>
+                                <li id="menu-item-130"
+                                    class="menu-item menu-item-type-post_type menu-item-object-page menu-item-130">
+                                    <a class="moblie_arrow" href="#">HOME</a>
+                                </li>
+
+                                <li id="menu-item-41"
+                                    class="menu-item menu-item-type-post_type menu-item-object-page menu-item-41">
+                                    <a href="#">WEATHER</a>
+                                </li>
+
+                                <li id="menu-item-40"
+                                    class="menu-item menu-item-type-post_type menu-item-object-page menu-item-40">
+                                    <a href="#">OOTD</a>
+                                </li>
+
+                                <li id="menu-item-131"
+                                    class="menu-item menu-item-type-post_type menu-item-object-page menu-item-131">
+                                    <a href="#">COMMUNITY</a>
+                                </li>
+
+                                <li id="menu-item-132"
+                                    class="menu-item menu-item-type-post_type menu-item-object-page menu-item-132">
+                                    <a href="#">MYPAGE</a>
+                                </li>
+
+                                <li class="utill mo">
+                                    <ul>
+                                        <li class="login_bt"><a href="#" target="_blank">로그인</a></li>
+                                        <li class="member_bt"><a href="#" target="_blank">회원가입</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+
+
+                            <ul class="utill pc">
+                                <li>
+                                    <a class="first_icon" href="#" target="_blank"></a>
+                                    <a class="second_icon" href="#" target="_blank"></a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                </div>
+            </header>  
+<!-- content -->
+            <section>
+                <div class="container">
+                    <div class="page-content">
+                        <!-- comment -->
+    <main class="main">
+        <article class="comment">
+            <!-- <h2>Comment</h2> -->
+            <div class="MainSectionHeader">
+                <h2 class="MainSectionHeader-title">
+                    <a class="MainSectionHeader-link" href="#">
+                        Comment
+                    </a>
+                </h2>
+                <div class="MainSectionHeader-sub">
+                    오늘 날씨에 대해 이야기 해요. 
+                </div>
+            </div>
+
+            <section class="user_comment_wrap">
+                <div class="comment_scroll">
+                    <ul class="comment_list">
+                        <li>
+                            <div class="user_comment">
+                                <div class="comment_nickname">user01</div>
+                                <span class="comment_comment">서울 민소매에 얇은 남방 + 여름슬랙스 비도 조금씩 오고 너무 습해.</span>
+
+                                <img src="/img/icon-off.png" class="like">
+                            </div>
+
+                        </li>
+                        <li>
+                            <div class="user_comment">
+                                <div class="comment_nickname">user02</div>
+                                <span class="comment_comment">서울 민소매 + 반바지 해 없으니까 시원해 근데 습하다 ㅜㅜ</span>
+
+                                <div>
+                                    <button class="reply">
+                                        답글달기
+                                    </button>
+                                    <img src="/img/icon-off.png" class="like2">
+                                </div>
+                            </div>
+                        </li>
+
+                    </ul>
+                </div>
+            </section>
+
+            <!-- post comment -->
+            <section class="post_comment_wrap">
+                <div class="post_comment_all">
+                    <div class="post_comment_line">
+                    </div>
+                    <div class="post_comment">
+                        <input id="post_comment_input" type="text" placeholder="댓글 달기..." />
+                        <button class="post_comment_btn">게시</button>
+                    </div>
+                </div>      
+            </section>
+        </article>
+    </main>
+                    </div>
+                </div>
+            </section>              
+        </div>
+
+
+<!-- footer -->
+        <footer class="footer">
+            <div class="layout con">
+                <div class="menu">
+                    <ul class="row">
+                        <li class="cell">룩포웨더</li>
+                        <li class="cell">날씨정보</li>
+                        <li class="cell">코디리뷰</li>
+                        <li class="cell">커뮤니티</li>
+                        <li class="cell">마이페이지</li>
+                    </ul>
+                </div>
+                <div class="address">
+                    <div class="line_txt">조장 : 함유정</div>
+                    <div>팀원 : 방장원, 서윤지, 정예현, 최상훈</div>
+                </div>
+                <div class="copy">
+                    Copyrightⓒ 록포웨더. All Rights Reserved.
+                </div>
+                <div class="site-box row">
+                    <div class="relate-site cell">
+                        <div class="box-1">
+                            패밀리사이트
+                        </div>
+                        <ul>
+                            <a href="#" onclick="return false">
+                                <li>링크사이트1</li>
+                            </a>
+                            <a href="#" onclick="return false">
+                                <li>링크사이트2</li>
+                            </a>
+                            <a href="#" onclick="return false">
+                                <li>링크사이트3</li>
+                            </a>
+                            <a href="#" onclick="return false">
+                                <li>링크사이트4</li>
+                            </a>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </footer>          
+    </div>
+</body>
+
+</html>

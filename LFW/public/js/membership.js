@@ -95,7 +95,7 @@ function checkPw() {
         error[1].innerHTML = "필수 정보입니다.";
         pwMsg.style.display = "block";
         pwMsgArea.style.paddingRight = "40px";
-        pwImg1.src = "./image/icon/check-2.png";
+        pwImg1.src = "../image/icon/check-2.png";
         error[1].style.display = "block";
     } else if(!pwPattern.test(pw1.value)) {
         error[1].innerHTML = "8~16자 영문 대 소문자, 숫자, 특수문자를 사용하세요.";
@@ -104,14 +104,14 @@ function checkPw() {
         error[1].style.display = "block";
         pwMsg.style.color = "red";
         pwMsg.style.display = "block";
-        pwImg1.src = "./image/icon/check-2.png";
+        pwImg1.src = "../image/icon/check-2.png";
     } else {
         error[1].style.display = "none";
         pwMsg.innerHTML = "안전";
         pwMsgArea.style.paddingRight = "93px";
         pwMsg.style.color = "#03c75a";
         pwMsg.style.display = "block";
-        pwImg1.src = "./image/icon/check-3.png";
+        pwImg1.src = "../image/icon/check-3.png";
     }
 }
 
@@ -125,10 +125,10 @@ pw2.addEventListener("change", comparePw);
 
 function comparePw() {
     if(pw2.value === pw1.value) {
-        pwImg2.src = "./image/icon/check-3-2.png";
+        pwImg2.src = "../image/icon/check-3-2.png";
         error[2].style.display = "none";
     } else if(pw2.value !== pw1.value) {
-        pwImg2.src = "./image/icon/check-1-2.png";
+        pwImg2.src = "../image/icon/check-1-2.png";
         error[2].innerHTML = "비밀번호가 일치하지 않습니다.";
         error[2].style.display = "block";
     } 

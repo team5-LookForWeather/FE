@@ -8,8 +8,13 @@ const path = require('path');
 const UserRouter = express.Router();
 const user = require('../controller/UserController');
 // login
-UserRouter.get("/", user.login);
+UserRouter.get("/login", user.login);
 UserRouter.post("/login", user.post_login);
+
+// 회원가입
+UserRouter.get("/membership", user.membership);
+UserRouter.post("/membership", user.post_membership);
+
 
 // find id
 UserRouter.get("/find_id", user.find_id);

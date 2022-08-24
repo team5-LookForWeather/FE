@@ -73,6 +73,26 @@ exports.find_pw_result = (req, res) => {
 }
 
 
+// 회원가입
+exports.membership = (req, res) => {
+    res.render("membership.ejs");
+}
+
+exports.post_membership = (req, res) => {
+    let user = {
+        id : req.body.$userId,
+        pw : req.body.$userPw,
+        name : req.body.$userName,
+        nickname : req.body.$nickName,
+        mobile : req.body.$mobile,
+        email : req.body.$email,
+        gender : req.body.$gender,
+        birthday : req.body.$birthday
+    }
+}
+
+
+
 
 // register
 exports.register = (req, res) => {

@@ -1,4 +1,4 @@
-// const models = require("../model");
+const models = require("../model");
 const axios = require("axios")
 
 /* weather페이지 */

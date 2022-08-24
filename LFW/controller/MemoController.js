@@ -1,8 +1,10 @@
-
+const models = require("../model");
+const { sequelize } = require("../model/index");
 
 exports.memo_index = (req, res) => {
-    res.render('community')
-};
+    res.render("community");
+}
+
 
 // router.get("/", memo.get_memos);
 // router.post("/write", memo.post_memo);

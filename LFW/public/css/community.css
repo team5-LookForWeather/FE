@@ -873,11 +873,22 @@ section{
     border: none;
     width: 12px;
     position: relative;
-    top: 10px;
+    top: 26px;
     left: 10px;
+	content:url("/image/community/icon-off.png");
+}
+.nolike {
+    border: none;
+    width: 12px;
+    position: relative;
+    top: 26px;
+    left: 10px;
+	content:url("/image/community/icon-on.png");
 }
 
-.reply {
+.reply,
+.reply_closed,
+.reply_opened {
     position: relative;
     top: 25px;
     margin-left: 20px;
@@ -886,6 +897,8 @@ section{
     background-color: var(--white-color);
     font-family: var(--font-Light);
 }
+
+
 
 .like2 {
     width: 12px;
@@ -916,7 +929,7 @@ section{
     background-color: var(--white-color);
     border-radius: 20px;
     position: relative;
-    left: 903px;
+    left: 1150px;
     top: 33px;
     width: 10px;
 }

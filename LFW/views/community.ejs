@@ -16,52 +16,122 @@
     <title>Comment</title>
 
     <script>
+
+        // document.getElementById('post_comment_input')
+        // .addEventListener('keyup', function(event) {
+        //     if (event.code === 'Enter')
+        //     {
+        //         event.preventDefault();
+        //         document.getElementById('form_comment').submit();
+        //     }
+        // });
+
         function writeComment(){
             let form = document.getElementById('form_comment');
             
-            axios({
-                method: 'post',
-                url: 'http://localhost:8000/comment/write',
-                data: {
-                    comment: form.comment.value
-                }
-            })
-            .then((rep) => {return rep.data;})
-            .then((data) => {
-                // 서버에서
-                // res.send( { nickname: 'aa', content: '1234'});
-                // 프론트에서
-                // data.nicknameb
-                // data.content
-                let html = `
+            let html = `
                 <li class="new_comment">
                 <div class="user_comment">
                 <div class="user_comment_nickname">iAmUser</div>
                 <span class="user_comment_comment">
                 ${form.comment.value}
                 </span>
-                <img src='/img/close.png' class="comment_del" onclick="deleteComment() ;">
+                <img src='/image/community/close.png' class="comment_del" onclick="deleteComment() ;">
                 </div>
                 <li>
                 `;
 
-                $('comment_list').appendChild(html)
-            });
+                $('.comment_list').append(html);
+            // axios({
+            //     method: 'post',
+            //     url: 'http://localhost:8000/memo/write',
+            //     data: {
+            //         // user_id: form. // 유저 아이디 가져오기
+            //         memo: form.comment.value
+            //     }
+            // })
+            // .then((rep) => {return rep.data;})
+            // .then((data) => {
+            //     // 서버에서
+            //     // res.send( { nickname: 'aa', content: '1234'});
+            //     // 프론트에서
+            //     // data.nicknameb
+            //     // data.content
+            //     let html = `
+            //     <li class="new_comment">
+            //     <div class="user_comment">
+            //     <div class="user_comment_nickname">iAmUser</div>
+            //     <span class="user_comment_comment">
+            //     ${form.comment.value}
+            //     </span>
+            //     <img src='/img/close.png' class="comment_del" onclick="deleteComment() ;">
+            //     </div>
+            //     <li>
+            //     `;
+
+            //     $('.comment_list').appendChild(html)
+            // });
         }
 
+        function writeReply(){
+            let form = document.getElementById('reply_comment');
+            
+            let html2 = `
+                
+                <li>
+                <div class="user_comment">
+                <div class="user_comment_nickname">iAmUser</div>
+                <span class="user_reply">
+                ${form.reply.value}
+                </span>
+                <img src='/image/community/close.png' class="reply_del" onclick="deleteReply();">
+                </div>
+                <li>
+                `;
+
+                $('.comment_list').append(html2);
+            // axios({
+            //     method: 'post',
+            //     url: 'http://localhost:8000/memo/write',
+            //     data: {
+            //         // user_id: form. // 유저 아이디 가져오기
+            //         memo: form.comment.value
+            //     }
+            // })
+            // .then((rep) => {return rep.data;})
+            // .then((data) => {
+            //     // 서버에서
+            //     // res.send( { nickname: 'aa', content: '1234'});
+            //     // 프론트에서
+            //     // data.nicknameb
+            //     // data.content
+            //     let html = `
+            //     <li class="new_comment">
+            //     <div class="user_comment">
+            //     <div class="user_comment_nickname">iAmUser</div>
+            //     <span class="user_comment_comment">
+            //     ${form.comment.value}
+            //     </span>
+            //     <img src='/img/close.png' class="comment_del" onclick="deleteComment() ;">
+            //     </div>
+            //     <li>
+            //     `;
+
+            //     $('.comment_list').appendChild(html)
+            // });
+        }
+        
         function deleteComment(id){
             axios({
                 method: 'delete',
-                url: 'http://localhost:8000/visitor/delete',
+                url: 'http://localhost:8000/memo/delete',
                 data: {
                     comment: form.comment.value
                 }
             }).then((rep) => {return rep.data;})
             .then((data) => {
                 var userComment = document.getElementsByClassName('new_comment');
-
                 $(userComment).remove();
-
             });
         }
     </script>
@@ -168,17 +238,18 @@
                                 <span class="comment_comment">서울 민소매에 얇은 남방 + 여름슬랙스 비도 조금씩 오고 너무 습해.</span>
 
                                 <div>
-                                    <button class="reply">
+                                    <button class="reply" onclick="clickshow(this,'reply_comment')">
                                         답글달기
                                     </button>
                                     
-                                    <img src="image/community/icon-off.png" class="like2" >
+                                    <img src="image/community/icon-off.png" class="like" >
                                 </div>
 
-                                <form id="form_comment" class="reply_closed" onclick="clickshow(this,'categories')">
+                                <form id="reply_comment" class="reply_closed" style="display: none;"
+                                >
                                     <div class="post_comment">
-                                    <input id="post_comment_input" type="text" placeholder="댓글 달기..." name="comment"/>
-                                    <button type="button" class="post_comment_btn" onclick="writeComment()" >게시</button>
+                                    <input id="post_comment_input" type="text" placeholder="댓글 달기..." name="reply"/>
+                                    <button type="button" class="post_comment_btn" onclick="wirteReply()" >게시</button>
                                     </div>
                                 </form>
                             </div>
@@ -190,11 +261,19 @@
                                 <span class="comment_comment">서울 민소매 + 반바지 해 없으니까 시원해 근데 습하다 ㅜㅜ</span>
 
                                 <div>
-                                    <button class="reply">
+                                    <button class="reply" onclick="clickshow(this,'reply_comment2')">
                                         답글달기
                                     </button>
-                                    <img src="image/community/icon-off.png" class="like2" >
+                                    <img src="image/community/icon-off.png" class="like" >
                                 </div>
+
+                                <form id="reply_comment2" class="reply_closed" style="display: none;" name="form">
+                                    <div class="post_comment">
+                                    <input id="post_comment_input" type="text" placeholder="댓글 달기..." name="comment"/>
+                                    <button type="button" class="post_comment_btn" onclick="writeComment()"
+                                    >게시</button>
+                                    </div>
+                                </form>
                             </div>
                         </li>
 
@@ -209,7 +288,8 @@
                     </div>
                     <form id="form_comment">
                         <div class="post_comment">
-                        <input id="post_comment_input" type="text" placeholder="댓글 달기..." name="comment"/>
+                        <input id="post_comment_input" type="text" placeholder="댓글 달기..." name="comment" onkeypress="if(window.event.keyCode==13){writeComment(); window.event.preventDefault(); return false;}"/>
+                        <!-- <input id="post_comment_input" type="text" placeholder="댓글 달기..." name="comment" onkeypress="if(window.event.keyCode==13){writeComment(); window.event.preventDefault(); return false;}"/> -->
                         <button type="button" class="post_comment_btn" onclick="writeComment()" >게시</button>
                         </div>
                     </form>
@@ -270,17 +350,27 @@
         </footer>          
     </div>
 
-    <style>
-    </style>
+
+
+
+
+
     <script>
+        document.addEventListener('keypress', function(event) {
+            if (event.keyCode === 13) {
+                event.preventDefault();
+            };
+            }, true);
+
+            
         // 좋아요 기능
-        $(".like2").click((obj) => {
-            if ( $(obj.target).hasClass("like2") ){
-                $(obj.target).removeClass("like2");
-                $(obj.target).addClass("nolike2");
+        $(".like").click((obj) => {
+            if ( $(obj.target).hasClass("like") ){
+                $(obj.target).removeClass("like");
+                $(obj.target).addClass("nolike");
             } else {
-                $(obj.target).removeClass("nolike2");
-                $(obj.target).addClass("like2");
+                $(obj.target).removeClass("nolike");
+                $(obj.target).addClass("like");
 
             }
             // let target = obj.target;
@@ -294,35 +384,17 @@
         })
 
 
-        // 답글 달기
-        // function replyWrite(){
-
-        //     function clickshow(elem,ID) {
-        //     var menu = document.getElementById(ID);
-        //     if (elem.className !='reply_closed') {
-        //         elem.className = 'reply_closed';
-        //         menu.style.display = "none";
-        //     } else {
-        //         elem.className ='reply_opened';
-        //         menu.style.display ="block";
-        //     }}
-
-
-        //     // 입력창 숨기기
-        //     const newReply = document.getElementsByClassName('user_comment')[0];
-        //     const newComment = document.createElement('div');
-
-        //     <form id="form_comment">
-        //         <div class="post_comment">
-        //         <input id="post_comment_input" type="text" placeholder="댓글 달기..." name="comment"/>
-        //         <button type="button" class="post_comment_btn" onclick="writeComment()" >게시</button>
-        //         </div>
-        //     </form>
-            
-        //     newCommentLocation.appendChild(newComment);
-        //     commentInput.value = '';
-        // }
-
+        // 답글 달기 클릭
+        function clickshow(elem, id) {
+            var menu = document.getElementById(id);
+            if (elem.className !='reply_closed') {
+                elem.className = 'reply_closed';
+                menu.style.display = "block";
+            } else {
+                elem.className ='reply_opened';
+                menu.style.display = "none";
+            }
+        }
         
     </script>
 </body>

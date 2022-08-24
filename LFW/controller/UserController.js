@@ -1,4 +1,4 @@
-// const models = require("../model");
+const models = require("../model");
 
 // login
 exports.login = (req, res) => {
@@ -79,19 +79,24 @@ exports.membership = (req, res) => {
 }
 
 exports.post_membership = (req, res) => {
+    console.log( req.body );
     let user = {
-        id : req.body.$userId,
-        pw : req.body.$userPw,
-        name : req.body.$userName,
+        user_id : req.body.$user_id,
+        pw : req.body.$pw,
+        name : req.body.$name,
         nickname : req.body.$nickName,
-        mobile : req.body.$mobile,
+        tel : req.body.$tel,
         email : req.body.$email,
         gender : req.body.$gender,
-        birthday : req.body.$birthday
+        age : req.body.$age
     }
+
+    models.User.create(user)
+        .then((result) => {
+            console.log(result);
+            res.send("성공적으로 회원가입 되었습니다. 가입하신 정보로 다시 로그인해주세요.");
+        })
 }
-
-
 
 
 // register

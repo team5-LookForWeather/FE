@@ -2,6 +2,9 @@ create database LFW;
 use LFW;
 
 
+drop table User;
+insert into User values('aaa','aaa1','aaa','aaa','01011111111','aaa@gmail.com','','1');
+
 CREATE TABLE `User` (
 	`user_id`	varchar(15)	NOT NULL primary key,
 	`pw`	varchar(15)	NOT NULL,
@@ -12,9 +15,6 @@ CREATE TABLE `User` (
 	`gender` enum('F', 'M', '')	NULL,
 	`age`	int	NULL
 );
-
-drop table User;
-insert into User values('aaa','aaa1','aaa','aaa','01011111111','aaa@gmail.com','','1');
 
 
 CREATE TABLE `OOTD` (
@@ -27,7 +27,7 @@ CREATE TABLE `OOTD` (
 	`delete_time`	DATETIME	NULL,
 	`comment`	mediumtext	NULL	COMMENT '옷에 대한 간략한 정보 적게',
 	`like`	int	NULL	COMMENT '좋아요 기능',
-    foreign key (user_id) references User
+    foreign key (user_id) references User(user_id)
 );
 
 
@@ -39,16 +39,16 @@ CREATE TABLE `OOTD_comment` (
 	`create_time`	DATETIME	NOT NULL,
 	`update_time`	DATETIME	NULL,
 	`delete_time`	DATETIME	NULL,
-    foreign key (user_id) references User,
-    foreign key (OOTD_id) references OOTD
+    foreign key (user_id) references User(user_id),
+    foreign key (OOTD_id) references OOTD(OOTD_id)
 );
 
 CREATE TABLE `OOTD_picture` (
 	`OOTD_img`	varchar(200)	primary key NOT NULL	COMMENT 'ootd파일명',
 	`OOTD_id`	int	NOT NULL,
 	`user_id`	varchar(15)	NOT NULL,
-	foreign key (user_id) references User,
-    foreign key (OOTD_id) references OOTD
+    foreign key (user_id) references User(user_id),
+    foreign key (OOTD_id) references OOTD(OOTD_id)
 );
 
 CREATE TABLE `OOTD_like` (
@@ -56,8 +56,8 @@ CREATE TABLE `OOTD_like` (
 	`OOTD_id`	int	NOT NULL,
 	`user_id`	varchar(15)	NOT NULL,
 	`OOTD_like`	int	NULL,
-	foreign key (user_id) references User,
-    foreign key (OOTD_id) references OOTD
+    foreign key (user_id) references User(user_id),
+    foreign key (OOTD_id) references OOTD(OOTD_id)
 );
 
 CREATE TABLE `Memo` (
@@ -67,7 +67,14 @@ CREATE TABLE `Memo` (
 	`create_time`	DATETIME	NOT NULL,
 	`update_time`	DATETIME	NULL,
 	`delete_time`	DATETIME	NULL,
-    foreign key (user_id) references User
+    foreign key (user_id) references User(user_id)
 );
 
 select * from Memo;
+
+use LFW;
+select * from User;
+select * from mysql.user;
+
+GRANT ALL PRIVILEGES ON *.* TO 'LFW'@'%' WITH GRANT OPTION;
+FLUSH PRIVILEGES;

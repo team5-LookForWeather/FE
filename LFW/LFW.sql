@@ -7,11 +7,15 @@ CREATE TABLE `User` (
 	`pw`	varchar(15)	NOT NULL,
 	`name`	varchar(10)	NOT NULL,
 	`nickname`	varchar(10)	NOT NULL,
-	`tel`	int(13)	NULL,
+	`tel`	int	NULL,
 	`email`	varchar(30)	NOT NULL,
 	`gender` enum('F', 'M', '')	NULL,
-	`age`	int(3)	NULL
+	`age`	int	NULL
 );
+
+drop table User;
+insert into User values('aaa','aaa1','aaa','aaa','01011111111','aaa@gmail.com','','1');
+
 
 CREATE TABLE `OOTD` (
 	`OOTD_id`	int	NOT NULL primary key auto_increment	COMMENT 'ootd 게시글에 주어지는 식별 id',
@@ -65,3 +69,5 @@ CREATE TABLE `Memo` (
 	`delete_time`	DATETIME	NULL,
     foreign key (user_id) references User
 );
+
+select * from Memo;

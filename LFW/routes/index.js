@@ -9,32 +9,32 @@ const UserRouter = express.Router();
 const user = require('../controller/UserController');
 // login
 UserRouter.get("/", user.login);
-// UserRouter.post("/login", user.post_login);
+UserRouter.post("/login", user.post_login);
 
-// // find id
-// UserRouter.get("/find_id", user.find_id);
-// UserRouter.post("/find_id", user.post_find_id);
-// UserRouter.post("/find_id/result", user.find_id_result);
+// find id
+UserRouter.get("/find_id", user.find_id);
+UserRouter.post("/find_id", user.post_find_id);
+UserRouter.post("/find_id/result", user.find_id_result);
 
-// // find password
-// UserRouter.get("/find_password", user.find_pw);
-// UserRouter.post("/find_password", user.post_find_pw);
-// UserRouter.post("/find_password/result", user.find_pw_result);
+// find password
+UserRouter.get("/find_password", user.find_pw);
+UserRouter.post("/find_password", user.post_find_pw);
+UserRouter.post("/find_password/result", user.find_pw_result);
 
-// // register
-// UserRouter.get("/register", user.register);
-// UserRouter.post("/id_check", user.id_check);
-// UserRouter.post("/register", user.post_register);
+// register
+UserRouter.get("/register", user.register);
+UserRouter.post("/id_check", user.id_check);
+UserRouter.post("/register", user.post_register);
 
-// // profile
-// UserRouter.get("/profile", user.profile);
+// profile
+UserRouter.get("/profile", user.profile);
 
-// // delete
-// UserRouter.delete("/delete", user.delete);
+// delete
+UserRouter.delete("/delete", user.delete);
 
-// // update
-// UserRouter.get("/update", user.update_page);
-// UserRouter.patch("/update", user.update);
+// update
+UserRouter.get("/update", user.update_page);
+UserRouter.patch("/update", user.update);
 
 
 /* 로그인 확인 미들웨어 */

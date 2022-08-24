@@ -3,11 +3,11 @@
         "host" : "localhost",
         "database" : "LFW",
         "username" : "LFW",
-        "password" : "SeSAC4web!",
+        "password" : "SeSAC4web!", 
         "dialect" : "mysql"
     },
     "production" : {
-
+        
     },
     "test" :{
 

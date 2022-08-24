@@ -5,6 +5,8 @@ exports.memo_index = (req, res) => {
     res.render("community");
 }
 
+await page.keyboard.press("Enter");
+
 
 // router.get("/", memo.get_memos);
 // router.post("/write", memo.post_memo);

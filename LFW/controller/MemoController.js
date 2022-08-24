@@ -1,9 +1,8 @@
 
 
 exports.memo_index = (req, res) => {
-    console.log('바보');
-}
-
+    res.render('community')
+};
 
 // router.get("/", memo.get_memos);
 // router.post("/write", memo.post_memo);

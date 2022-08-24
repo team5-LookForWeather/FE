@@ -32,7 +32,7 @@
                     latitude: latitude,
                     longitude: longitude
                 }
-            }).then(function (response) {
+            }).then(async function (response) {
                 // 날씨정보 JSON파일로 받기 ( 팀노션 - API관리 참고 )
                 // 한시간당 12항목 (numOfRows = 12) 받을 수 있습니다 
                 // response.data 가공해서 쓰세요
@@ -45,24 +45,93 @@
                 fcstValue : 예보 값
                 nx, ny : 기상청 지역코드 
                 **/
-                console.log('날씨정보 확인');
-                console.log(response.data);
-
+            console.log('날씨정보 확인');
+            console.log(response.data);
                 
+            // var today = new Date();
+            // var yyyy = today.getFullYear();
+            // var mm = today.getMonth() + 1;
+            // var dd = today.getDate();
+            // var hours = today.getHours();
+
+            // if (mm < 10) { mm = '0' + mm }
+            // if (dd < 10) { dd = '0' + dd }
+            // if (hours < 10) { hours = '0' + hours }   
+
+            // var currentTime = `${yyyy}${mm}${dd}`          
+            //     console.log(yyyy);
+            //     console.log(mm);
+            //     console.log(dd);
+            //     console.log(hours);
+            //     console.log(`${yyyy}${mm}${dd}`);
+                
+                //내가 쓰려던코드
+                // for(i=0; i<544; i++){
+                // if(`${yyyy}${mm}${dd}`=== response.data.item[i].fcstDate) {
+                    
+                //     console.log('1')
+                // }}
+                //     if(hours -60 < response.data.item[i].fcstTime < hours) {
+
+                //     }
+                // };
+                    
+                
+                    
                 //alert(response.data.item[0].fcstValue);
-                var TMP = response.data.item[0].fcstValue // 현재온도
-                var SKY = response.data.item[5].fcstValue // 하늘상태(SKY) 코드 : 맑음(1), 구름많음(3), 흐림(4) 
-                var REH = response.data.item[10].fcstValue // 습도
-                var TMN = response.data.item[10].fcstValue // 
-                var TMX = response.data.item[10].fcstValue
+                // var TMP = response.data.item[0].fcstValue // 현재온도
+                // var SKY = response.data.item[5].fcstValue // 하늘상태(SKY) 코드 : 맑음(1), 구름많음(3), 흐림(4) 
+                // var REH = response.data.item[10].fcstValue // 습도
+                // var TMN = response.data.item[10].fcstValue  
+                // var TMX = response.data.item[10].fcstValue
 
+                // $('.temp').append(TMP);
+                // $('.icon').append(SKY);
+                // $('.humidity').append(REH);
 
+                //규리쌤이 도와주신 코드
+                console.log( "hours : ", hours );
 
-                $('.temp').append(TMP);
-                $('.icon').append(SKY);
+                let num = 254 + ( hours * 12 );
+                var currentTMP = "";
+                if ( response.data.item[num].category == "TMP" ) {currentTMP = response.data.item[num].fcstValue}
+                else if ( response.data.item[num+1].category == "TMP") {currentTMP = response.data.item[num+1].fcstValue}
+                else if ( response.data.item[num+2].category == "TMP") {currentTMP = response.data.item[num+2].fcstValue};
+                console.log( "current : ", currentTMP );
+                
+                var TMN = "";
+                let num2 = 338;
+                if ( response.data.item[num2].category == "TMN") {TMN = response.data.item[num2].fcstValue}
+                else if ( response.data.item[num2-290].category == "TMN") {TMN = response.data.item[num2-290].fcstValue}
+                console.log( "일최저온도 : ", TMN );
+
+                var TMX = "";
+                let num3 = 447;
+                if ( response.data.item[num3].category == "TMX") {TMX = response.data.item[num3].fcstValue}
+                else if ( response.data.item[num3-290].category == "TMX") {TMX = response.data.item[num3-290].fcstValue}
+                console.log( "일최고온도 : ", TMX );
+
+                var REH = "";
+                let num4 = 264 + ( hours * 12 );
+                if ( response.data.item[num4].category == "REH" ) {REH = response.data.item[num4].fcstValue}
+                else if ( response.data.item[num4+1].category == "REH") {REH = response.data.item[num4+1].fcstValue}
+                else if ( response.data.item[num4+2].category == "REH") {REH = response.data.item[num4+2].fcstValue};
+                console.log( "습도 : ", REH );
+
+                var SKY = "";
+                let num5 = 259 + ( hours * 12 );
+                if ( response.data.item[num5].category == "SKY" ) {SKY = response.data.item[num5].fcstValue}
+                else if ( response.data.item[num5+1].category == "SKY") {SKY = response.data.item[num5+1].fcstValue}
+                else if ( response.data.item[num5+2].category == "SKY") {SKY = response.data.item[num5+2].fcstValue};
+
+                $('.temp').append(currentTMP);
+                $('.lowtemp').append(TMN);
+                $('.hightemp').append(TMX);
                 $('.humidity').append(REH);
+                $('.icon').append(SKY);
+
             });
-        }
+        };
 
         function locationError(error) {
             var errorTypes = {
@@ -72,7 +141,7 @@
                 3: "응답시간 지남"
             };
             var errorMsg = errorTypes[error.code];
-            console.log(errorMsg)
+            console.log(errorMsg)   
             
         }   // locationError
 
@@ -81,12 +150,12 @@
 
 <body>
     <button type="button" onclick="getLocation();">현재위치 가져오기</button>
-    <div class="time">현재시간:</div>
-    <div class="temp">현재온도:</div>
-    <div class="lowtemp">일최저기온:</div>
-    <div class="hightemp">일최고기온:</div>
-    <div class="icon">아이콘:</div>
-    <div class="humidity">습도:</div>
+    <div class="time">현재시간 : </div>
+    <div class="temp">현재온도 : </div>
+    <div class="lowtemp">일최저기온 : </div>
+    <div class="hightemp">일최고기온 : </div>
+    <div class="icon">아이콘 : </div>
+    <div class="humidity">습도 : </div>
     
     <script>
             let date = new Date();

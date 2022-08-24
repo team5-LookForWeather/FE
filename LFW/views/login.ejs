@@ -5,8 +5,8 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="./css/login.css" />
-    <script defer src="./js/login.js"></script>
+    <link rel="stylesheet" href="../css/login.css" />
+    <script defer src="../js/login.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <script src="https://kit.fontawesome.com/9ad05a77c3.js" crossorigin="anonymous"></script>
     <title>회원가입</title>
@@ -16,7 +16,7 @@
     <div id="login">
         <div id="header">
             <a href="#" target="_blank">
-                <img id="logo" src="./image/logo-5.png" alt="logo">
+                <img id="logo" src="../image/logo-5.png" alt="logo">
             </a>
         </div>
 
@@ -26,7 +26,7 @@
                 <!-- 아이디 -->
                 <div>
                     <span class="box int_id">
-                        <input type="text" id="id" class="int" maxlength="20" placeholder="아이디" required>
+                        <input type="text" name="id" id="id" class="int" maxlength="20" placeholder="아이디" required>
                         <i class="fa fa1 fa-user"></i>
                     </span>
                     <span class="error_next_box"></span>
@@ -37,7 +37,7 @@
                 <!-- 비밀번호 -->
                 <div>
                     <span class="box int_pass">
-                        <input type="password" id="pw" class="int" maxlength="20" placeholder="비밀번호" required>
+                        <input type="password" name="pw" id="pw" class="int" maxlength="20" placeholder="비밀번호" required>
                         <i class="fa fa2 fa-lock"></i>
                     </span>
                     <span class="error_next_box"></span>
@@ -131,7 +131,7 @@
                             <div id="slider2">
                                 <ul>
                                     <li>
-                                        <a href=""><img src="./image/banner/banner-2.png" width="100%;" alt="Images1" /></a>
+                                        <a href=""><img src="../image/banner/banner-2.png" width="100%;" alt="Images1" /></a>
                                     </li>
                                 </ul>
                             </div>

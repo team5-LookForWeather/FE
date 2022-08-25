@@ -9,7 +9,33 @@
     <script defer src="../js/login.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <script src="https://kit.fontawesome.com/9ad05a77c3.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <title>회원가입</title>
+
+    <script>
+        function loginBtn(){
+            let form = document.getElementById('form_login');
+
+            if(!form.checkValidity()){
+                form.reportValidity();
+                return false;
+            }
+            
+            axios({
+                method : 'post',
+                url : 'http://localhost:8000/user/login',
+                data : {
+                    id : form.id.value,
+                    pw : form.pw.value
+                }
+            }).then((rep) => {
+                return rep.data;
+            }).then((data) => {
+                alert('로그인을 환영합니다.');
+                document.location.href = 'http://localhost:8000/';                
+            })
+        }
+    </script>
 </head>
 
 <body>
@@ -21,6 +47,7 @@
         </div>
 
         <div id="container">
+            <form id="form_login">
             <div id="content">
 
                 <!-- 아이디 -->
@@ -47,7 +74,7 @@
 
                 <!-- 가입하기 -->
                 <div class="btn_area">
-                    <button type="button" id="btnJoin">
+                    <button type="button" id="btnJoin" onclick="loginBtn();">
                         <span>로그인</span>
                     </button>
 
@@ -61,6 +88,7 @@
                         </span>
                     </div>
                 </div>
+            </form>
 
 
 

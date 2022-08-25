@@ -2,13 +2,6 @@
     폰트 패밀리
 =========================================================*/
 @font-face {
-    font-family: 'GmarketSansBold';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansBold.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
-}
-
-@font-face {
     font-family: 'MaplestoryOTFLight';
     src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@2.1/MaplestoryOTFLight.woff') format('woff');
     font-weight: normal;
@@ -171,7 +164,7 @@ h3{
 
 input#id, input#pswd1, input#pswd2,
 input#name,input#nick, input#yy, select#mm, input#dd,
-select#gender, input#email, input#mobile{
+select#gender, input#email, input#mobile, input#age{
     outline:none;
 }
 

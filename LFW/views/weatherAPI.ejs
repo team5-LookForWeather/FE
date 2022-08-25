@@ -7,164 +7,186 @@
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"
         integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-
-
-    <script>
-        function getLocation() {
-            if (navigator.geolocation) {
-                console.log('geolocation');
-                navigator.geolocation.getCurrentPosition(locationSuccess, locationError);
-            } else {
-                console.log("지오 로케이션 없음")
-            }
-        };
-
-
-        async function locationSuccess(p) {
-            var latitude = p.coords.latitude, longitude = p.coords.longitude;
-            console.log(latitude, longitude);
-
-            // 사용자 위경도 전송
-            await axios({
-                method: 'post',
-                url: "//localhost:8000/weather/getlocation",
-                data: {
-                    latitude: latitude,
-                    longitude: longitude
+        <script>
+            function getLocation() {
+                if (navigator.geolocation) {
+                    console.log('geolocation');
+                    navigator.geolocation.getCurrentPosition(locationSuccess, locationError);
+                } else {
+                    console.log("지오 로케이션 없음")
                 }
-            }).then(async function (response) {
-                // 날씨정보 JSON파일로 받기 ( 팀노션 - API관리 참고 )
-                // 한시간당 12항목 (numOfRows = 12) 받을 수 있습니다 
-                // response.data 가공해서 쓰세요
-                /* -배열안에 들어가는 데이터 명시-
-                baseDate : 발표시각의 날짜
-                baseTime : 발표시각의 시분
-                category : 데이터 종류
-                fcstDate : 예보시각의 날짜
-                fcstTime : 예보시각의 시분
-                fcstValue : 예보 값
-                nx, ny : 기상청 지역코드 
-                **/
-            console.log('날씨정보 확인');
-            console.log(response.data);
-                
-            // var today = new Date();
-            // var yyyy = today.getFullYear();
-            // var mm = today.getMonth() + 1;
-            // var dd = today.getDate();
-            // var hours = today.getHours();
-
-            // if (mm < 10) { mm = '0' + mm }
-            // if (dd < 10) { dd = '0' + dd }
-            // if (hours < 10) { hours = '0' + hours }   
-
-            // var currentTime = `${yyyy}${mm}${dd}`          
-            //     console.log(yyyy);
-            //     console.log(mm);
-            //     console.log(dd);
-            //     console.log(hours);
-            //     console.log(`${yyyy}${mm}${dd}`);
-                
-                //내가 쓰려던코드
-                // for(i=0; i<544; i++){
-                // if(`${yyyy}${mm}${dd}`=== response.data.item[i].fcstDate) {
-                    
-                //     console.log('1')
-                // }}
-                //     if(hours -60 < response.data.item[i].fcstTime < hours) {
-
-                //     }
-                // };
-                    
-                
-                    
-                //alert(response.data.item[0].fcstValue);
-                // var TMP = response.data.item[0].fcstValue // 현재온도
-                // var SKY = response.data.item[5].fcstValue // 하늘상태(SKY) 코드 : 맑음(1), 구름많음(3), 흐림(4) 
-                // var REH = response.data.item[10].fcstValue // 습도
-                // var TMN = response.data.item[10].fcstValue  
-                // var TMX = response.data.item[10].fcstValue
-
-                // $('.temp').append(TMP);
-                // $('.icon').append(SKY);
-                // $('.humidity').append(REH);
-
-                //규리쌤이 도와주신 코드
-                console.log( "hours : ", hours );
-
-                let num = 254 + ( hours * 12 );
-                var currentTMP = "";
-                if ( response.data.item[num].category == "TMP" ) {currentTMP = response.data.item[num].fcstValue}
-                else if ( response.data.item[num+1].category == "TMP") {currentTMP = response.data.item[num+1].fcstValue}
-                else if ( response.data.item[num+2].category == "TMP") {currentTMP = response.data.item[num+2].fcstValue};
-                console.log( "current : ", currentTMP );
-                
-                var TMN = "";
-                let num2 = 338;
-                if ( response.data.item[num2].category == "TMN") {TMN = response.data.item[num2].fcstValue}
-                else if ( response.data.item[num2-290].category == "TMN") {TMN = response.data.item[num2-290].fcstValue}
-                console.log( "일최저온도 : ", TMN );
-
-                var TMX = "";
-                let num3 = 447;
-                if ( response.data.item[num3].category == "TMX") {TMX = response.data.item[num3].fcstValue}
-                else if ( response.data.item[num3-290].category == "TMX") {TMX = response.data.item[num3-290].fcstValue}
-                console.log( "일최고온도 : ", TMX );
-
-                var REH = "";
-                let num4 = 264 + ( hours * 12 );
-                if ( response.data.item[num4].category == "REH" ) {REH = response.data.item[num4].fcstValue}
-                else if ( response.data.item[num4+1].category == "REH") {REH = response.data.item[num4+1].fcstValue}
-                else if ( response.data.item[num4+2].category == "REH") {REH = response.data.item[num4+2].fcstValue};
-                console.log( "습도 : ", REH );
-
-                var SKY = "";
-                let num5 = 259 + ( hours * 12 );
-                if ( response.data.item[num5].category == "SKY" ) {SKY = response.data.item[num5].fcstValue}
-                else if ( response.data.item[num5+1].category == "SKY") {SKY = response.data.item[num5+1].fcstValue}
-                else if ( response.data.item[num5+2].category == "SKY") {SKY = response.data.item[num5+2].fcstValue};
-
-                $('.temp').append(currentTMP);
-                $('.lowtemp').append(TMN);
-                $('.hightemp').append(TMX);
-                $('.humidity').append(REH);
-                $('.icon').append(SKY);
-
-            });
-        };
-
-        function locationError(error) {
-            var errorTypes = {
-                0: "알 수 없는 에러",
-                1: "허용 안눌렀음",
-                2: "위치가 안잡힘",
-                3: "응답시간 지남"
             };
-            var errorMsg = errorTypes[error.code];
-            console.log(errorMsg)   
-            
-        }   // locationError
+        
+        
+            async function locationSuccess(p) {
+                var latitude = p.coords.latitude, longitude = p.coords.longitude;
+                console.log(latitude, longitude);
+        
+                // 사용자 위경도 전송
+                await axios({
+                    method: 'post',
+                    url: "//localhost:8000/weather/getlocation",
+                    data: {
+                        latitude: latitude,
+                        longitude: longitude
+                    }
+                }).then(async function (response) {
+                    // 날씨정보 JSON파일로 받기 ( 팀노션 - API관리 참고 )
+                    // 한시간당 12항목 (numOfRows = 12) 받을 수 있습니다 
+                    // response.data 가공해서 쓰세요
+                    /* -배열안에 들어가는 데이터 명시-
+                    baseDate : 발표시각의 날짜
+                    baseTime : 발표시각의 시분
+                    category : 데이터 종류
+                    fcstDate : 예보시각의 날짜
+                    fcstTime : 예보시각의 시분
+                    fcstValue : 예보 값
+                    nx, ny : 기상청 지역코드 
+                    **/
+        
+                console.log('날씨정보 확인');
+                console.log(response.data);
+        
+                        
+                    console.log( "hours : ", hours );
+        
+                    let num = 254 + ( hours * 12 );
+                    var currentTMP = "";
+                    if ( response.data.item[num].category == "TMP" ) {currentTMP = response.data.item[num].fcstValue}
+                    else if ( response.data.item[num+1].category == "TMP") {currentTMP = response.data.item[num+1].fcstValue}
+                    else if ( response.data.item[num+2].category == "TMP") {currentTMP = response.data.item[num+2].fcstValue};
+                    console.log( "current : ", currentTMP );
+                    
+                    var TMN = "";
+                    let num2 = 338;
+                    if ( response.data.item[num2].category == "TMN") {TMN = response.data.item[num2].fcstValue}
+                    else if ( response.data.item[num2-290].category == "TMN") {TMN = response.data.item[num2-290].fcstValue}
+                    console.log( "일최저온도 : ", TMN );
+        
+                    var TMX = "";
+                    let num3 = 447;
+                    if ( response.data.item[num3].category == "TMX") {TMX = response.data.item[num3].fcstValue}
+                    else if ( response.data.item[num3-290].category == "TMX") {TMX = response.data.item[num3-290].fcstValue}
+                    console.log( "일최고온도 : ", TMX );
+        
+                    var REH = "";
+                    let num4 = 264 + ( hours * 12 );
+                    if ( response.data.item[num4].category == "REH" ) {REH = response.data.item[num4].fcstValue}
+                    else if ( response.data.item[num4+1].category == "REH") {REH = response.data.item[num4+1].fcstValue}
+                    else if ( response.data.item[num4+2].category == "REH") {REH = response.data.item[num4+2].fcstValue};
+                    console.log( "습도 : ", REH );
+        
+                    var SKY = "";
+                    let num5 = 259 + ( hours * 12 );
+                    if ( response.data.item[num5].category == "SKY" ) {SKY = response.data.item[num5].fcstValue}
+                    else if ( response.data.item[num5+1].category == "SKY") {SKY = response.data.item[num5+1].fcstValue}
+                    else if ( response.data.item[num5+2].category == "SKY") {SKY = response.data.item[num5+2].fcstValue};
+                    
+                    var PTY = "";
+                    let num6 = 260 + ( hours * 12 );
+                    if ( response.data.item[num6].category == "PTY" ) {PTY = response.data.item[num6].fcstValue}
+                    else if ( response.data.item[num6+1].category == "PTY") {PTY = response.data.item[num6+1].fcstValue}
+                    else if ( response.data.item[num6+2].category == "PTY") {PTY = response.data.item[num6+2].fcstValue};
+                    console.log(PTY)
+                    
+        
+                    var iconnum = null;
+                    if (PTY == "0") {      
+                        if (SKY == "1") {
+                            console.log("맑음");
+                            iconnum = 1;
+                            
+                        } else if (SKY == "2") {
+                            console.log("구름조금");
+                            iconnum = 2;
+                            
+                        } else if (SKY == "3") {
+                            console.log("구름많음");
+                            iconnum = 3;
+                            
+                        } else if (SKY == "4") {
+                            console.log("흐림");
+                            iconnum = 4;
+                            
+                        }
+                    } else if (PTY == "1") { 
+                        console.log("비");
+                        iconnum = 5;
+                        
+                    } else if (PTY == "2") { 
+                        console.log("비/눈");
+                        iconnum = 6;
+                        
+                    } else if (PTY == "3") { 
+                        console.log("눈");
+                        iconnum = 7;
+                        
+                    } else if (PTY == "5") { 
+                        console.log("빗방울");
+                        iconnum = 8;
+                        
+                    } else if (PTY == "6") { 
+                        console.log("빗방울눈날림");
+                        iconnum = 9;
+                        
+                    } else if (PTY == "7") { 
+                        console.log("눈날림");
+                        iconnum = 10;
+                    }
+        
+                    var p = document.getElementById("icon");
+                    p.innerHTML =`<img src="../public/image/weathericon/${iconnum}.png"></img>`;
+                    
+                    /*
+                    - 하늘상태(SKY) 코드 : 맑음(1), 구름많음(3), 흐림(4)
+                    - 강수형태(PTY) 코드 : (초단기) 없음(0), 비(1), 비/눈(2), 눈(3), 빗방울(5), 빗방울눈날림(6), 눈날림(7) 
+                    -iconnum : 1 - 맑음 / 2 - 구름조금 / 3 - 구름많음 / 4 - 흐림 / 5- - 비 / 6 - 비or눈 / 7 - 눈 / 8 - 빗방울 / 9 - 빗방울눈날림 / 10 - 눈날림
+                    **/               
+                    
+                    $('.temp').append(currentTMP);
+                    $('.lowtemp').append(TMN);
+                    $('.hightemp').append(TMX);
+                    $('.humidity').append(REH);
+                    
+        
+                });
+            };
+        
+            function locationError(error) {
+                var errorTypes = {
+                    0: "알 수 없는 에러",
+                    1: "허용 안눌렀음",
+                    2: "위치가 안잡힘",
+                    3: "응답시간 지남"
+                };
+                var errorMsg = errorTypes[error.code];
+                console.log(errorMsg)   
+                
+            }   // locationError
+        
+        </script>
 
-    </script>
-</head>
-
-<body>
-    <button type="button" onclick="getLocation();">현재위치 가져오기</button>
-    <div class="time">현재시간 : </div>
-    <div class="temp">현재온도 : </div>
-    <div class="lowtemp">일최저기온 : </div>
-    <div class="hightemp">일최고기온 : </div>
-    <div class="icon">아이콘 : </div>
-    <div class="humidity">습도 : </div>
+    </head>
     
-    <script>
-            let date = new Date();
-            let month = date.getMonth() + 1;
-            let day = date.getDate();
-            let hours = date.getHours();
-            let minutes = date.getMinutes();
-            document.querySelector('.time').innerHTML = `${month}월 ${day}일 ${hours}시 ${minutes}분`;
-    </script>
+    <body>
+        <button type="button" onclick="getLocation();">현재위치 가져오기</button>
+        <div class="time">현재시간 : </div>
+        <div class="temp">현재온도 : </div>
+        <div class="lowtemp">일최저기온 : </div>
+        <div class="hightemp">일최고기온 : </div>
+        <div class="icon" id="icon">아이콘 : </div>
+        <div class="humidity">습도 : </div>
+        
+        <script>
+                let date = new Date();
+                let month = date.getMonth() + 1;
+                let day = date.getDate();
+                let hours = date.getHours();
+                let minutes = date.getMinutes();
+                document.querySelector('.time').innerHTML = `${month}월 ${day}일 ${hours}시 ${minutes}분`;
+        </script>
+
+
 </body>
 
 </html>

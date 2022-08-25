@@ -7,6 +7,7 @@ const path = require('path');
 /* User 관련 */
 const UserRouter = express.Router();
 const user = require('../controller/UserController');
+
 // login
 UserRouter.get("/login", user.login);
 UserRouter.post("/login", user.post_login);

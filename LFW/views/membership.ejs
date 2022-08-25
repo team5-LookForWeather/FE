@@ -24,14 +24,14 @@
                 method : 'post',
                 url : 'http://localhost:8000/user/membership',
                 data : {
-                    $user_id : form.id.value,
-                    $pw: form.pswd1.value,
-                    $name : form.name.value,
-                    $nickName : form.nick.value,
-                    $tel : form.mobile.value,
-                    $email : form.email.value,
-                    $gender : form.gender.value,
-                    $age : form.bir_yy.value + form.bir_mm.value + form.bir_dd.value
+                    user_id : form.id.value,
+                    pw: form.pswd1.value,
+                    name : form.name.value,
+                    nickName : form.nick.value,
+                    tel : form.mobile.value,
+                    email : form.email.value,
+                    gender : form.gender.value,
+                    age : form.age.value
                 }
             }).then((rep) => {
                 return rep.data;

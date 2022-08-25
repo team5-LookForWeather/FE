@@ -868,7 +868,7 @@ header.scrollDown {
 .MainBanner{
 	position:relative;
 	/* padding:170px 0 65px; */
-	padding:170px 0 170px;
+	padding:200px 0 200px;
 }
 
 
@@ -1052,7 +1052,7 @@ button{
 	background-size:5px 11px;
 	float:left;
 	margin-right:6px;
-	background-color:var(--white-color);
+	/* background-color:var(--white-color); */
 }
 
 
@@ -1064,7 +1064,7 @@ button{
 	background-size:4px 12px;
 	float:left;
 	margin-right:6px;
-	background-color:var(--white-color);
+	/* background-color:var(--white-color); */
 }
 
 

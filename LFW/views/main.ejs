@@ -1,0 +1,741 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/9ad05a77c3.js" crossorigin="anonymous"></script>
+
+    <script defer src="./js/slider/jquery.min.js"></script>
+    <script defer src="./js/slider/swiper-4.5.0.min.js"></script>
+    <script defer src="./js/slider/main.js"></script>
+
+    <script defer src="./js/common.js"></script>
+
+    <link rel="stylesheet" href="./css/main.css" />
+
+
+    <title>메인</title>
+</head>
+<body>
+    <div id="body-wrapper">
+        <div id="body-content">
+            <header id="act_header">
+                <div class="headerArea">
+                    <div class="container">
+                        <div class="nav">
+                            <div class="moblie_logo">
+                                <h1 class="logo">
+                                    <a href="#">
+                                        <img src="./image/logo-5.png" alt="룩포웨더">
+                                    </a>
+                                </h1>
+                            </div>
+
+
+                            <div class="nav-icon">
+                                <div></div>
+                            </div>
+
+                            <ul class="navbar">
+                                <div class="pc_logo">
+                                    <h1 class="logo">
+                                        <a href="#">
+                                            <img src="./image/logo-5.png" alt="룩포웨더">
+                                        </a>
+                                    </h1>
+                                </div>
+                                <li id="menu-item-130"
+                                    class="menu-item menu-item-type-post_type menu-item-object-page menu-item-130">
+                                    <a class="moblie_arrow" href="#">HOME</a>
+                                </li>
+
+                                <li id="menu-item-41"
+                                    class="menu-item menu-item-type-post_type menu-item-object-page menu-item-41">
+                                    <a href="#">WEATHER</a>
+                                </li>
+
+                                <li id="menu-item-40"
+                                    class="menu-item menu-item-type-post_type menu-item-object-page menu-item-40">
+                                    <a href="#">OOTD</a>
+                                </li>
+
+                                <li id="menu-item-131"
+                                    class="menu-item menu-item-type-post_type menu-item-object-page menu-item-131">
+                                    <a href="#">COMMUNITY</a>
+                                </li>
+
+                                <li id="menu-item-132"
+                                    class="menu-item menu-item-type-post_type menu-item-object-page menu-item-132">
+                                    <a href="#">MYPAGE</a>
+                                </li>
+
+                                <li class="utill mo">
+                                    <ul>
+                                        <li class="login_bt"><a href="#" target="_blank">로그인</a></li>
+                                        <li class="member_bt"><a href="#" target="_blank">회원가입</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+
+
+                            <ul class="utill pc">
+                                <li>
+                                    <a class="first_icon" href="#" target="_blank"></a>
+                                    <a class="second_icon" href="#" target="_blank"></a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                </div>
+            </header>
+
+            <div class="site">
+                <div id="site-content" class="site-content">
+                    <div class="siteMain">
+                        <div class="MainBanner">
+                            <div class="site-container">
+                                <div class="MainSlider">
+
+                                    <div class="MainSliderText">
+                                        <div class="MainSliderText-container swiper-container">
+                                            <div class="swiper-wrapper MainSliderText-wrapper">
+                                                <!-- 이 부분에 날씨 정보 들어가야 한다. -->
+                                                <div style="width:100%; background:#fff; border-radius:20px; height:580px;">
+                                                    <h2 style="text-align:Center; line-height:550px;">날씨 관련 레이아웃</h2>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="MainSliderThumb">
+                                        <div class="MainSliderThumb-container swiper-container">
+                                            <div class="swiper-wrapper MainSliderThumb-wrapper">
+                                                <div class="swiper-slide MainSliderThumb-slide">
+                                                    <img class="img_border" src="./image/slider/img01.png" alt="img01">
+                                                </div>
+                                                <div class="swiper-slide MainSliderThumb-slide">
+                                                    <img class="img_border" src="./image/slider/img02.png" alt="img02">
+                                                </div>
+                                                <div class="swiper-slide MainSliderThumb-slide">
+                                                    <img class="img_border" src="./image/slider/img03.png" alt="img03">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="MainSliderMeta">
+                                            <div class="MainSliderMetaAuto">
+                                                <button type="button" class="MainSliderMetaAuto-play">
+                                                    <span class="ab-text"></span>
+                                                </button>
+                                                <button type="button" class="MainSliderMetaAuto-pause">
+                                                    <span class="ab-text"></span>
+                                                </button>
+                                            </div>
+                                            <div class="MainSliderMetaPaging">
+                                                <div class="MainSliderMetaPaging-bar"></div>
+                                                <div class="swiper-pagination"></div>
+                                            </div>
+                                            <div class="MainSliderMetaArrow">
+                                                <div class="swiper-button-prev MainSliderMeta-prev">
+                                                    <span class="ab-text"></span>
+                                                </div>
+                                                <div class="swiper-button-next MainSliderMeta-next">
+                                                    <span class="ab-text"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+
+                <div class="scroll-mouse">
+                    <a href="#cody" class="wow bounceInDown" data-wow-duration="1.4s" data-wow-delay="1.4s">
+                        <div class="scroll-icon"></div>
+                    </a>
+                </div>                
+
+            </div>
+
+            <section>
+                <div id="cody" class="site">
+                    <div id="site-content" class="site-content">
+                        <div class="siteMain">
+                            <div class="MainSection MainInfluencer">
+                                <div class="site-container">
+
+                                    <!-- 타이틀 -->
+                                    <div class="MainSectionHeader">
+                                        <h2 class="MainSectionHeader-title">
+                                            <a class="MainSectionHeader-link" href="#">
+                                                Today's OOTD
+                                            </a>
+                                        </h2>
+                                        <div class="MainSectionHeader-sub">
+                                            룩포웨더는 날씨에 맞춰 코디를 추천 드립니다.
+                                        </div>
+                                    </div>
+
+
+                                    <!-- 더보기 -->
+                                    <div class="MainNewsLink">
+                                        <a href="#" class="MainNewsLink-link">더보기</a>
+                                    </div>
+
+                                    <div  class="MainSectionBody">
+                                        <div class="MainInfluencerList">
+                                            <ul class="MainInfluencerList-list">
+
+                                                <!-- 리스트 1 -->
+                                                <li class="MainInfluencerList-item">
+                                                    <div class="MainInfluencerItem">
+                                                        <a href="#" class="MainInfluencerItem-link">
+                                                            <div class="InfluencerItemBadge">
+                                                            </div>
+
+                                                            <div class="MainInfluencerItemThumb">
+                                                                <img width="336" height="433" src="./image/임시/m_임시01.png" class="MainInfluencerItemThumb-img wp-post-image" alt="" loading="lazy" />
+                                                            </div>
+
+                                                            <div class="MainInfluencerItemName">
+                                                                <div class="MainInfluencerItemName-inner">
+                                                                    <span class="MainInfluencerItemNameOver"></span>
+                                                                    <span class="MainInfluencerItemNameText">
+                                                                        <span class="MainInfluencerItemNameText-text">코디 추천1</span>
+                                                                    </span>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="MainInfluencerTag">
+                                                                <div class="MainInfluencerTag-title">
+                                                                    코디 추천1
+                                                                </div>
+                                                                <div class="MainInfluencerItemTagMeta">
+                                                                    <ul class="MainInfluencerItemTagMeta-list">
+                                                                        <li class="MainInfluencerItemTagMeta-item">
+                                                                            <span class="MainInfluencerItemTagMeta-text">#H라인</span>
+                                                                        </li>
+                                                                        <li class="MainInfluencerItemTagMeta-item">
+                                                                            <span class="MainInfluencerItemTagMeta-text">#컬러포인트</span>
+                                                                        </li>
+                                                                        <li class="MainInfluencerItemTagMeta-item">
+                                                                            <span class="MainInfluencerItemTagMeta-text">#여친룩</span>
+                                                                        </li>
+                                                                        <li class="MainInfluencerItemTagMeta-item">
+                                                                            <span class="MainInfluencerItemTagMeta-text">#크롭</span>
+                                                                        </li>
+                                                                    </ul>
+                                                                </div>
+                                                            </div> <!-- .MainInfluencerTag -->
+                                                        </a>
+                                                    </div>
+                                                </li>
+
+                                                <!-- 리스트 2 -->
+                                                <li class="MainInfluencerList-item">
+                                                    <div class="MainInfluencerItem">
+                                                        <a href="#" class="MainInfluencerItem-link">
+
+                                                            <div class="InfluencerItemBadge">
+                                                            </div>
+
+                                                            <div class="MainInfluencerItemThumb">
+                                                                <img width="336" height="433" src="./image/임시/m_임시02.png" class="MainInfluencerItemThumb-img wp-post-image" alt="" loading="lazy" />
+                                                            </div>
+
+                                                            <div class="MainInfluencerItemName">
+                                                                <div class="MainInfluencerItemName-inner">
+                                                                    <span class="MainInfluencerItemNameOver"></span>
+                                                                    <span class="MainInfluencerItemNameText">
+                                                                        <span class="MainInfluencerItemNameText-text">
+                                                                            코디 추천2</span>
+                                                                        </span>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="MainInfluencerTag">
+                                                                <div class="MainInfluencerTag-title">
+                                                                    코디 추천2
+                                                                </div>
+                                                                <div class="MainInfluencerItemTagMeta">
+                                                                    <ul class="MainInfluencerItemTagMeta-list">
+                                                                        <li class="MainInfluencerItemTagMeta-item">
+                                                                            <span class="MainInfluencerItemTagMeta-text">#로고플레이</span>
+                                                                        </li>
+                                                                        <li class="MainInfluencerItemTagMeta-item">
+                                                                            <span class="MainInfluencerItemTagMeta-text">#그래픽</span>
+                                                                        </li>
+                                                                        <li class="MainInfluencerItemTagMeta-item">
+                                                                            <span class="MainInfluencerItemTagMeta-text">#스티치</span>
+                                                                        </li>
+                                                                        <li class="MainInfluencerItemTagMeta-item">
+                                                                            <span class="MainInfluencerItemTagMeta-text">#꾸안꾸</span>
+                                                                        </li>
+                                                                    </ul>
+                                                                </div>
+                                                            </div> <!-- .MainInfluencerTag -->
+                                                        </a>
+                                                    </div>
+                                                </li>
+
+                                                <!-- 리스트 3 -->
+                                                <li class="MainInfluencerList-item">
+                                                    <div class="MainInfluencerItem"> <a href="#" class="MainInfluencerItem-link">
+                                                            <div class="InfluencerItemBadge">
+                                                            </div>
+
+                                                            <div class="MainInfluencerItemThumb">
+                                                                <img width="336" height="433" src="./image/임시/m_임시03.png" class="MainInfluencerItemThumb-img wp-post-image" alt="" loading="lazy" />
+                                                            </div>
+
+                                                            <div class="MainInfluencerItemName">
+                                                                <div class="MainInfluencerItemName-inner">
+                                                                    <span class="MainInfluencerItemNameOver"></span>
+                                                                    <span class="MainInfluencerItemNameText">
+                                                                        <span class="MainInfluencerItemNameText-text">코디 추천3</span>
+                                                                    </span>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="MainInfluencerTag">
+                                                                <div class="MainInfluencerTag-title">
+                                                                    코디 추천3
+                                                                </div>
+                                                                <div class="MainInfluencerItemTagMeta">
+                                                                    <ul class="MainInfluencerItemTagMeta-list">
+                                                                        <li class="MainInfluencerItemTagMeta-item">
+                                                                            <span class="MainInfluencerItemTagMeta-text">#그라데이션</span>
+                                                                        </li>
+                                                                        <li class="MainInfluencerItemTagMeta-item">
+                                                                            <span class="MainInfluencerItemTagMeta-text">#와이드핏</span>
+                                                                        </li>
+                                                                        <li class="MainInfluencerItemTagMeta-item">
+                                                                            <span class="MainInfluencerItemTagMeta-text">#유니크</span>
+                                                                        </li>
+                                                                        <li class="MainInfluencerItemTagMeta-item">
+                                                                            <span class="MainInfluencerItemTagMeta-text">#힙합</span>
+                                                                        </li>
+                                                                    </ul>
+                                                                </div>
+                                                            </div> <!-- .MainInfluencerTag -->
+                                                        </a>
+                                                    </div>
+                                                </li>
+
+                                                <!-- 리스트 4 -->
+                                                <li class="MainInfluencerList-item">
+                                                    <div class="MainInfluencerItem">
+                                                        <a href="#" class="MainInfluencerItem-link">
+
+                                                            <div class="InfluencerItemBadge">
+                                                            </div>
+
+                                                            <div class="MainInfluencerItemThumb">
+                                                                <img width="289" height="433" src="./image/임시/m_임시04.png" class="MainInfluencerItemThumb-img wp-post-image" alt="" loading="lazy" />
+                                                            </div>
+
+                                                            <div class="MainInfluencerItemName">
+                                                                <div class="MainInfluencerItemName-inner">
+                                                                    <span class="MainInfluencerItemNameOver"></span>
+                                                                    <span class="MainInfluencerItemNameText">
+                                                                        <span class="MainInfluencerItemNameText-text">
+                                                                            코디 추천4</span>
+                                                                        </span>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="MainInfluencerTag">
+                                                                <div class="MainInfluencerTag-title">
+                                                                    코디 추천4
+                                                                </div>
+                                                                <div class="MainInfluencerItemTagMeta">
+                                                                    <ul class="MainInfluencerItemTagMeta-list">
+                                                                        <li class="MainInfluencerItemTagMeta-item">
+                                                                            <span class="MainInfluencerItemTagMeta-text">#유니크</span>
+                                                                        </li>
+                                                                        <li class="MainInfluencerItemTagMeta-item">
+                                                                            <span class="MainInfluencerItemTagMeta-text">#힙합</span>
+                                                                        </li>
+                                                                        <li class="MainInfluencerItemTagMeta-item">
+                                                                            <span class="MainInfluencerItemTagMeta-text">#메쉬</span>
+                                                                        </li>
+                                                                        <li class="MainInfluencerItemTagMeta-item">
+                                                                            <span class="MainInfluencerItemTagMeta-text">#컬러블록</span>
+                                                                        </li>
+                                                                    </ul>
+                                                                </div>
+                                                            </div> <!-- .MainInfluencerTag -->
+                                                        </a>
+                                                    </div>
+                                                </li>
+
+                                                <!-- 리스트 5 -->
+                                                <li class="MainInfluencerList-item">
+                                                    <div class="MainInfluencerItem">
+                                                        <a href="#" class="MainInfluencerItem-link">
+
+                                                            <div class="InfluencerItemBadge">
+                                                            </div>
+
+                                                            <div class="MainInfluencerItemThumb">
+                                                                <img width="336" height="433" src="./image/임시/m_임시05.png" class="MainInfluencerItemThumb-img wp-post-image" alt="" loading="lazy" />
+                                                            </div>
+
+                                                            <div class="MainInfluencerItemName">
+                                                                <div class="MainInfluencerItemName-inner">
+                                                                    <span class="MainInfluencerItemNameOver"></span>
+                                                                    <span class="MainInfluencerItemNameText">
+                                                                        <span class="MainInfluencerItemNameText-text">
+                                                                            코디 추천5</span>
+                                                                        </span>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="MainInfluencerTag">
+                                                                <div class="MainInfluencerTag-title">
+                                                                    코디 추천5
+                                                                </div>
+                                                                <div class="MainInfluencerItemTagMeta">
+                                                                    <ul class="MainInfluencerItemTagMeta-list">
+                                                                        <li class="MainInfluencerItemTagMeta-item">
+                                                                            <span class="MainInfluencerItemTagMeta-text">#레터링</span>
+                                                                        </li>
+                                                                        <li class="MainInfluencerItemTagMeta-item">
+                                                                            <span class="MainInfluencerItemTagMeta-text">#심볼</span>
+                                                                        </li>
+                                                                        <li class="MainInfluencerItemTagMeta-item">
+                                                                            <span class="MainInfluencerItemTagMeta-text">#카고</span>
+                                                                        </li>
+                                                                        <li class="MainInfluencerItemTagMeta-item">
+                                                                            <span class="MainInfluencerItemTagMeta-text">#스포티</span>
+                                                                        </li>
+                                                                    </ul>
+                                                                </div>
+                                                            </div> <!-- .MainInfluencerTag -->
+                                                        </a>
+                                                    </div>
+                                                </li>
+
+                                                <!-- 리스트 6 -->
+                                                <li class="MainInfluencerList-item">
+                                                    <div class="MainInfluencerItem">
+                                                        <a href="#" class="MainInfluencerItem-link">
+
+                                                            <div class="InfluencerItemBadge">
+                                                            </div>
+
+                                                            <div class="MainInfluencerItemThumb">
+                                                                <img width="336" height="433" src="./image/임시/m_임시05.png" class="MainInfluencerItemThumb-img wp-post-image" alt="" loading="lazy" />
+                                                            </div>
+
+                                                            <div class="MainInfluencerItemName">
+                                                                <div class="MainInfluencerItemName-inner">
+                                                                    <span class="MainInfluencerItemNameOver"></span>
+                                                                    <span class="MainInfluencerItemNameText">
+                                                                        <span class="MainInfluencerItemNameText-text">
+                                                                            코디 추천6</span>
+                                                                        </span>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="MainInfluencerTag">
+                                                                <div class="MainInfluencerTag-title">
+                                                                    코디 추천6
+                                                                </div>
+                                                                <div class="MainInfluencerItemTagMeta">
+                                                                    <ul class="MainInfluencerItemTagMeta-list">
+                                                                        <li class="MainInfluencerItemTagMeta-item">
+                                                                            <span class="MainInfluencerItemTagMeta-text">#레터링</span>
+                                                                        </li>
+                                                                        <li class="MainInfluencerItemTagMeta-item">
+                                                                            <span class="MainInfluencerItemTagMeta-text">#심볼</span>
+                                                                        </li>
+                                                                        <li class="MainInfluencerItemTagMeta-item">
+                                                                            <span class="MainInfluencerItemTagMeta-text">#카고</span>
+                                                                        </li>
+                                                                        <li class="MainInfluencerItemTagMeta-item">
+                                                                            <span class="MainInfluencerItemTagMeta-text">#스포티</span>
+                                                                        </li>
+                                                                    </ul>
+                                                                </div>
+                                                            </div> <!-- .MainInfluencerTag -->
+                                                        </a>
+                                                    </div>
+                                                </li>
+
+                                                <!-- 리스트 7 -->
+                                                <li class="MainInfluencerList-item">
+                                                    <div class="MainInfluencerItem">
+                                                        <a href="#" class="MainInfluencerItem-link">
+
+                                                            <div class="InfluencerItemBadge">
+                                                            </div>
+
+                                                            <div class="MainInfluencerItemThumb">
+                                                                <img width="289" height="433" src="./image/임시/m_임시04.png" class="MainInfluencerItemThumb-img wp-post-image" alt="" loading="lazy" />
+                                                            </div>
+
+                                                            <div class="MainInfluencerItemName">
+                                                                <div class="MainInfluencerItemName-inner">
+                                                                    <span class="MainInfluencerItemNameOver"></span>
+                                                                    <span class="MainInfluencerItemNameText">
+                                                                        <span class="MainInfluencerItemNameText-text">
+                                                                            코디 추천7</span>
+                                                                        </span>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="MainInfluencerTag">
+                                                                <div class="MainInfluencerTag-title">
+                                                                    코디 추천7
+                                                                </div>
+                                                                <div class="MainInfluencerItemTagMeta">
+                                                                    <ul class="MainInfluencerItemTagMeta-list">
+                                                                        <li class="MainInfluencerItemTagMeta-item">
+                                                                            <span class="MainInfluencerItemTagMeta-text">#유니크</span>
+                                                                        </li>
+                                                                        <li class="MainInfluencerItemTagMeta-item">
+                                                                            <span class="MainInfluencerItemTagMeta-text">#힙합</span>
+                                                                        </li>
+                                                                        <li class="MainInfluencerItemTagMeta-item">
+                                                                            <span class="MainInfluencerItemTagMeta-text">#메쉬</span>
+                                                                        </li>
+                                                                        <li class="MainInfluencerItemTagMeta-item">
+                                                                            <span class="MainInfluencerItemTagMeta-text">#컬러블록</span>
+                                                                        </li>
+                                                                    </ul>
+                                                                </div>
+                                                            </div> <!-- .MainInfluencerTag -->
+                                                        </a>
+                                                    </div>
+                                                </li>
+
+                                                <!-- 리스트 8 -->
+                                                <li class="MainInfluencerList-item">
+                                                    <div class="MainInfluencerItem"> <a href="#" class="MainInfluencerItem-link">
+                                                        <div class="InfluencerItemBadge">
+                                                        </div>
+
+                                                        <div class="MainInfluencerItemThumb">
+                                                            <img width="336" height="433" src="./image/임시/m_임시03.png" class="MainInfluencerItemThumb-img wp-post-image" alt="" loading="lazy" />
+                                                        </div>
+
+                                                        <div class="MainInfluencerItemName">
+                                                            <div class="MainInfluencerItemName-inner">
+                                                                <span class="MainInfluencerItemNameOver"></span>
+                                                                <span class="MainInfluencerItemNameText">
+                                                                    <span class="MainInfluencerItemNameText-text">코디 추천8</span>
+                                                                </span>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="MainInfluencerTag">
+                                                            <div class="MainInfluencerTag-title">
+                                                                코디 추천8
+                                                            </div>
+                                                            <div class="MainInfluencerItemTagMeta">
+                                                                <ul class="MainInfluencerItemTagMeta-list">
+                                                                    <li class="MainInfluencerItemTagMeta-item">
+                                                                        <span class="MainInfluencerItemTagMeta-text">#그라데이션</span>
+                                                                    </li>
+                                                                    <li class="MainInfluencerItemTagMeta-item">
+                                                                        <span class="MainInfluencerItemTagMeta-text">#와이드핏</span>
+                                                                    </li>
+                                                                    <li class="MainInfluencerItemTagMeta-item">
+                                                                        <span class="MainInfluencerItemTagMeta-text">#유니크</span>
+                                                                    </li>
+                                                                    <li class="MainInfluencerItemTagMeta-item">
+                                                                        <span class="MainInfluencerItemTagMeta-text">#힙합</span>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                        </div> <!-- .MainInfluencerTag -->
+                                                    </a>
+                                                </div>
+                                                </li>
+
+                                                <!-- 리스트 9 -->
+                                                <li class="MainInfluencerList-item">
+                                                    <div class="MainInfluencerItem">
+                                                        <a href="#" class="MainInfluencerItem-link">
+
+                                                            <div class="InfluencerItemBadge">
+                                                            </div>
+
+                                                            <div class="MainInfluencerItemThumb">
+                                                                <img width="336" height="433" src="./image/임시/m_임시02.png" class="MainInfluencerItemThumb-img wp-post-image" alt="" loading="lazy" />
+                                                            </div>
+
+                                                            <div class="MainInfluencerItemName">
+                                                                <div class="MainInfluencerItemName-inner">
+                                                                    <span class="MainInfluencerItemNameOver"></span>
+                                                                    <span class="MainInfluencerItemNameText">
+                                                                        <span class="MainInfluencerItemNameText-text">
+                                                                            코디 추천9</span>
+                                                                        </span>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="MainInfluencerTag">
+                                                                <div class="MainInfluencerTag-title">
+                                                                    코디 추천9
+                                                                </div>
+                                                                <div class="MainInfluencerItemTagMeta">
+                                                                    <ul class="MainInfluencerItemTagMeta-list">
+                                                                        <li class="MainInfluencerItemTagMeta-item">
+                                                                            <span class="MainInfluencerItemTagMeta-text">#로고플레이</span>
+                                                                        </li>
+                                                                        <li class="MainInfluencerItemTagMeta-item">
+                                                                            <span class="MainInfluencerItemTagMeta-text">#그래픽</span>
+                                                                        </li>
+                                                                        <li class="MainInfluencerItemTagMeta-item">
+                                                                            <span class="MainInfluencerItemTagMeta-text">#스티치</span>
+                                                                        </li>
+                                                                        <li class="MainInfluencerItemTagMeta-item">
+                                                                            <span class="MainInfluencerItemTagMeta-text">#꾸안꾸</span>
+                                                                        </li>
+                                                                    </ul>
+                                                                </div>
+                                                            </div> <!-- .MainInfluencerTag -->
+                                                        </a>
+                                                    </div>
+                                                </li>
+                                                
+                                                <!-- 리스트 10 -->
+                                                <li class="MainInfluencerList-item">
+                                                    <div class="MainInfluencerItem">
+                                                        <a href="#" class="MainInfluencerItem-link">
+                                                            <div class="InfluencerItemBadge">
+                                                            </div>
+
+                                                            <div class="MainInfluencerItemThumb">
+                                                                <img width="336" height="433" src="./image/임시/m_임시01.png" class="MainInfluencerItemThumb-img wp-post-image" alt="" loading="lazy" />
+                                                            </div>
+
+                                                            <div class="MainInfluencerItemName">
+                                                                <div class="MainInfluencerItemName-inner">
+                                                                    <span class="MainInfluencerItemNameOver"></span>
+                                                                    <span class="MainInfluencerItemNameText">
+                                                                        <span class="MainInfluencerItemNameText-text">코디 추천10</span>
+                                                                    </span>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="MainInfluencerTag">
+                                                                <div class="MainInfluencerTag-title">
+                                                                    코디 추천10
+                                                                </div>
+                                                                <div class="MainInfluencerItemTagMeta">
+                                                                    <ul class="MainInfluencerItemTagMeta-list">
+                                                                        <li class="MainInfluencerItemTagMeta-item">
+                                                                            <span class="MainInfluencerItemTagMeta-text">#H라인</span>
+                                                                        </li>
+                                                                        <li class="MainInfluencerItemTagMeta-item">
+                                                                            <span class="MainInfluencerItemTagMeta-text">#컬러포인트</span>
+                                                                        </li>
+                                                                        <li class="MainInfluencerItemTagMeta-item">
+                                                                            <span class="MainInfluencerItemTagMeta-text">#여친룩</span>
+                                                                        </li>
+                                                                        <li class="MainInfluencerItemTagMeta-item">
+                                                                            <span class="MainInfluencerItemTagMeta-text">#크롭</span>
+                                                                        </li>
+                                                                    </ul>
+                                                                </div>
+                                                            </div> <!-- .MainInfluencerTag -->
+                                                        </a>
+                                                    </div>
+                                                </li>                                                
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+            </section>
+
+            <section class="main3_0">
+                <div class="site-container">                
+                    <ul class="main3_in1" data-aos="fade-up">
+                        <li>
+                            <div class="tit">
+                                <h4 class="h4_txt">메모게시판</h4>
+                                <p class="t17">룩포웨더와 함께 다양한<br>의견들을 함께 공유해보세요</p>
+                                <div class="btn2">
+                                    <a href="#">자세히보기</a>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="tit">
+                                <h4 class="h4_txt">방명록·다이어리</h4>
+                                <p class="t17">룩포웨더와 함께 다양한<br>의견들을 함께 공유해보세요</p>
+                                <div class="btn2">
+                                    <a href="#">자세히보기</a>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </section>
+        </div>
+
+
+        <footer id="footer">
+            <div class="layout con">
+                <div class="menu">
+                    <ul class="row">
+                        <li class="cell">룩포웨더</li>
+                        <li class="cell">날씨정보</li>
+                        <li class="cell">코디리뷰</li>
+                        <li class="cell">커뮤니티</li>
+                        <li class="cell">마이페이지</li>
+                    </ul>
+                </div>
+                <div class="address">
+                    <div class="line_txt">조장 : 함유정</div>
+                    <div>팀원 : 방장원, 서윤지, 정예현, 최상훈</div>
+                </div>
+                <div class="copy">
+                    Copyrightⓒ 록포웨더. All Rights Reserved.
+                </div>
+                <div class="site-box row">
+                    <div class="relate-site cell">
+                        <div class="box-1">
+                            패밀리사이트
+                        </div>
+                        <ul>
+                            <a href="#" onclick="return false">
+                                <li>링크사이트1</li>
+                            </a>
+                            <a href="#" onclick="return false">
+                                <li>링크사이트2</li>
+                            </a>
+                            <a href="#" onclick="return false">
+                                <li>링크사이트3</li>
+                            </a>
+                            <a href="#" onclick="return false">
+                                <li>링크사이트4</li>
+                            </a>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+</body>
+
+</html>

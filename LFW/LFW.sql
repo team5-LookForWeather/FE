@@ -70,6 +70,14 @@ CREATE TABLE `Memo` (
     foreign key (user_id) references User(user_id)
 );
 
+CREATE TABLE `Codi` (
+	`codi_id`	int	NOT NULL primary key auto_increment	COMMENT '코디 식별값',
+	`user_id`	varchar(15)	NOT NULL,
+	`codi_img` 	varchar(200) NOT NULL COMMENT '이미지 파일명.확장자',
+	`codi_stage`	int NOT NULL,
+    foreign key (user_id) references User(user_id)
+);
+
 select * from Memo;
 
 use LFW;

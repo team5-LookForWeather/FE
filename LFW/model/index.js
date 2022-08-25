@@ -18,6 +18,7 @@ db.OOTD_picture = require("./OOTD1/OOTD_picture.js")(sequelize, Sequelize);
 db.OOTD_like = require("./OOTD1/OOTD_like.js")(sequelize, Sequelize);
 db.OOTD_comment = require("./OOTD1/OOTD_comment.js")(sequelize, Sequelize);
 db.Memo = require("./MEMO/MEMO.js")(sequelize, Sequelize);
+db.Codi = require("./CODI/codi.js")(sequelize, Sequelize);
 
 db.User.hasMany(db.OOTD, {
     foreignKey: "user_id",
@@ -105,6 +106,17 @@ db.User.hasMany(db.Memo, {
     onDelete: "cascade"
 });
 db.Memo.belongsTo(db.User, {
+    foreignKey: "user_id",
+    sourceKey: "user_id",
+    onDelete: "cascade"
+})
+
+db.User.hasMany(db.Codi, {
+    foreignKey: "user_id",
+    sourceKey: "user_id",
+    onDelete: "cascade"
+});
+db.Codi.belongsTo(db.User, {
     foreignKey: "user_id",
     sourceKey: "user_id",
     onDelete: "cascade"

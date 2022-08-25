@@ -81,14 +81,14 @@ exports.membership = (req, res) => {
 exports.post_membership = (req, res) => {
     console.log( req.body );
     let user = {
-        user_id : req.body.$user_id,
-        pw : req.body.$pw,
-        name : req.body.$name,
-        nickname : req.body.$nickName,
-        tel : req.body.$tel,
-        email : req.body.$email,
-        gender : req.body.$gender,
-        age : req.body.$age
+        user_id : req.body.user_id,
+        pw : req.body.pw,
+        name : req.body.name,
+        nickname : req.body.nickName,
+        tel : req.body.tel,
+        email : req.body.email,
+        gender : req.body.gender,
+        age : req.body.age
     }
 
     models.User.create(user)

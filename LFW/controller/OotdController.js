@@ -1,7 +1,7 @@
 const models = require("../model");
 
 exports.ootd_index = (req, res) => {
-    console.log("qq");
+    res.render("ootd-notice");
 }
 
 

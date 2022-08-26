@@ -18,8 +18,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 // const router = require("./routes");
 // app.use('/', router);
 
-
-
 const { UserRouter } = require('./routes');
 app.use('/user', UserRouter);
 const { MainRouter } = require('./routes');

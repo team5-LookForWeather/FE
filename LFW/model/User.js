@@ -3,7 +3,7 @@ const User = (Sequelize, DataTypes) => {
     const model = Sequelize.define(
         'User',
         {
-            user_id : {
+            user_id: {
                 type: DataTypes.STRING(15),
                 allowNull: false,
                 primaryKey: true
@@ -30,14 +30,14 @@ const User = (Sequelize, DataTypes) => {
                 allowNull: false
             },
             gender: {
-                type: DataTypes.ENUM('F','M',''),
+                type: DataTypes.ENUM('F', 'M', ''),
                 allowNull: true,
                 defaultValue: ""
             },
             age: {
                 type: DataTypes.INTEGER,
                 allowNull: false
-            }          
+            }
         },
         {
             timestamps: false,

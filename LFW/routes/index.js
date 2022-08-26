@@ -8,13 +8,14 @@ const path = require('path');
 const UserRouter = express.Router();
 const user = require('../controller/UserController');
 
-// login
-UserRouter.get("/login", user.login);
-UserRouter.post("/login", user.post_login);
-
 // 회원가입
 UserRouter.get("/membership", user.membership);
 UserRouter.post("/membership", user.post_membership);
+UserRouter.post("/id_check", user.id_check);
+
+// login
+UserRouter.get("/login", user.login);
+UserRouter.post("/login", user.post_login);
 
 
 // find id
@@ -27,10 +28,7 @@ UserRouter.get("/find_password", user.find_pw);
 UserRouter.post("/find_password", user.post_find_pw);
 UserRouter.post("/find_password/result", user.find_pw_result);
 
-// register
-UserRouter.get("/register", user.register);
-UserRouter.post("/id_check", user.id_check);
-UserRouter.post("/register", user.post_register);
+
 
 // profile
 UserRouter.get("/profile", user.profile);

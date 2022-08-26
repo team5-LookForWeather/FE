@@ -196,6 +196,7 @@ input#id, input#pw{
     display:flex;
     justify-content: space-between;
     align-items:center;
+    margin:20px 0;
 }
 
 
@@ -254,6 +255,45 @@ input#id, input#pw{
     color:#000;
 }
 
+
+
+
+/*=========================================================
+    아이디 찾기, 비밀번호 찾기, 회원가입
+=========================================================*/
+.find_wrap{
+    text-align:center;
+    /* padding:20px 0 35px; */
+}
+
+.find_wrap li{
+    position:relative;
+    display:inline-block;
+    margin:10px 0;
+}
+
+.find_wrap .find_text{
+    display:inline-block;
+    font-size:12px;
+    line-height:17px;
+    text-decoration: none;
+    color:#abb0b5;
+}
+
+.find_wrap li + li{
+    padding-left:28px;
+}
+
+.find_wrap li+li::before{
+    content:"";
+    position:absolute;
+    top:3px;
+    left:12px;
+    width:1px;
+    height:12px;
+    border-radius: 0.5px;
+    background:#dadada;
+}
 
 /*=========================================================
     간편 로그인

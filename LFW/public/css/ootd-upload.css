@@ -223,12 +223,12 @@ footer {
 .headerArea .nav .utill li:first-child a {
 	display: block;
 	color:var(--black-color);
-	width:30px;
+	width:70px;
 	text-align: center;
-	line-height: 33px;
-    font-family:var(--font-Bold);
+	line-height: 20px;
+    font-family:var(--font-Light);
 	letter-spacing: 1px;
-	font-size:16px;
+	font-size:12px;
 }
 
 .headerArea .nav .utill li:last-child a {
@@ -236,8 +236,10 @@ footer {
 	margin-left: 20px;
 }
 
+/* PC 로그인 아이콘 */
 .headerArea .nav .utill li:first-child a.first_icon:before {
-	display: inline-block;
+	/* display: inline-block; */
+	display:block;
 	width: 40px;
 	height: 40px;
 	margin-right: 6px;
@@ -246,10 +248,14 @@ footer {
 	background: url(../image/icon/loginPassword.png) no-repeat;
 	background-size: contain;
 	content: '';
+	position:relative;
+	left:14px;
 }
 
+/* PC 회원가입 아이콘 */
 .headerArea .nav .utill li:last-child a.second_icon:before {
-	display: inline-block;
+	/* display: inline-block; */
+	display:block;
 	width: 40px;
 	height: 40px;
 	margin-right: 6px;
@@ -258,6 +264,8 @@ footer {
 	background: url(../image/icon/loginMember.png) no-repeat;
 	background-size: contain;
 	content: '';
+	position:relative;
+	left:12px;
 }
 
 

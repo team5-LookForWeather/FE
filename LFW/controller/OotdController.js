@@ -1,7 +1,7 @@
 const models = require("../model");
 
 exports.ootd_index = (req, res) => {
-    console.log('바보');
+    console.log("qq");
 }
 
 

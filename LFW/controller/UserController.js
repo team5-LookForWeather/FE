@@ -89,7 +89,7 @@ exports.post_login = (req, res) => {
 
 // id 찾기
 exports.find_id = (req, res) => {
-    res.render("find_id");
+    res.render("find_id.ejs");
 }
 exports.post_find_id = (req, res) => {
     models.User.findOne({

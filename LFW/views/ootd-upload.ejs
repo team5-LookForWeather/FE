@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
 <head>
     <meta charset="UTF-8">
@@ -9,9 +9,9 @@
         integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <script src="https://kit.fontawesome.com/9ad05a77c3.js" crossorigin="anonymous"></script>
 
-    <script defer src="./js/common.js"></script>
-    <link rel="stylesheet" href="./css/ootd-notice.css" />
-    <title>게시글 작성</title>
+    <script defer src="../js/common.js"></script>
+    <link rel="stylesheet" href="../css/ootd-upload.css" />
+    <title>OOTD 게시글 작성</title>
 </head>
 
 <body>
@@ -24,7 +24,7 @@
                             <div class="moblie_logo">
                                 <h1 class="logo">
                                     <a href="#">
-                                        <img src="./image/logo-5.png" alt="룩포웨더">
+                                        <img src="../image/logo-5.png" alt="룩포웨더">
                                     </a>
                                 </h1>
                             </div>
@@ -38,7 +38,7 @@
                                 <div class="pc_logo">
                                     <h1 class="logo">
                                         <a href="#">
-                                            <img src="./image/logo-5.png" alt="룩포웨더">
+                                            <img src="../image/logo-5.png" alt="룩포웨더">
                                         </a>
                                     </h1>
                                 </div>
@@ -109,7 +109,7 @@
                                     value="b961abca9f">
                                 <input type="hidden" name="_wp_http_referer" value="/participation/class/talk/write/">
                                 <ul class="form">
-                                    <li>
+                                    <!-- <li>
                                         <div class="input">
                                             <label>
                                                 <span class="label require">작성자 명</span>
@@ -122,7 +122,16 @@
                                                 <input class="basic" type="text" name="talk_age" value="" required="">
                                             </label>
                                         </div>
-                                    </li>
+                                    </li> -->
+                                    <!-- <li>
+                                        <div class="input full">
+                                            <label>
+                                                <span class="label require">제목</span>
+                                                <input class="basic" type="text" name="talk_title" value="" required="">
+                                            </label>
+                                        </div>
+                                    </li> -->
+
 
                                     <li>
                                         <div class="input full">
@@ -133,7 +142,7 @@
                                                     <span class="wpcf7-form-control wpcf7-checkbox">
                                                         <span class="wpcf7-list-item first">
                                                             <label>
-                                                                <input type="checkbox" name="category" value="캐주얼"
+                                                                <input type="checkbox" name="style_tag" value="캐주얼"
                                                                     checked="checked">
                                                                 <span class="wpcf7-list-item-label">#캐주얼</span>
                                                             </label>
@@ -141,28 +150,28 @@
 
                                                         <span class="wpcf7-list-item">
                                                             <label>
-                                                                <input type="checkbox" name="category" value="시크">
+                                                                <input type="checkbox" name="style_tag" value="시크">
                                                                 <span class="wpcf7-list-item-label">#시크</span>
                                                             </label>
                                                         </span>
 
                                                         <span class="wpcf7-list-item">
                                                             <label>
-                                                                <input type="checkbox" name="category" value="댄디">
+                                                                <input type="checkbox" name="style_tag" value="댄디">
                                                                 <span class="wpcf7-list-item-label">#댄디</span>
                                                             </label>
                                                         </span>
 
                                                         <span class="wpcf7-list-item">
                                                             <label>
-                                                                <input type="checkbox" name="rcategory" value="포멀">
+                                                                <input type="checkbox" name="style_tag" value="포멀">
                                                                 <span class="wpcf7-list-item-label">#포멀</span>
                                                             </label>
                                                         </span>
 
                                                         <span class="wpcf7-list-item">
                                                             <label>
-                                                                <input type="checkbox" name="category" value="걸리시">
+                                                                <input type="checkbox" name="style_tag" value="걸리시">
                                                                 <span class="wpcf7-list-item-label">#걸리시</span>
                                                             </label>
                                                         </span>
@@ -170,28 +179,28 @@
 
                                                         <span class="wpcf7-list-item last">
                                                             <label>
-                                                                <input type="checkbox" name="category" value="레트로">
+                                                                <input type="checkbox" name="style_tag" value="레트로">
                                                                 <span class="wpcf7-list-item-label">#레트로</span>
                                                             </label>
                                                         </span>
 
                                                         <span class="wpcf7-list-item last">
                                                             <label>
-                                                                <input type="checkbox" name="category" value="로맨틱">
+                                                                <input type="checkbox" name="style_tag" value="로맨틱">
                                                                 <span class="wpcf7-list-item-label">#로맨틱</span>
                                                             </label>
                                                         </span>
 
                                                         <span class="wpcf7-list-item last">
                                                             <label>
-                                                                <input type="checkbox" name="category" value="스포츠">
+                                                                <input type="checkbox" name="style_tag" value="스포츠">
                                                                 <span class="wpcf7-list-item-label">#스포츠</span>
                                                             </label>
                                                         </span>
 
                                                         <span class="wpcf7-list-item last">
                                                             <label>
-                                                                <input type="checkbox" name="category" value="스트릿">
+                                                                <input type="checkbox" name="style_tag" value="스트릿">
                                                                 <span class="wpcf7-list-item-label">#스트릿</span>
                                                             </label>
                                                         </span>
@@ -201,15 +210,6 @@
                                         </div>
                                     </li>
 
-
-                                    <li>
-                                        <div class="input full">
-                                            <label>
-                                                <span class="label require">제목</span>
-                                                <input class="basic" type="text" name="talk_title" value="" required="">
-                                            </label>
-                                        </div>
-                                    </li>
 
                                     <li>
                                         <div class="input full">

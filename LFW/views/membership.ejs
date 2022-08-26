@@ -62,8 +62,9 @@
                             <label for="id">아이디</label>
                         </h3>
                         <span class="box int_id">
-                            <input type="text" name="id" id="id" class="int" maxlength="20" required
-                                onfocus="outline(this);">
+                            <input type="text" name="id" id="id" class="int" maxlength="20" required>
+                            <button type="button" onclick="idCheck()" class="checkBtn1">아이디 중복 확인</button>
+                            <img id="id_check_sucess" style="display: none;">
                         </span>
                         <span class="error_next_box"></span>
 
@@ -109,6 +110,7 @@
                         </h3>
                         <span class="box int_nick">
                             <input type="text" name="nick" id="nick" class="int" maxlength="20" required>
+                            <button type="button" onclick="nickCheck()" class="checkBtn2">닉네임 중복 확인</button>
                         </span>
                         <span class="error_next_box"></span>
                     </div>
@@ -178,7 +180,7 @@
             </form>
         </div>
     </div>
-    <script>
+    <script defer>
         $(document).ready(function () {
             $("input").focus(function () {
                 $(this.parentNode).css('border', '1px solid #0359AE');
@@ -187,7 +189,7 @@
             $("input").blur(function () {
                 $(this.parentNode).css('border', '1px solid #dadada');
             })
-        })
+        });
 
         $(document).ready(function () {
             $("select").focus(function () {
@@ -197,7 +199,7 @@
             $("select").blur(function () {
                 $(this.parentNode).css('border', '1px solid #dadada');
             })
-        })
+        });
     </script>
 </body>
 

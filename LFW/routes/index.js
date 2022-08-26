@@ -69,6 +69,7 @@ WeatherRouter.post('/searchlocation', weather.searchlocation); //현위치로 �
 const OotdRouter = express.Router();
 const ootd = require('../controller/OotdController');
 OotdRouter.get('/', ootd.ootd_index);  //ootd페이지
+OotdRouter.get('/ootd-upload', ootd.ootd_upload);  //ootd 업로드 페이지
 
 
 

@@ -1,7 +1,12 @@
 const models = require("../model");
 
 exports.ootd_index = (req, res) => {
-    console.log("qq");
+    res.render("ootd.ejs");
+}
+
+
+exports.ootd_upload = (req, res) => {
+    res.render("ootd-upload.ejs");
 }
 
 

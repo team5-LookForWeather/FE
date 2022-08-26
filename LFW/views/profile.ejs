@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/9ad05a77c3.js" crossorigin="anonymous"></script>
+
+    <script defer src="../js/common.js"></script>
+    <script defer src="../js/profile.js"></script>
+    <link rel="stylesheet" href="../css/profile.css" />
+    <title>회원정보</title>
+</head>
+
+<body>
+    <div id="body-wrapper">
+        <div id="body-content">
+            <header id="act_header">
+                <div class="headerArea">
+                    <div class="container">
+                        <div class="nav">
+                            <div class="moblie_logo">
+                                <h1 class="logo">
+                                    <a href="#">
+                                        <img src="../image/logo-5.png" alt="룩포웨더">
+                                    </a>
+                                </h1>
+                            </div>
+
+
+                            <div class="nav-icon">
+                                <div></div>
+                            </div>
+
+                            <ul class="navbar">
+                                <div class="pc_logo">
+                                    <h1 class="logo">
+                                        <a href="#">
+                                            <img src="../image/logo-5.png" alt="룩포웨더">
+                                        </a>
+                                    </h1>
+                                </div>
+                                <li id="menu-item-130"
+                                    class="menu-item menu-item-type-post_type menu-item-object-page menu-item-130">
+                                    <a class="moblie_arrow" href="#">HOME</a>
+                                </li>
+
+                                <li id="menu-item-41"
+                                    class="menu-item menu-item-type-post_type menu-item-object-page menu-item-41">
+                                    <a href="#">WEATHER</a>
+                                </li>
+
+                                <li id="menu-item-40"
+                                    class="menu-item menu-item-type-post_type menu-item-object-page menu-item-40">
+                                    <a href="#">OOTD</a>
+                                </li>
+
+                                <li id="menu-item-131"
+                                    class="menu-item menu-item-type-post_type menu-item-object-page menu-item-131">
+                                    <a href="#">COMMUNITY</a>
+                                </li>
+
+                                <li id="menu-item-132"
+                                    class="menu-item menu-item-type-post_type menu-item-object-page menu-item-132">
+                                    <a href="#">MYPAGE</a>
+                                </li>
+
+                                <li class="utill mo">
+                                    <ul>
+                                        <li class="login_bt"><a href="#" target="_blank">로그인</a></li>
+                                        <li class="member_bt"><a href="#" target="_blank">회원가입</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+
+
+                            <ul class="utill pc">
+                                <li>
+                                    <a class="first_icon" href="#" target="_blank"></a>
+                                    <a class="second_icon" href="#" target="_blank"></a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                </div>
+            </header>
+
+            <section>
+                <div class="container">
+                    <div class="page-content">
+                        <!-- 타이틀 -->
+                        <div class="MainSectionHeader">
+                            <h2 class="MainSectionHeader-title">
+                                회원정보
+                            </h2>
+                            <div class="MainSectionHeader-sub">
+
+                            </div>
+                        </div>
+
+                        <form id="form_membership">
+                            <div id="content">
+                                <!-- 아이디 -->
+                                <div>
+                                    <h3 class="join_title">
+                                        <label for="id">아이디</label>
+                                    </h3>
+                                    <span class="box int_id">
+                                        <input type="text" name="id" id="id" class="int" maxlength="20" readonly>
+                                    </span>
+                                    <span class="error_next_box"></span>
+            
+                                </div>
+            
+            
+                                <!-- 비밀번호 -->
+                                <div>
+                                    <h3 class="join_title"><label for="pswd1">비밀번호</label></h3>
+                                    <span class="box int_pass">
+                                        <input type="password" name="pswd1" id="pswd1" class="int" maxlength="20" required>
+                                        <span id="alertTxt">사용불가</span>
+                                        <img src="../image/icon/check-1.png" id="pswd1_img1" class="pswdImg">
+                                    </span>
+                                    <span class="error_next_box"></span>
+                                </div>
+            
+            
+                                <!-- 이름 -->
+                                <div>
+                                    <h3 class="join_title"><label for="name">이름</label></h3>
+                                    <span class="box int_name">
+                                        <input type="text" name="name" id="name" class="int" maxlength="20" required>
+                                    </span>
+                                    <span class="error_next_box"></span>
+                                </div>
+            
+                                <!-- 닉네임 -->
+                                <div>
+                                    <h3 class="join_title">
+                                        <label for="nick">닉네임</label>
+                                    </h3>
+                                    <span class="box int_nick">
+                                        <input type="text" name="nick" id="nick" class="int" maxlength="20" required>
+                                    </span>
+                                    <span class="error_next_box"></span>
+                                </div>
+            
+            
+                                <!-- 전화번호 -->
+                                <div>
+                                    <h3 class="join_title"><label for="mobile">휴대전화</label></h3>
+                                    <span class="box int_mobile">
+                                        <input type="tel" name="mobile" id="mobile" class="int" maxlength="16" placeholder="전화번호 입력" required>
+                                    </span>
+                                    <span class="error_next_box"></span>
+                                </div>          
+                                
+                                
+                                <!-- 이메일 -->
+                                <div>
+                                    <h3 class="join_title"><label for="email">이메일</label>
+                                    </h3>
+                                    <span class="box int_email">
+                                        <input type="text" name="email" id="email" class="int" maxlength="100" placeholder="선택입력" required>
+                                    </span>
+                                    <span class="error_next_box">이메일 주소를 다시 확인해주세요.</span>
+                                </div>                    
+            
+            
+                                <!-- 성별 -->
+                                <div>
+                                    <h3 class="join_title"><label for="gender">성별</label></h3>
+                                    <span class="box gender_code">
+                                        <select name="gender" id="gender" class="sel" required>
+                                            <option>성별</option>
+                                            <option value="M">남자</option>
+                                            <option value="F">여자</option>
+                                        </select>
+                                    </span>
+                                    <span class="error_next_box">필수 정보입니다.</span>
+                                </div>
+            
+            
+            
+                                <!-- 생년월일 -->
+                                <div>
+                                    <h3 class="join_title"><label for="age">나이</label></h3>
+                                    <span class="box int_age">
+                                        <input type="text" name="age" id="age" class="int" maxlength="5" required>
+                                    </span>
+                                    <span class="error_next_box"></span>
+                                </div>                    
+            
+            
+                                <!-- 가입하기 -->
+                                <div class="btn_area">
+                                    <button type="button" id="btnJoin" onclick="editProfile();">
+                                        <span>수정하기</span>
+                                    </button>
+                                    <button type="button" id="btnJoin2" onclick="deleteProfile()">
+                                        <span>탈퇴하기</span>
+                                    </button>
+                                </div>
+            
+                                <div>
+                                    <span class="copy">
+                                        <br>
+                                    </span>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+
+        <footer class="footer">
+            <div class="layout con">
+                <div class="menu">
+                    <ul class="row">
+                        <li class="cell">룩포웨더</li>
+                        <li class="cell">날씨정보</li>
+                        <li class="cell">코디리뷰</li>
+                        <li class="cell">커뮤니티</li>
+                        <li class="cell">마이페이지</li>
+                    </ul>
+                </div>
+                <div class="address">
+                    <div class="line_txt">조장 : 함유정</div>
+                    <div>팀원 : 방장원, 서윤지, 정예현, 최상훈</div>
+                </div>
+                <div class="copy">
+                    Copyrightⓒ 록포웨더. All Rights Reserved.
+                </div>
+                <div class="site-box row">
+                    <div class="relate-site cell">
+                        <div class="box-1">
+                            패밀리사이트
+                        </div>
+                        <ul>
+                            <a href="#" onclick="return false">
+                                <li>링크사이트1</li>
+                            </a>
+                            <a href="#" onclick="return false">
+                                <li>링크사이트2</li>
+                            </a>
+                            <a href="#" onclick="return false">
+                                <li>링크사이트3</li>
+                            </a>
+                            <a href="#" onclick="return false">
+                                <li>링크사이트4</li>
+                            </a>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        $(document).ready(function () {
+            $("input").focus(function () {
+                $(this.parentNode).css('border', '1px solid #0359AE');
+            })
+
+            $("input").blur(function () {
+                $(this.parentNode).css('border', '1px solid #dadada');
+            })
+        })
+
+        $(document).ready(function () {
+            $("select").focus(function () {
+                $(this.parentNode).css('border', '1px solid #0359AE');
+            })
+
+            $("select").blur(function () {
+                $(this.parentNode).css('border', '1px solid #dadada');
+            })
+        })
+    </script>    
+</body>
+
+</html>

@@ -136,16 +136,18 @@ exports.post_register = (req, res) => {
 
 // profile
 exports.profile = (req, res) => {
-    const user = req.session.user;
+    res.render("profile.ejs");
 
-    if (user != undefined) {
-        models.User.findOne({ where: { id: user } })
-            .then((result) => {
-                res.render("profile", { isLogin: true, user: user, name: result.name, tel: result.tel, email: result.email });
-            })
-    } else {
-        res.redirect("/user");
-    }
+    // const user = req.session.user;
+
+    // if (user != undefined) {
+    //     models.User.findOne({ where: { id: user } })
+    //         .then((result) => {
+    //             res.render("profile", { isLogin: true, user: user, name: result.name, tel: result.tel, email: result.email });
+    //         })
+    // } else {
+    //     res.redirect("/user");
+    // }
 }
 
 // delete

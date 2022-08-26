@@ -1,4 +1,4 @@
-const Memo = (Sequelize, DataTypes) => {
+const Codi = (Sequelize, DataTypes) => {
 
     const model = Sequelize.define(
         'Codi',

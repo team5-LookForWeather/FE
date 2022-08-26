@@ -5,20 +5,199 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <script src="https://kit.fontawesome.com/9ad05a77c3.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 
     <script defer src="./js/slider/jquery.min.js"></script>
     <script defer src="./js/slider/swiper-4.5.0.min.js"></script>
     <script defer src="./js/slider/main.js"></script>
-
     <script defer src="./js/common.js"></script>
+
+    <script>
+        function getLocation() {
+            if (navigator.geolocation) {
+                console.log('geolocation');
+                navigator.geolocation.getCurrentPosition(locationSuccess, locationError);
+            } else {
+                console.log("지오 로케이션 없음")
+            }
+        };
+
+
+        async function locationSuccess(p) {
+            var latitude = p.coords.latitude, longitude = p.coords.longitude;
+            console.log(latitude, longitude);
+
+            // 사용자 위경도 전송
+            await axios({
+                method: 'post',
+                url: "//localhost:8000/weather/getlocation",
+                data: {
+                    latitude: latitude,
+                    longitude: longitude
+                }
+            }).then(async function (response) {
+                // 날씨정보 JSON파일로 받기 ( 팀노션 - API관리 참고 )
+                // 한시간당 12항목 (numOfRows = 12) 받을 수 있습니다 
+                // response.data 가공해서 쓰세요
+                /* -배열안에 들어가는 데이터 명시-
+                baseDate : 발표시각의 날짜
+                baseTime : 발표시각의 시분
+                category : 데이터 종류
+                fcstDate : 예보시각의 날짜
+                fcstTime : 예보시각의 시분
+                fcstValue : 예보 값
+                nx, ny : 기상청 지역코드 
+                **/
+
+                console.log('날씨정보 확인');
+                console.log(response.data);
+                console.log("hours : ", hours);
+
+                let num = 254 + (hours * 12);
+                let currentTMP = "";
+                if (response.data.item[num].category == "TMP") { currentTMP = response.data.item[num].fcstValue }
+                else if (response.data.item[num + 1].category == "TMP") { currentTMP = response.data.item[num + 1].fcstValue }
+                else if (response.data.item[num + 2].category == "TMP") { currentTMP = response.data.item[num + 2].fcstValue };
+                console.log("current : ", currentTMP);
+
+                let TMN = "";
+                let num2 = 338;
+                if (response.data.item[num2].category == "TMN") { TMN = response.data.item[num2].fcstValue }
+                else if (response.data.item[num2 - 290].category == "TMN") { TMN = response.data.item[num2 - 290].fcstValue }
+                console.log("일최저온도 : ", TMN);
+
+                let TMX = "";
+                let num3 = 447;
+                if (response.data.item[num3].category == "TMX") { TMX = response.data.item[num3].fcstValue }
+                else if (response.data.item[num3 - 290].category == "TMX") { TMX = response.data.item[num3 - 290].fcstValue }
+                console.log("일최고온도 : ", TMX);
+
+                let REH = "";
+                let num4 = 264 + (hours * 12);
+                if (response.data.item[num4].category == "REH") { REH = response.data.item[num4].fcstValue }
+                else if (response.data.item[num4 + 1].category == "REH") { REH = response.data.item[num4 + 1].fcstValue }
+                else if (response.data.item[num4 + 2].category == "REH") { REH = response.data.item[num4 + 2].fcstValue };
+                console.log("습도 : ", REH);
+
+                let SKY = "";
+                let num5 = 259 + (hours * 12);
+                if (response.data.item[num5].category == "SKY") { SKY = response.data.item[num5].fcstValue }
+                else if (response.data.item[num5 + 1].category == "SKY") { SKY = response.data.item[num5 + 1].fcstValue }
+                else if (response.data.item[num5 + 2].category == "SKY") { SKY = response.data.item[num5 + 2].fcstValue };
+                console.log("맑음or 흐림 : ", SKY)
+
+                let PTY = "";
+                let num6 = 260 + (hours * 12);
+                if (response.data.item[num6].category == "PTY") { PTY = response.data.item[num6].fcstValue }
+                else if (response.data.item[num6 + 1].category == "PTY") { PTY = response.data.item[num6 + 1].fcstValue }
+                else if (response.data.item[num6 + 2].category == "PTY") { PTY = response.data.item[num6 + 2].fcstValue };
+                console.log("비 or 눈 : ", PTY)
+                //현재 시간의 기온,습도,최저/고온도 하늘상태 가져오기
+
+                var iconnum = null;
+                if (PTY == "0") {
+                    if (SKY == "1") {
+                        console.log("맑음");
+                        iconnum = 1;
+
+                    } else if (SKY == "2") {
+                        console.log("구름조금");
+                        iconnum = 2;
+
+                    } else if (SKY == "3") {
+                        console.log("구름많음");
+                        iconnum = 3;
+
+                    } else if (SKY == "4") {
+                        console.log("흐림");
+                        iconnum = 4;
+
+                    }
+                } else if (PTY == "1") {
+                    console.log("비");
+                    iconnum = 5;
+
+                } else if (PTY == "2") {
+                    console.log("비/눈");
+                    iconnum = 6;
+
+                } else if (PTY == "3") {
+                    console.log("눈");
+                    iconnum = 7;
+
+                } else if (PTY == "5") {
+                    console.log("빗방울");
+                    iconnum = 8;
+
+                } else if (PTY == "6") {
+                    console.log("빗방울눈날림");
+                    iconnum = 9;
+
+                } else if (PTY == "7") {
+                    console.log("눈날림");
+                    iconnum = 10;
+                }
+
+                var A = document.getElementById("icon");
+                A.innerHTML = `<img src="image/weathericon/${iconnum}.png">`;
+                var B = document.getElementById('temp');
+                B.innerHTML = `현재기온 : ${currentTMP}`;
+                var C = document.getElementById('lowtemp');
+                C.innerHTML = `최저온도 : ${TMN}`;
+                var D = document.getElementById('hightemp');
+                D.innerHTML = `최고온도 : ${TMX}`;
+                var E = document.getElementById('humidity');
+                E.innerHTML = `습도 : ${REH}`;
+
+                /*
+                - 하늘상태(SKY) 코드 : 맑음(1), 구름많음(3), 흐림(4)
+                - 강수형태(PTY) 코드 : (초단기) 없음(0), 비(1), 비/눈(2), 눈(3), 빗방울(5), 빗방울눈날림(6), 눈날림(7) 
+                -iconnum : 1 - 맑음 / 2 - 구름조금 / 3 - 구름많음 / 4 - 흐림 / 5- - 비 / 6 - 비or눈 / 7 - 눈 / 8 - 빗방울 / 9 - 빗방울눈날림 / 10 - 눈날림
+                **/
+                for (var i = 0; i < 12; i++) {
+                    grpTMP = null;
+                    num7 = 254 + (hours * 12) + (i * 12)
+                    if (response.data.item[num7].category == "TMP") { grpTMP = response.data.item[num7].fcstValue }
+                    else if (response.data.item[num7 + 1].category == "TMP") { grpTMP = response.data.item[num7 + 1].fcstValue }
+                    else if (response.data.item[num7 + 2].category == "TMP") { grpTMP = response.data.item[num7 + 2].fcstValue }
+                    else if (response.data.item[num7 + 3].category == "TMP") { grpTMP = response.data.item[num7 + 3].fcstValue }
+                    else if (response.data.item[num7 + 4].category == "TMP") { grpTMP = response.data.item[num7 + 4].fcstValue }
+                    else if (response.data.item[num7 + 5].category == "TMP") { grpTMP = response.data.item[num7 + 5].fcstValue }
+                    else if (response.data.item[num7 + 6].category == "TMP") { grpTMP = response.data.item[num7 + 6].fcstValue }
+                    let grp = document.getElementById("graph");
+                    console.log(grpTMP);
+
+                }// 그래프
+
+            });
+        }; //get location
+
+        function locationError(error) {
+            var errorTypes = {
+                0: "알 수 없는 에러",
+                1: "허용 안눌렀음",
+                2: "위치가 안잡힘",
+                3: "응답시간 지남"
+            };
+            var errorMsg = errorTypes[error.code];
+            console.log(errorMsg)
+
+        }   // locationError
+
+        window.onload = function () { getLocation(); timereset(); }
+         // 페이지로드하자마자 실행함수!!
+
+    </script>
 
     <link rel="stylesheet" href="./css/main.css" />
 
 
     <title>메인</title>
 </head>
+
 <body>
     <div id="body-wrapper">
         <div id="body-content">
@@ -104,8 +283,18 @@
                                         <div class="MainSliderText-container swiper-container">
                                             <div class="swiper-wrapper MainSliderText-wrapper">
                                                 <!-- 이 부분에 날씨 정보 들어가야 한다. -->
-                                                <div style="width:100%; background:#fff; border-radius:20px; height:580px;">
-                                                    <h2 style="text-align:Center; line-height:550px;">날씨 관련 레이아웃</h2>
+                                                <div class="weather">
+                                                    <button type="button" onclick="getLocation();">현재위치 가져오기</button>
+                                                    <!-- <button type="button" onclick="reloadDivArea();">새로고침</button> -->
+                                                    <div id="icon"></div>
+                                                    <div id="time">현재시간 : </div>
+                                                    <div id="temp">현재기온 : </div>
+                                                    <div id="lowtemp">최저온도 : </div>
+                                                    <div id="hightemp">최고온도 : </div>
+                                                    <div id="humidity">습도 : </div>
+                                                </div>
+                                                <div>
+                                                    <div id="graph"> </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -162,7 +351,7 @@
                     <a href="#cody" class="wow bounceInDown" data-wow-duration="1.4s" data-wow-delay="1.4s">
                         <div class="scroll-icon"></div>
                     </a>
-                </div>                
+                </div>
 
             </div>
 
@@ -191,7 +380,7 @@
                                         <a href="#" class="MainNewsLink-link">더보기</a>
                                     </div>
 
-                                    <div  class="MainSectionBody">
+                                    <div class="MainSectionBody">
                                         <div class="MainInfluencerList">
                                             <ul class="MainInfluencerList-list">
 
@@ -203,14 +392,18 @@
                                                             </div>
 
                                                             <div class="MainInfluencerItemThumb">
-                                                                <img width="336" height="433" src="./image/임시/m_임시01.png" class="MainInfluencerItemThumb-img wp-post-image" alt="" loading="lazy" />
+                                                                <img width="336" height="433"
+                                                                    src="./image/임시/m_임시01.png"
+                                                                    class="MainInfluencerItemThumb-img wp-post-image"
+                                                                    alt="" loading="lazy" />
                                                             </div>
 
                                                             <div class="MainInfluencerItemName">
                                                                 <div class="MainInfluencerItemName-inner">
                                                                     <span class="MainInfluencerItemNameOver"></span>
                                                                     <span class="MainInfluencerItemNameText">
-                                                                        <span class="MainInfluencerItemNameText-text">코디 추천1</span>
+                                                                        <span class="MainInfluencerItemNameText-text">코디
+                                                                            추천1</span>
                                                                     </span>
                                                                 </div>
                                                             </div>
@@ -222,16 +415,20 @@
                                                                 <div class="MainInfluencerItemTagMeta">
                                                                     <ul class="MainInfluencerItemTagMeta-list">
                                                                         <li class="MainInfluencerItemTagMeta-item">
-                                                                            <span class="MainInfluencerItemTagMeta-text">#H라인</span>
+                                                                            <span
+                                                                                class="MainInfluencerItemTagMeta-text">#H라인</span>
                                                                         </li>
                                                                         <li class="MainInfluencerItemTagMeta-item">
-                                                                            <span class="MainInfluencerItemTagMeta-text">#컬러포인트</span>
+                                                                            <span
+                                                                                class="MainInfluencerItemTagMeta-text">#컬러포인트</span>
                                                                         </li>
                                                                         <li class="MainInfluencerItemTagMeta-item">
-                                                                            <span class="MainInfluencerItemTagMeta-text">#여친룩</span>
+                                                                            <span
+                                                                                class="MainInfluencerItemTagMeta-text">#여친룩</span>
                                                                         </li>
                                                                         <li class="MainInfluencerItemTagMeta-item">
-                                                                            <span class="MainInfluencerItemTagMeta-text">#크롭</span>
+                                                                            <span
+                                                                                class="MainInfluencerItemTagMeta-text">#크롭</span>
                                                                         </li>
                                                                     </ul>
                                                                 </div>
@@ -249,7 +446,10 @@
                                                             </div>
 
                                                             <div class="MainInfluencerItemThumb">
-                                                                <img width="336" height="433" src="./image/임시/m_임시02.png" class="MainInfluencerItemThumb-img wp-post-image" alt="" loading="lazy" />
+                                                                <img width="336" height="433"
+                                                                    src="./image/임시/m_임시02.png"
+                                                                    class="MainInfluencerItemThumb-img wp-post-image"
+                                                                    alt="" loading="lazy" />
                                                             </div>
 
                                                             <div class="MainInfluencerItemName">
@@ -258,7 +458,7 @@
                                                                     <span class="MainInfluencerItemNameText">
                                                                         <span class="MainInfluencerItemNameText-text">
                                                                             코디 추천2</span>
-                                                                        </span>
+                                                                    </span>
                                                                 </div>
                                                             </div>
 
@@ -269,16 +469,20 @@
                                                                 <div class="MainInfluencerItemTagMeta">
                                                                     <ul class="MainInfluencerItemTagMeta-list">
                                                                         <li class="MainInfluencerItemTagMeta-item">
-                                                                            <span class="MainInfluencerItemTagMeta-text">#로고플레이</span>
+                                                                            <span
+                                                                                class="MainInfluencerItemTagMeta-text">#로고플레이</span>
                                                                         </li>
                                                                         <li class="MainInfluencerItemTagMeta-item">
-                                                                            <span class="MainInfluencerItemTagMeta-text">#그래픽</span>
+                                                                            <span
+                                                                                class="MainInfluencerItemTagMeta-text">#그래픽</span>
                                                                         </li>
                                                                         <li class="MainInfluencerItemTagMeta-item">
-                                                                            <span class="MainInfluencerItemTagMeta-text">#스티치</span>
+                                                                            <span
+                                                                                class="MainInfluencerItemTagMeta-text">#스티치</span>
                                                                         </li>
                                                                         <li class="MainInfluencerItemTagMeta-item">
-                                                                            <span class="MainInfluencerItemTagMeta-text">#꾸안꾸</span>
+                                                                            <span
+                                                                                class="MainInfluencerItemTagMeta-text">#꾸안꾸</span>
                                                                         </li>
                                                                     </ul>
                                                                 </div>
@@ -289,19 +493,24 @@
 
                                                 <!-- 리스트 3 -->
                                                 <li class="MainInfluencerList-item">
-                                                    <div class="MainInfluencerItem"> <a href="#" class="MainInfluencerItem-link">
+                                                    <div class="MainInfluencerItem"> <a href="#"
+                                                            class="MainInfluencerItem-link">
                                                             <div class="InfluencerItemBadge">
                                                             </div>
 
                                                             <div class="MainInfluencerItemThumb">
-                                                                <img width="336" height="433" src="./image/임시/m_임시03.png" class="MainInfluencerItemThumb-img wp-post-image" alt="" loading="lazy" />
+                                                                <img width="336" height="433"
+                                                                    src="./image/임시/m_임시03.png"
+                                                                    class="MainInfluencerItemThumb-img wp-post-image"
+                                                                    alt="" loading="lazy" />
                                                             </div>
 
                                                             <div class="MainInfluencerItemName">
                                                                 <div class="MainInfluencerItemName-inner">
                                                                     <span class="MainInfluencerItemNameOver"></span>
                                                                     <span class="MainInfluencerItemNameText">
-                                                                        <span class="MainInfluencerItemNameText-text">코디 추천3</span>
+                                                                        <span class="MainInfluencerItemNameText-text">코디
+                                                                            추천3</span>
                                                                     </span>
                                                                 </div>
                                                             </div>
@@ -313,16 +522,20 @@
                                                                 <div class="MainInfluencerItemTagMeta">
                                                                     <ul class="MainInfluencerItemTagMeta-list">
                                                                         <li class="MainInfluencerItemTagMeta-item">
-                                                                            <span class="MainInfluencerItemTagMeta-text">#그라데이션</span>
+                                                                            <span
+                                                                                class="MainInfluencerItemTagMeta-text">#그라데이션</span>
                                                                         </li>
                                                                         <li class="MainInfluencerItemTagMeta-item">
-                                                                            <span class="MainInfluencerItemTagMeta-text">#와이드핏</span>
+                                                                            <span
+                                                                                class="MainInfluencerItemTagMeta-text">#와이드핏</span>
                                                                         </li>
                                                                         <li class="MainInfluencerItemTagMeta-item">
-                                                                            <span class="MainInfluencerItemTagMeta-text">#유니크</span>
+                                                                            <span
+                                                                                class="MainInfluencerItemTagMeta-text">#유니크</span>
                                                                         </li>
                                                                         <li class="MainInfluencerItemTagMeta-item">
-                                                                            <span class="MainInfluencerItemTagMeta-text">#힙합</span>
+                                                                            <span
+                                                                                class="MainInfluencerItemTagMeta-text">#힙합</span>
                                                                         </li>
                                                                     </ul>
                                                                 </div>
@@ -340,7 +553,10 @@
                                                             </div>
 
                                                             <div class="MainInfluencerItemThumb">
-                                                                <img width="289" height="433" src="./image/임시/m_임시04.png" class="MainInfluencerItemThumb-img wp-post-image" alt="" loading="lazy" />
+                                                                <img width="289" height="433"
+                                                                    src="./image/임시/m_임시04.png"
+                                                                    class="MainInfluencerItemThumb-img wp-post-image"
+                                                                    alt="" loading="lazy" />
                                                             </div>
 
                                                             <div class="MainInfluencerItemName">
@@ -349,7 +565,7 @@
                                                                     <span class="MainInfluencerItemNameText">
                                                                         <span class="MainInfluencerItemNameText-text">
                                                                             코디 추천4</span>
-                                                                        </span>
+                                                                    </span>
                                                                 </div>
                                                             </div>
 
@@ -360,16 +576,20 @@
                                                                 <div class="MainInfluencerItemTagMeta">
                                                                     <ul class="MainInfluencerItemTagMeta-list">
                                                                         <li class="MainInfluencerItemTagMeta-item">
-                                                                            <span class="MainInfluencerItemTagMeta-text">#유니크</span>
+                                                                            <span
+                                                                                class="MainInfluencerItemTagMeta-text">#유니크</span>
                                                                         </li>
                                                                         <li class="MainInfluencerItemTagMeta-item">
-                                                                            <span class="MainInfluencerItemTagMeta-text">#힙합</span>
+                                                                            <span
+                                                                                class="MainInfluencerItemTagMeta-text">#힙합</span>
                                                                         </li>
                                                                         <li class="MainInfluencerItemTagMeta-item">
-                                                                            <span class="MainInfluencerItemTagMeta-text">#메쉬</span>
+                                                                            <span
+                                                                                class="MainInfluencerItemTagMeta-text">#메쉬</span>
                                                                         </li>
                                                                         <li class="MainInfluencerItemTagMeta-item">
-                                                                            <span class="MainInfluencerItemTagMeta-text">#컬러블록</span>
+                                                                            <span
+                                                                                class="MainInfluencerItemTagMeta-text">#컬러블록</span>
                                                                         </li>
                                                                     </ul>
                                                                 </div>
@@ -387,7 +607,10 @@
                                                             </div>
 
                                                             <div class="MainInfluencerItemThumb">
-                                                                <img width="336" height="433" src="./image/임시/m_임시05.png" class="MainInfluencerItemThumb-img wp-post-image" alt="" loading="lazy" />
+                                                                <img width="336" height="433"
+                                                                    src="./image/임시/m_임시05.png"
+                                                                    class="MainInfluencerItemThumb-img wp-post-image"
+                                                                    alt="" loading="lazy" />
                                                             </div>
 
                                                             <div class="MainInfluencerItemName">
@@ -396,7 +619,7 @@
                                                                     <span class="MainInfluencerItemNameText">
                                                                         <span class="MainInfluencerItemNameText-text">
                                                                             코디 추천5</span>
-                                                                        </span>
+                                                                    </span>
                                                                 </div>
                                                             </div>
 
@@ -407,16 +630,20 @@
                                                                 <div class="MainInfluencerItemTagMeta">
                                                                     <ul class="MainInfluencerItemTagMeta-list">
                                                                         <li class="MainInfluencerItemTagMeta-item">
-                                                                            <span class="MainInfluencerItemTagMeta-text">#레터링</span>
+                                                                            <span
+                                                                                class="MainInfluencerItemTagMeta-text">#레터링</span>
                                                                         </li>
                                                                         <li class="MainInfluencerItemTagMeta-item">
-                                                                            <span class="MainInfluencerItemTagMeta-text">#심볼</span>
+                                                                            <span
+                                                                                class="MainInfluencerItemTagMeta-text">#심볼</span>
                                                                         </li>
                                                                         <li class="MainInfluencerItemTagMeta-item">
-                                                                            <span class="MainInfluencerItemTagMeta-text">#카고</span>
+                                                                            <span
+                                                                                class="MainInfluencerItemTagMeta-text">#카고</span>
                                                                         </li>
                                                                         <li class="MainInfluencerItemTagMeta-item">
-                                                                            <span class="MainInfluencerItemTagMeta-text">#스포티</span>
+                                                                            <span
+                                                                                class="MainInfluencerItemTagMeta-text">#스포티</span>
                                                                         </li>
                                                                     </ul>
                                                                 </div>
@@ -434,7 +661,10 @@
                                                             </div>
 
                                                             <div class="MainInfluencerItemThumb">
-                                                                <img width="336" height="433" src="./image/임시/m_임시05.png" class="MainInfluencerItemThumb-img wp-post-image" alt="" loading="lazy" />
+                                                                <img width="336" height="433"
+                                                                    src="./image/임시/m_임시05.png"
+                                                                    class="MainInfluencerItemThumb-img wp-post-image"
+                                                                    alt="" loading="lazy" />
                                                             </div>
 
                                                             <div class="MainInfluencerItemName">
@@ -443,7 +673,7 @@
                                                                     <span class="MainInfluencerItemNameText">
                                                                         <span class="MainInfluencerItemNameText-text">
                                                                             코디 추천6</span>
-                                                                        </span>
+                                                                    </span>
                                                                 </div>
                                                             </div>
 
@@ -454,16 +684,20 @@
                                                                 <div class="MainInfluencerItemTagMeta">
                                                                     <ul class="MainInfluencerItemTagMeta-list">
                                                                         <li class="MainInfluencerItemTagMeta-item">
-                                                                            <span class="MainInfluencerItemTagMeta-text">#레터링</span>
+                                                                            <span
+                                                                                class="MainInfluencerItemTagMeta-text">#레터링</span>
                                                                         </li>
                                                                         <li class="MainInfluencerItemTagMeta-item">
-                                                                            <span class="MainInfluencerItemTagMeta-text">#심볼</span>
+                                                                            <span
+                                                                                class="MainInfluencerItemTagMeta-text">#심볼</span>
                                                                         </li>
                                                                         <li class="MainInfluencerItemTagMeta-item">
-                                                                            <span class="MainInfluencerItemTagMeta-text">#카고</span>
+                                                                            <span
+                                                                                class="MainInfluencerItemTagMeta-text">#카고</span>
                                                                         </li>
                                                                         <li class="MainInfluencerItemTagMeta-item">
-                                                                            <span class="MainInfluencerItemTagMeta-text">#스포티</span>
+                                                                            <span
+                                                                                class="MainInfluencerItemTagMeta-text">#스포티</span>
                                                                         </li>
                                                                     </ul>
                                                                 </div>
@@ -481,7 +715,10 @@
                                                             </div>
 
                                                             <div class="MainInfluencerItemThumb">
-                                                                <img width="289" height="433" src="./image/임시/m_임시04.png" class="MainInfluencerItemThumb-img wp-post-image" alt="" loading="lazy" />
+                                                                <img width="289" height="433"
+                                                                    src="./image/임시/m_임시04.png"
+                                                                    class="MainInfluencerItemThumb-img wp-post-image"
+                                                                    alt="" loading="lazy" />
                                                             </div>
 
                                                             <div class="MainInfluencerItemName">
@@ -490,7 +727,7 @@
                                                                     <span class="MainInfluencerItemNameText">
                                                                         <span class="MainInfluencerItemNameText-text">
                                                                             코디 추천7</span>
-                                                                        </span>
+                                                                    </span>
                                                                 </div>
                                                             </div>
 
@@ -501,16 +738,20 @@
                                                                 <div class="MainInfluencerItemTagMeta">
                                                                     <ul class="MainInfluencerItemTagMeta-list">
                                                                         <li class="MainInfluencerItemTagMeta-item">
-                                                                            <span class="MainInfluencerItemTagMeta-text">#유니크</span>
+                                                                            <span
+                                                                                class="MainInfluencerItemTagMeta-text">#유니크</span>
                                                                         </li>
                                                                         <li class="MainInfluencerItemTagMeta-item">
-                                                                            <span class="MainInfluencerItemTagMeta-text">#힙합</span>
+                                                                            <span
+                                                                                class="MainInfluencerItemTagMeta-text">#힙합</span>
                                                                         </li>
                                                                         <li class="MainInfluencerItemTagMeta-item">
-                                                                            <span class="MainInfluencerItemTagMeta-text">#메쉬</span>
+                                                                            <span
+                                                                                class="MainInfluencerItemTagMeta-text">#메쉬</span>
                                                                         </li>
                                                                         <li class="MainInfluencerItemTagMeta-item">
-                                                                            <span class="MainInfluencerItemTagMeta-text">#컬러블록</span>
+                                                                            <span
+                                                                                class="MainInfluencerItemTagMeta-text">#컬러블록</span>
                                                                         </li>
                                                                     </ul>
                                                                 </div>
@@ -521,46 +762,55 @@
 
                                                 <!-- 리스트 8 -->
                                                 <li class="MainInfluencerList-item">
-                                                    <div class="MainInfluencerItem"> <a href="#" class="MainInfluencerItem-link">
-                                                        <div class="InfluencerItemBadge">
-                                                        </div>
-
-                                                        <div class="MainInfluencerItemThumb">
-                                                            <img width="336" height="433" src="./image/임시/m_임시03.png" class="MainInfluencerItemThumb-img wp-post-image" alt="" loading="lazy" />
-                                                        </div>
-
-                                                        <div class="MainInfluencerItemName">
-                                                            <div class="MainInfluencerItemName-inner">
-                                                                <span class="MainInfluencerItemNameOver"></span>
-                                                                <span class="MainInfluencerItemNameText">
-                                                                    <span class="MainInfluencerItemNameText-text">코디 추천8</span>
-                                                                </span>
+                                                    <div class="MainInfluencerItem"> <a href="#"
+                                                            class="MainInfluencerItem-link">
+                                                            <div class="InfluencerItemBadge">
                                                             </div>
-                                                        </div>
 
-                                                        <div class="MainInfluencerTag">
-                                                            <div class="MainInfluencerTag-title">
-                                                                코디 추천8
+                                                            <div class="MainInfluencerItemThumb">
+                                                                <img width="336" height="433"
+                                                                    src="./image/임시/m_임시03.png"
+                                                                    class="MainInfluencerItemThumb-img wp-post-image"
+                                                                    alt="" loading="lazy" />
                                                             </div>
-                                                            <div class="MainInfluencerItemTagMeta">
-                                                                <ul class="MainInfluencerItemTagMeta-list">
-                                                                    <li class="MainInfluencerItemTagMeta-item">
-                                                                        <span class="MainInfluencerItemTagMeta-text">#그라데이션</span>
-                                                                    </li>
-                                                                    <li class="MainInfluencerItemTagMeta-item">
-                                                                        <span class="MainInfluencerItemTagMeta-text">#와이드핏</span>
-                                                                    </li>
-                                                                    <li class="MainInfluencerItemTagMeta-item">
-                                                                        <span class="MainInfluencerItemTagMeta-text">#유니크</span>
-                                                                    </li>
-                                                                    <li class="MainInfluencerItemTagMeta-item">
-                                                                        <span class="MainInfluencerItemTagMeta-text">#힙합</span>
-                                                                    </li>
-                                                                </ul>
+
+                                                            <div class="MainInfluencerItemName">
+                                                                <div class="MainInfluencerItemName-inner">
+                                                                    <span class="MainInfluencerItemNameOver"></span>
+                                                                    <span class="MainInfluencerItemNameText">
+                                                                        <span class="MainInfluencerItemNameText-text">코디
+                                                                            추천8</span>
+                                                                    </span>
+                                                                </div>
                                                             </div>
-                                                        </div> <!-- .MainInfluencerTag -->
-                                                    </a>
-                                                </div>
+
+                                                            <div class="MainInfluencerTag">
+                                                                <div class="MainInfluencerTag-title">
+                                                                    코디 추천8
+                                                                </div>
+                                                                <div class="MainInfluencerItemTagMeta">
+                                                                    <ul class="MainInfluencerItemTagMeta-list">
+                                                                        <li class="MainInfluencerItemTagMeta-item">
+                                                                            <span
+                                                                                class="MainInfluencerItemTagMeta-text">#그라데이션</span>
+                                                                        </li>
+                                                                        <li class="MainInfluencerItemTagMeta-item">
+                                                                            <span
+                                                                                class="MainInfluencerItemTagMeta-text">#와이드핏</span>
+                                                                        </li>
+                                                                        <li class="MainInfluencerItemTagMeta-item">
+                                                                            <span
+                                                                                class="MainInfluencerItemTagMeta-text">#유니크</span>
+                                                                        </li>
+                                                                        <li class="MainInfluencerItemTagMeta-item">
+                                                                            <span
+                                                                                class="MainInfluencerItemTagMeta-text">#힙합</span>
+                                                                        </li>
+                                                                    </ul>
+                                                                </div>
+                                                            </div> <!-- .MainInfluencerTag -->
+                                                        </a>
+                                                    </div>
                                                 </li>
 
                                                 <!-- 리스트 9 -->
@@ -572,7 +822,10 @@
                                                             </div>
 
                                                             <div class="MainInfluencerItemThumb">
-                                                                <img width="336" height="433" src="./image/임시/m_임시02.png" class="MainInfluencerItemThumb-img wp-post-image" alt="" loading="lazy" />
+                                                                <img width="336" height="433"
+                                                                    src="./image/임시/m_임시02.png"
+                                                                    class="MainInfluencerItemThumb-img wp-post-image"
+                                                                    alt="" loading="lazy" />
                                                             </div>
 
                                                             <div class="MainInfluencerItemName">
@@ -581,7 +834,7 @@
                                                                     <span class="MainInfluencerItemNameText">
                                                                         <span class="MainInfluencerItemNameText-text">
                                                                             코디 추천9</span>
-                                                                        </span>
+                                                                    </span>
                                                                 </div>
                                                             </div>
 
@@ -592,16 +845,20 @@
                                                                 <div class="MainInfluencerItemTagMeta">
                                                                     <ul class="MainInfluencerItemTagMeta-list">
                                                                         <li class="MainInfluencerItemTagMeta-item">
-                                                                            <span class="MainInfluencerItemTagMeta-text">#로고플레이</span>
+                                                                            <span
+                                                                                class="MainInfluencerItemTagMeta-text">#로고플레이</span>
                                                                         </li>
                                                                         <li class="MainInfluencerItemTagMeta-item">
-                                                                            <span class="MainInfluencerItemTagMeta-text">#그래픽</span>
+                                                                            <span
+                                                                                class="MainInfluencerItemTagMeta-text">#그래픽</span>
                                                                         </li>
                                                                         <li class="MainInfluencerItemTagMeta-item">
-                                                                            <span class="MainInfluencerItemTagMeta-text">#스티치</span>
+                                                                            <span
+                                                                                class="MainInfluencerItemTagMeta-text">#스티치</span>
                                                                         </li>
                                                                         <li class="MainInfluencerItemTagMeta-item">
-                                                                            <span class="MainInfluencerItemTagMeta-text">#꾸안꾸</span>
+                                                                            <span
+                                                                                class="MainInfluencerItemTagMeta-text">#꾸안꾸</span>
                                                                         </li>
                                                                     </ul>
                                                                 </div>
@@ -609,7 +866,7 @@
                                                         </a>
                                                     </div>
                                                 </li>
-                                                
+
                                                 <!-- 리스트 10 -->
                                                 <li class="MainInfluencerList-item">
                                                     <div class="MainInfluencerItem">
@@ -618,14 +875,18 @@
                                                             </div>
 
                                                             <div class="MainInfluencerItemThumb">
-                                                                <img width="336" height="433" src="./image/임시/m_임시01.png" class="MainInfluencerItemThumb-img wp-post-image" alt="" loading="lazy" />
+                                                                <img width="336" height="433"
+                                                                    src="./image/임시/m_임시01.png"
+                                                                    class="MainInfluencerItemThumb-img wp-post-image"
+                                                                    alt="" loading="lazy" />
                                                             </div>
 
                                                             <div class="MainInfluencerItemName">
                                                                 <div class="MainInfluencerItemName-inner">
                                                                     <span class="MainInfluencerItemNameOver"></span>
                                                                     <span class="MainInfluencerItemNameText">
-                                                                        <span class="MainInfluencerItemNameText-text">코디 추천10</span>
+                                                                        <span class="MainInfluencerItemNameText-text">코디
+                                                                            추천10</span>
                                                                     </span>
                                                                 </div>
                                                             </div>
@@ -637,23 +898,27 @@
                                                                 <div class="MainInfluencerItemTagMeta">
                                                                     <ul class="MainInfluencerItemTagMeta-list">
                                                                         <li class="MainInfluencerItemTagMeta-item">
-                                                                            <span class="MainInfluencerItemTagMeta-text">#H라인</span>
+                                                                            <span
+                                                                                class="MainInfluencerItemTagMeta-text">#H라인</span>
                                                                         </li>
                                                                         <li class="MainInfluencerItemTagMeta-item">
-                                                                            <span class="MainInfluencerItemTagMeta-text">#컬러포인트</span>
+                                                                            <span
+                                                                                class="MainInfluencerItemTagMeta-text">#컬러포인트</span>
                                                                         </li>
                                                                         <li class="MainInfluencerItemTagMeta-item">
-                                                                            <span class="MainInfluencerItemTagMeta-text">#여친룩</span>
+                                                                            <span
+                                                                                class="MainInfluencerItemTagMeta-text">#여친룩</span>
                                                                         </li>
                                                                         <li class="MainInfluencerItemTagMeta-item">
-                                                                            <span class="MainInfluencerItemTagMeta-text">#크롭</span>
+                                                                            <span
+                                                                                class="MainInfluencerItemTagMeta-text">#크롭</span>
                                                                         </li>
                                                                     </ul>
                                                                 </div>
                                                             </div> <!-- .MainInfluencerTag -->
                                                         </a>
                                                     </div>
-                                                </li>                                                
+                                                </li>
                                             </ul>
                                         </div>
                                     </div>
@@ -667,7 +932,7 @@
             </section>
 
             <section class="main3_0">
-                <div class="site-container">                
+                <div class="site-container">
                     <ul class="main3_in1" data-aos="fade-up">
                         <li>
                             <div class="tit">
@@ -735,6 +1000,19 @@
             </div>
         </footer>
     </div>
+
+    <script>
+        var date = new Date();
+        var month = date.getMonth() + 1;
+        var day = date.getDate();
+        var hours = date.getHours();
+        var minutes = date.getMinutes();
+        var time = document.getElementById("time")
+        function timereset(){
+        time.innerHTML = `현재시간 : ${month}월 ${day}일 ${hours}시 ${minutes}분`;
+        }
+        
+    </script>
 
 </body>
 

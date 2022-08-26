@@ -1,11 +1,43 @@
 const models = require("../model");
 
 
-// 회원가입
+//^ 회원가입
+/* 회원가입 화면 */
 exports.membership = (req, res) => {
     res.render("membership");
 }
 
+/* 회원가입 시, id 중복확인 */
+exports.id_check = (req, res) => {
+    models.User.findOne({
+        where: { user_id: req.body.user_id }
+    })
+        .then((result) => {
+            console.log(result)
+            if (result == null) { // 기존 id가 아니면
+                return res.send(true); // 사용 가능
+            } else {
+                return res.send(false); // 사용 불가능
+            }
+        })
+}
+
+/* 회원가입 시, 닉네임 중복확인 */
+exports.nick_check = (req, res) => {
+    models.User.findOne({
+        where: { nickname: req.body.nickName }
+    })
+        .then((result) => {
+            console.log(result)
+            if (result == null) { // 기존 닉네임이 아니면
+                return res.send(true); // 사용 가능
+            } else {
+                return res.send(false); // 사용 불가능
+            }
+        })
+}
+
+/* 회원가입 시, User 정보 저장 */
 exports.post_membership = (req, res) => {
     console.log(req.body);
 
@@ -17,142 +49,112 @@ exports.post_membership = (req, res) => {
         tel: req.body.tel,
         email: req.body.email,
         gender: req.body.gender,
-        age: req.body.age
+        age: req.body.age,
+        // hint: req.body.hint,
+        // hint_answer: req.body.hint_answer,
+        // category1: req.body.category1,
+        // category2: req.body.category2,
+        // category3: req.body.category3
     }
 
     models.User.create(user)
         .then((result) => {
-            console.log(result);
-            res.send("회원가입 성공");
+            res.send(result);
         })
-
-    // let object = {
-    //     id: req.body.id,
-    //     pw: req.body.pw,
-    //     name: req.body.name,
-    //     tel: req.body.tel,
-    //     email: req.body.email
-    // }
-    // models.User.create(object)
-    //     .then((result) => {
-    //         console.log(result);
-    //         res.send("성공적으로 회원가입 되었습니다. 가입하신 정보로 다시 로그인해주세요.");
-    //     })
-}
-
-exports.id_check = (req, res) => {
-    models.User.findOne({
-        where: { id: req.body.id }
-    })
-        .then((result) => {
-            if (result == null) {
-                res.send(true);
-            } else {
-                res.send(false);
-            }
-        });
 }
 
 
-// login
+
+//^ 로그인
+/* 로그인 화면 */
 exports.login = (req, res) => {
     res.render("login");
 }
 
+// 로그인 시스템
 exports.post_login = (req, res) => {
-    console.log(req.body);
-
     models.User.findOne({
-        where: { id: req.body.id, pw: req.body.pw }
+        where: { user_id: req.body.user_id, pw: req.body.pw }
     }).then((result) => {
         console.log(result);
         if (result == null) {
-            res.send(false);
+            res.send(false);    // 로그인 실패
         } else {
-            req.session.user = req.body.id;
-            res.send(true);
+            req.session.user_id = req.body.id;
+            res.send(true);     // 로그인 성공
         }
-    })
+    });
+
 }
 
-// find id
+// id 찾기
 exports.find_id = (req, res) => {
     res.render("find_id");
 }
-
 exports.post_find_id = (req, res) => {
     models.User.findOne({
         where: { name: req.body.name, email: req.body.email }
     }).then((result) => {
+        // console.log('아이디찾기 실행 :', result);
         if (result == null) {
             res.send(false);
         } else {
-            res.send(true);
+            res.send({ id: result.id });
         }
     })
 }
 
-exports.find_id_result = (req, res) => {
-    models.User.findOne({
-        where: { name: req.body.name, email: req.body.email }
-    }).then((result) => {
-        res.render("find_id_result", { id: result.id });
-    })
-}
 
-
-// find password
+// pw 찾기
 exports.find_pw = (req, res) => {
     res.render("find_pw");
 }
-
 exports.post_find_pw = (req, res) => {
     models.User.findOne({
-        where: { id: req.body.id, email: req.body.email }
+        where: { user_id: req.body.user_id, email: req.body.email }
     }).then((result) => {
         if (result == null) {
             res.send(false);
         } else {
-            res.send(true);
+            req.session.user_id = req.body.user_id;
+            res.render('pw_update', { isLogin: true, user_id: req.body.user_id }); //? 비번변경 페이지 & id 전달
+
+            // hint, answer로 확인하는 경우
+            // if (req.body.hint == result.hint && req.body.hint_answer == result.hint_answer) {
+            //      res.render('pw_update', { user_id: req.body.user_id }); //비번변경 페이지 & id 전달
+            // }
         }
     })
 }
 
-exports.find_pw_result = (req, res) => {
-    models.User.findOne({
-        where: { id: req.body.id, email: req.body.email }
-    }).then((result) => {
-        res.render("find_pw_result", { pw: result.pw });
-    })
+// pw 변경
+exports.pw_update = (req, res) => {
+    const user_id = req.session.user_id;
+    let newPW = {
+        pw: req.body.pw
+    };
+    models.User.update(newPW, { where: { user_id: user_id } })
+        .then((result) => {
+            res.send({ pw: result.pw });
+        });
 }
-
 
 
 
 // profile
 exports.profile = (req, res) => {
-    const user = req.session.user;
+    const user_id = req.session.user_id;
 
-    if (user != undefined) {
-        models.User.findOne({ where: { id: user } })
+    if (user_id != undefined) {
+        models.User.findOne({ where: { user_id: user_id } })
             .then((result) => {
-                res.render("profile", { isLogin: true, user: user, name: result.name, tel: result.tel, email: result.email });
+                res.render("profile", { isLogin: true, user_id: user_id, name: result.name, tel: result.tel, email: result.email });
             })
     } else {
         res.redirect("/user");
     }
 }
 
-// delete
-exports.delete = (req, res) => {
-    console.log(req.body);
-    models.User.destroy({ where: { id: req.body.id } })
-        .then((result) => {
-            req.session.destroy(function (err) {
-                res.send("탈퇴되었습니다.");
-            });
-        })
-}
 // update
 exports.update_page = (req, res) => {
     const user = req.session.user;
@@ -173,5 +175,16 @@ exports.update = (req, res) => {
     models.User.update(obj, { where: { id: req.body.id } })
         .then((result) => {
             res.send("회원정보가 수정되었습니다.")
+        })
+}
+
+// delete
+exports.delete = (req, res) => {
+    console.log(req.body);
+    models.User.destroy({ where: { id: req.body.id } })
+        .then((result) => {
+            req.session.destroy(function (err) {
+                res.send("탈퇴되었습니다.");
+            });
         })
 }

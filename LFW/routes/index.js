@@ -8,42 +8,37 @@ const path = require('path');
 const UserRouter = express.Router();
 const user = require('../controller/UserController');
 
-// login
+// 회원가입
+UserRouter.get("/membership", user.membership);
+UserRouter.post("/id_check", user.id_check);
+UserRouter.post("/nick_check", user.nick_check);
+UserRouter.post("/membership", user.post_membership);
+
+// 로그인
 UserRouter.get("/login", user.login);
 UserRouter.post("/login", user.post_login);
 
-// 회원가입
-UserRouter.get("/membership", user.membership);
-UserRouter.post("/membership", user.post_membership);
-
-
-// find id
+// id 찾기
 UserRouter.get("/find_id", user.find_id);
 UserRouter.post("/find_id", user.post_find_id);
-UserRouter.post("/find_id/result", user.find_id_result);
 
-// find password
-UserRouter.get("/find_password", user.find_pw);
-UserRouter.post("/find_password", user.post_find_pw);
-UserRouter.post("/find_password/result", user.find_pw_result);
-
-// register
-UserRouter.get("/register", user.register);
-UserRouter.post("/id_check", user.id_check);
-UserRouter.post("/register", user.post_register);
+// pw 찾기
+UserRouter.get("/find_pw", user.find_pw);
+UserRouter.post("/find_pw", user.post_find_pw);
+UserRouter.patch("/find_pw/pw_update", checkSession, user.pw_update);
 
 // profile
-UserRouter.get("/profile", user.profile);
+UserRouter.get("/profile", checkSession, user.profile);
+
+// update
+UserRouter.get("/update", user.update_profile);
+UserRouter.patch("/update", user.update);
 
 // delete
 UserRouter.delete("/delete", user.delete);
 
-// update
-UserRouter.get("/update", user.update_page);
-UserRouter.patch("/update", user.update);
 
-
-/* 로그인 확인 미들웨어 */
+//! /* 로그인 확인 미들웨어 */
 function checkSession(req, res, next) {
     if (req.session.user_id != null) next();
     else {

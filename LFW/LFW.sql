@@ -21,7 +21,7 @@ CREATE TABLE `OOTD` (
 	`OOTD_id`	int	NOT NULL primary key auto_increment	COMMENT 'ootd 게시글에 주어지는 식별 id',
 	`user_id`	varchar(15)	NOT NULL,
 	`OOTD_img`	varchar(200)	NOT NULL	COMMENT 'ootd파일',
-	`hashTag`	varchar(20)	NULL,
+	`style_tag`	SET('#캐주얼', '#시크', '#댄디', '#포멀', '#걸리시', '#레트로', '#로맨틱', '#스포츠', '#스트릿'),
 	`create_time`	DATETIME	NOT NULL,
 	`update_time`	DATETIME	NULL,
 	`delete_time`	DATETIME	NULL,

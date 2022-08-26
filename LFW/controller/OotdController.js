@@ -7,6 +7,7 @@ exports.ootd_index = (req, res) => {
 
 exports.ootd_upload = (req, res) => {
     res.render("ootd-upload.ejs");
+
 }
 
 

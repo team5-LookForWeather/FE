@@ -101,7 +101,7 @@ exports.getlocation = async (req, res) => {
 
 
             var serviceKey = "Su%2FjD4AQWu0vPPnQkcm0dVbiPxWqLgUu6AN6Snk4oK0JGGr38kehRNwGQtPIWP9iZ7BzO%2FQccEWTlb5yAxsUPw%3D%3D",
-                numOfRows = 544, //* 날씨항목 요청개수 (시간당12,하루당290)
+                numOfRows = 876, //* 날씨항목 요청개수 (시간당12,하루당290) - 876-> 어제 오늘 모래 3일치 데이터
                 base_date = yyyy + "" + mm + "" + dd,
                 //base_time = hours + "00",
                 _nx = nx, _ny = ny;
@@ -112,7 +112,7 @@ exports.getlocation = async (req, res) => {
             requrl += "&base_date=" + base_date;
             requrl += "&base_time=" + '0'+200;
             requrl += "&nx=" + _nx + "&ny=" + _ny;
-
+            requrl += "&fcst_time=" + '0000';
             return requrl;
         }
         var reqMSG = await reqURL(rs.nx, rs.ny);

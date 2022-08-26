@@ -46,8 +46,6 @@
 
                 console.log('날씨정보 확인');
                 console.log(response.data);
-
-
                 console.log("hours : ", hours);
 
                 let num = 254 + (hours * 12);
@@ -81,14 +79,15 @@
                 if (response.data.item[num5].category == "SKY") { SKY = response.data.item[num5].fcstValue }
                 else if (response.data.item[num5 + 1].category == "SKY") { SKY = response.data.item[num5 + 1].fcstValue }
                 else if (response.data.item[num5 + 2].category == "SKY") { SKY = response.data.item[num5 + 2].fcstValue };
+                console.log("맑음or 흐림 : ",SKY)
 
                 let PTY = "";
                 let num6 = 260 + (hours * 12);
                 if (response.data.item[num6].category == "PTY") { PTY = response.data.item[num6].fcstValue }
                 else if (response.data.item[num6 + 1].category == "PTY") { PTY = response.data.item[num6 + 1].fcstValue }
                 else if (response.data.item[num6 + 2].category == "PTY") { PTY = response.data.item[num6 + 2].fcstValue };
-                console.log(PTY)
-
+                console.log("비 or 눈 : ",PTY)
+                //현재 시간의 기온,습도,최저/고온도 하늘상태 가져오기
 
                 var iconnum = null;
                 if (PTY == "0") {
@@ -150,11 +149,30 @@
                 - 강수형태(PTY) 코드 : (초단기) 없음(0), 비(1), 비/눈(2), 눈(3), 빗방울(5), 빗방울눈날림(6), 눈날림(7) 
                 -iconnum : 1 - 맑음 / 2 - 구름조금 / 3 - 구름많음 / 4 - 흐림 / 5- - 비 / 6 - 비or눈 / 7 - 눈 / 8 - 빗방울 / 9 - 빗방울눈날림 / 10 - 눈날림
                 **/
+                for (var i = 0; i<12; i++) {
+                    grpTMP = null;
+                    num7 = 254 + (hours * 12) + (i*12)
+                    if (response.data.item[num7].category == "TMP") { grpTMP = response.data.item[num7].fcstValue }
+                    else if (response.data.item[num7 + 1].category == "TMP") { grpTMP = response.data.item[num7 + 1].fcstValue }
+                    else if (response.data.item[num7 + 2].category == "TMP") { grpTMP = response.data.item[num7 + 2].fcstValue }
+                    else if (response.data.item[num7 + 3].category == "TMP") { grpTMP = response.data.item[num7 + 3].fcstValue }
+                    else if (response.data.item[num7 + 4].category == "TMP") { grpTMP = response.data.item[num7 + 4].fcstValue }
+                    else if (response.data.item[num7 + 5].category == "TMP") { grpTMP = response.data.item[num7 + 5].fcstValue }
+                    else if (response.data.item[num7 + 6].category == "TMP") { grpTMP = response.data.item[num7 + 6].fcstValue }
+                    let grp = document.getElementById("graph");
+                    console.log(grpTMP);
+                    
+                    }
+                // for (num7 = 254 + (hours * 12); num7 < 544; num7+12 ) {
+                // currentTMP = null;
+                // if (response.data.item[num7].category == "TMP") { currentTMP = response.data.item[num7].fcstValue }
+                // else if (response.data.item[num7 + 1].category == "TMP") { currentTMP = response.data.item[num7 + 1].fcstValue }
+                // else if (response.data.item[num7 + 2].category == "TMP") { currentTMP = response.data.item[num7 + 2].fcstValue };
+                // let grp = document.getElementById("graph");
+                // grp.innerText = `${currentTMP}`
+                // }
+                //그래프
 
-                // $('temp').append(currentTMP);
-                // $('lowtemp').append(TMN);
-                // $('hightemp').append(TMX);
-                // $('humidity').append(REH);
 
             });
         }; //get location
@@ -171,13 +189,14 @@
 
         }   // locationError
 
-        function reloadDivArea() {
-        $('#weather').load(location.href+' #weather') 
-        getLocation();
-        };
+        window.onload = function() 
+        {getLocation(); timereset();}
+         // 페이지로드하자마자 실행함수!!
 
-        window.onload = getLocation();
-         // 새창뜨자마자 실행
+        
+         //시간
+
+        
 
         
     </script>
@@ -189,6 +208,7 @@
 <body>
     <div class="weather">
         <button type="button" onclick="getLocation();">현재위치 가져오기</button>
+        <!-- <button type="button" onclick="reloadDivArea();">새로고침</button> -->
         <div id="icon"></div>
         <div id="time">현재시간 : </div>
         <div id="temp">현재온도 : </div>
@@ -196,16 +216,30 @@
         <div id="hightemp">일최고기온 : </div>
         <div id="humidity">습도 : </div>
     </div>
+    <div>
+        <div id="graph"> </div> 
+    </div>
 
     <script>
-        let date = new Date();
-        let month = date.getMonth() + 1;
-        let day = date.getDate();
-        let hours = date.getHours();
-        let minutes = date.getMinutes();
-        let time = document.getElementById("time")
+        var date = new Date();
+        var month = date.getMonth() + 1;
+        var day = date.getDate();
+        var hours = date.getHours();
+        var minutes = date.getMinutes();
+        var time = document.getElementById("time")
+        function timereset(){
         time.innerHTML = `현재시간 : ${month}월 ${day}일 ${hours}시 ${minutes}분`;
+        }
         
+
+        async function reload() {
+            
+        }
+
+        // function reloadDivArea() {
+        // $('#weather').load(location.href+' #weather') 
+        // timereset();
+        // }; // 새로고침
     </script>
 
 </body>

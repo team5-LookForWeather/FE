@@ -31,8 +31,8 @@ UserRouter.patch("/find_pw/pw_update", checkSession, user.pw_update);
 UserRouter.get("/profile", checkSession, user.profile);
 
 // update
-UserRouter.get("/update", user.update_profile);
-UserRouter.patch("/update", user.update);
+// UserRouter.get("/update", user.update_profile);
+// UserRouter.patch("/update", user.update);
 
 // delete
 UserRouter.delete("/delete", user.delete);

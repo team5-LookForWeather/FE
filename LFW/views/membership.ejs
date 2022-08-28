@@ -5,42 +5,214 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>회원가입</title>
     <link rel="stylesheet" href="../css/membership.css" />
     <script defer src="../js/membership.js"></script>
+    <!-- Axios -->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"
         integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-    <title>회원가입</title>
+    <!-- modal -->
+    <link href="//cdn.jsdelivr.net/npm/@sweetalert2/theme-material-ui/material-ui.css" rel="stylesheet">
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
+
 
     <script>
-        function membership() {
-            let form = document.getElementById('form_membership');
-
-            if (!form.checkValidity()) {
-                form.reportValidity();
-                return false;
-            }
+        /* !!!아이디 중복 검사 */
+        function idCheck() {
+            let form = document.getElementById('id');
 
             axios({
                 method: 'post',
-                url: 'http://localhost:8000/user/membership',
+                url: 'http://localhost:8000/user/id_check',
                 data: {
                     user_id: form.id.value,
-                    pw: form.pswd1.value,
-                    name: form.name.value,
-                    nickName: form.nick.value,
-                    tel: form.mobile.value,
-                    email: form.email.value,
-                    gender: form.gender.value,
-                    age: form.age.value
                 }
             }).then((rep) => {
                 return rep.data;
             }).then((data) => {
                 console.log(data);
-                alert('회원가입을 축하드립니다.');
-                document.location.href = 'http://localhost:8000/';
+                // data는 UserController에서 true, false 형식으로 보낸다.
+                if (data) { // data가 true이면 실행
+                    /* 참고용 */
+                    // $("#checkID_text").css("color", "green"); // id가 checkID_text 인 태그 css 설정
+                    // $("#checkID_text").css("font-size", "0.8rem");
+                    // $("#checkID_text").text("사용할 수 있는 아이디입니다."); // id가 checkID_text 인 태그 텍스트 변경
+                    // $("#btnJoin").removeAttr("disabled") // 가입하기 버튼의 disabled 속성을 제거, disabled: 클릭하지 못하도록 하는 속성
+
+                    alert('사용할 수 있는 아이디입니다.');
+                    $("#btnJoin").removeAttr("disabled") // 가입하기 버튼의 disabled 속성 제거
+                } else { // data가 false이면 실행
+                    /* 참고용 */
+                    // $("#checkID_text").css("color", "red");
+                    // $("#checkID_text").css("font-size", "0.8rem");
+                    // $("#checkID_text").text("사용할 수 없는 아이디입니다.");
+                    // $("#btnJoin").attr("disabled", "true");
+
+                    alert('사용할 수 없는 아이디입니다.');
+                    $("#btnJoin").attr("disabled", "true"); // 가입하기 버튼에 disabled 속성 추가
+                }
             });
+        }
+
+        /* !!!닉네임 중복 검사 */
+        function nickCheck() {
+            let form = document.getElementById('nick');
+
+            axios({
+                method: 'post',
+                url: 'http://localhost:8000/user/nick_check',
+                data: {
+                    nickName: form.nick.value,
+                }
+            }).then((rep) => {
+                return rep.data;
+            }).then((data) => {
+                console.log(data);
+                // data는 UserController에서 true, false 형식으로 보낸다.
+                if (data) { // data가 true이면 실행
+                    /* 참고용 */
+                    // $("#checkNickname_text").css("color", "green");
+                    // $("#checkNickname_text").css("font-size", "0.8rem");
+                    // $("#checkNickname_text").text("사용할 수 있는 닉네임입니다.");
+                    // $("#btnJoin").removeAttr("disabled")
+
+                    alert('사용할 수 있는 닉네임입니다.');
+                    $("#btnJoin").removeAttr("disabled") // 가입하기 버튼의 disabled 속성 제거
+                } else { // data가 false이면 실행
+                    /* 참고용 */
+                    // $("#checkNickname_text").css("color", "red");
+                    // $("#checkNickname_text").css("font-size", "0.8rem");
+                    // $("#checkNickname_text").text("사용할 수 없는 닉네임입니다.");
+                    // $("#btnJoin").attr("disabled", "true");
+
+                    alert('사용할 수 없는 닉네임입니다.');
+                    $("#btnJoin").attr("disabled", "true") // 가입하기 버튼에 disabled 속성 추가
+                }
+            });
+        }
+
+        /* !!!비밀번호 확인 */
+        function pwCheck() {
+            if (document.getElementById('pswd1').value != '' && document.getElementById('pswd2').value != '') {
+
+                if (document.getElementById('pswd1').value == document.getElementById('pswd2').value) {
+                    /* 참고용 */
+                    // document.getElementById('check').innerHTML = '비밀번호 일치🥰'
+                    // document.getElementById('check').style.color = 'rgb(54, 54, 255)';
+                    // $("#check").css("font-size", "0.8rem");
+
+                    /* 비밀번호 확인로직 - 체크 부탁드려요! 일단 임의로 만들어놨습니다. */
+                    alert('사용할 수 있는 비밀번호입니다.');
+                    // pswd1과 pswd2가 일치하는 경우 <span>사용불가</span>에 disabled 속성 추가하는건 어떤가요
+                    $("#alertTxt").attr("disabled", "true");
+
+                }
+                else {
+                    /* 참고용 */
+                    // document.getElementById('check').innerHTML = '비밀번호가 일치하지 않습니다';
+                    // document.getElementById('check').style.color = 'rgb(255, 89, 89)';
+                    // $("#check").css("font-size", "0.8rem");
+
+                    /* 비밀번호 확인로직 - 체크 부탁드려요! 일단 임의로 만들어놨습니다. */
+                    alert('비밀번호를 다시 확인해주세요.');
+                    $("#btnJoin").attr("disabled", "true") // 가입하기 버튼에 disabled 속성 추가
+                }
+            }
+        }
+
+        /* !!!데이터 유효성 검사 alert */
+        function checkData() {
+            let form = document.getElementById('form_membership');
+            if (form.id.value == '') {
+                Swal.fire({
+                    icon: 'warning',
+                    title: '아이디를 입력해주세요!',
+                    text: '20글자 이내',
+                })
+                return false;
+            }
+
+            if (form.pswd1.value == '') {
+                Swal.fire({
+                    icon: 'warning',
+                    title: '비밀번호를 입력해주세요!',
+                    text: '20글자 이내',
+                })
+                return false;
+            } if (form.pswd2.value == '') {
+                Swal.fire({
+                    icon: 'warning',
+                    title: '비밀번호를 확인해주세요!',
+                    text: '20글자 이내',
+                })
+                return false;
+            } if (form.nickname.value == '') {
+                Swal.fire({
+                    icon: 'warning',
+                    title: '닉네임을 입력해주세요!',
+                    text: '20글자 이내',
+                })
+                return false;
+            }
+            //이메일
+            if (form.email.value != '' && !form.email.value.includes('@')) {
+                Swal.fire({
+                    icon: 'warning',
+                    title: '올바른 이메일 형식이 아닙니다.',
+                    text: '100글자 이내',
+                })
+                return false;
+            }
+            //전화번호, 성별, 나이 체크 추가?
+
+            // if (form.hintanswer.value == '') {
+            //     Swal.fire({
+            //         icon: 'warning',
+            //         title: '비밀번호 힌트 답을 입력해주세요',
+            //         text: '50글자 이내',
+            //     })
+            //     return false;
+            // }
+
+            return true;
+        }
+
+        /* 가입하기 버튼 클릭 시*/
+        function membership() {
+            let form = document.getElementById('form_membership');
+
+            /// 기존 유효성 검사
+            // if (!form.checkValidity()) {
+            //     form.reportValidity();
+            //     return false;
+            // }
+
+            var flag = checkData(); // !!!유효성 검사 추가
+
+            if (flag == true) { // 유효성 검사 통과하면 Post요청
+                axios({
+                    method: 'post',
+                    url: 'http://localhost:8000/user/membership',
+                    data: {
+                        user_id: form.id.value,
+                        pw: form.pswd1.value,
+                        name: form.name.value,
+                        nickName: form.nick.value,
+                        tel: form.mobile.value,
+                        email: form.email.value,
+                        gender: form.gender.value,
+                        age: form.age.value
+                    }
+                }).then((rep) => {
+                    return rep.data;
+                }).then((data) => {
+                    console.log(data);
+                    alert('회원가입을 축하드립니다.');
+                    document.location.href = 'http://localhost:8000/login';
+                    //가입 후 바로 로그인하도록 수정했습니다!
+                })
+            }
         }
     </script>
 </head>
@@ -75,7 +247,8 @@
                     <div>
                         <h3 class="join_title"><label for="pswd1">비밀번호</label></h3>
                         <span class="box int_pass">
-                            <input type="password" name="pswd1" id="pswd1" class="int" maxlength="20" required>
+                            <input type="password" name="pswd1" id="pswd1" class="int" maxlength="20"
+                                onchange="pwCheck()" required>
                             <span id="alertTxt">사용불가</span>
                             <img src="../image/icon/check-1.png" id="pswd1_img1" class="pswdImg">
                         </span>
@@ -87,7 +260,8 @@
                     <div>
                         <h3 class="join_title"><label for="pswd2">비밀번호 재확인</label></h3>
                         <span class="box int_pass_check">
-                            <input type="password" name="pswd2" id="pswd2" class="int" maxlength="20" required>
+                            <input type="password" name="pswd2" id="pswd2" class="int" maxlength="20"
+                                onchange="pwCheck()" required>
                             <img src="../image/icon/check-1-2.png" id="pswd2_img1" class="pswdImg">
                         </span>
                         <span class="error_next_box"></span>

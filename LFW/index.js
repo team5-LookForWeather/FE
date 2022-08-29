@@ -20,9 +20,6 @@ app.use(bodyParser.json());
 app.use(cors());
 
 
-
-/* 세션 */
-const session = require("express-session");
 // const MySQLStore = require('express-mysql-session')(session);
 // const options = {
 //     host: DB_HOST,
@@ -33,6 +30,9 @@ const session = require("express-session");
 // };
 // const sessionStore = new MySQLStore(options);
 
+
+/* 세션 */
+const session = require("express-session");
 app.use(
     session({
         secret: SECRET,

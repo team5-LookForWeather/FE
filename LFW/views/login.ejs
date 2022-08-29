@@ -11,7 +11,7 @@
         integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <script src="https://kit.fontawesome.com/9ad05a77c3.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-    <title>회원가입</title>
+    <title>로그인</title>
 
     <script>
         function loginBtn() {
@@ -32,9 +32,13 @@
             }).then((rep) => {
                 return rep.data;
             }).then((data) => {
-                console.log(data);
-                alert('로그인을 환영합니다.');
-                document.location.href = 'http://localhost:8000/';
+                if (data.return) {
+                    alert(data.msg);
+                    document.location.href = "/";
+                } else {
+                    alert(data.msg);
+                    form.reset();
+                }
             })
         }
     </script>
@@ -92,11 +96,14 @@
                         </div>
 
                         <ul class="find_wrap" id="find_wrap">
-                            <li><a target="_blank" href="http://localhost:8000/user/find_id" class="find_text">아이디 찾기</a></li>
-                            <li><a target="_blank" href="http://localhost:8000/user/find_pw" class="find_text">비밀번호 찾기</a></li>
-                            <li><a target="_blank" href="http://localhost:8000/user/membership" class="find_text">회원가입</a></li>
-                    
-                    </ul>                        
+                            <li><a target="_blank" href="http://localhost:8000/user/find_id" class="find_text">아이디
+                                    찾기</a></li>
+                            <li><a target="_blank" href="http://localhost:8000/user/find_pw" class="find_text">비밀번호
+                                    찾기</a></li>
+                            <li><a target="_blank" href="http://localhost:8000/user/membership"
+                                    class="find_text">회원가입</a></li>
+
+                        </ul>
                     </div>
             </form>
 

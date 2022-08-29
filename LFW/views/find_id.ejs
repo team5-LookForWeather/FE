@@ -33,8 +33,13 @@
                 return rep.data;
             }).then((data) => {
                 console.log(data);
-                // alert('로그인을 환영합니다.');
-                // document.location.href = 'http://localhost:8000/';
+                if (data.return) {
+                    alert("아이디는 " + data.user_id + "입니다");
+                    // document.location.href = "/";
+                } else {
+                    alert(data.msg);
+                    form.reset();
+                }
             })
         }
     </script>
@@ -55,7 +60,8 @@
                     <!-- 이름 -->
                     <div>
                         <span class="box int_id">
-                            <input type="text" name="name" id="name" class="int" maxlength="20" placeholder="이름" required>
+                            <input type="text" name="name" id="name" class="int" maxlength="20" placeholder="이름"
+                                required>
                             <i class="fa fa1 fa-user"></i>
                         </span>
                         <span class="error_next_box"></span>
@@ -66,7 +72,7 @@
                     <!-- 이메일 -->
                     <div>
                         <span class="box int_pass">
-                            <input type="text" name="email" id="email" class="int" maxlength="20" placeholder="이메일"
+                            <input type="text" name="email" id="email" class="int" maxlength="100" placeholder="이메일"
                                 required>
                             <i class="fa fa2 fa-envelope"></i>
                         </span>
@@ -79,7 +85,7 @@
                     <div class="btn_area">
                         <button type="button" id="btnJoin" onclick="findId();">
                             <span>아이디 찾기</span>
-                        </button>                     
+                        </button>
                     </div>
             </form>
         </div>

@@ -74,11 +74,11 @@ exports.getlocation = async (req, res) => {
 
             //basetime: 0200, 0500, 0800, 1100, 1400, 1700, 2000, 2300
             // if (hours < 2 || (hours == 2 && minutes < 10)) {    //새벽2시 이전은 전날로 계산
-                today.setDate(today.getDate() - 1);
-                yyyy = today.getFullYear();
-                mm = today.getMonth() + 1;
-                dd = today.getDate();
-                //hours = 23;
+            today.setDate(today.getDate() - 1);
+            yyyy = today.getFullYear();
+            mm = today.getMonth() + 1;
+            dd = today.getDate();
+            //hours = 23;
             // } else if (hours < 5 || (hours == 5 && minutes < 10)) {
             //     hours = 2;
             // } else if (hours < 8 || (hours == 8 && minutes < 10)) {
@@ -100,7 +100,7 @@ exports.getlocation = async (req, res) => {
             if (hours < 10) { hours = '0' + hours }
 
 
-            var serviceKey = "Su%2FjD4AQWu0vPPnQkcm0dVbiPxWqLgUu6AN6Snk4oK0JGGr38kehRNwGQtPIWP9iZ7BzO%2FQccEWTlb5yAxsUPw%3D%3D",
+            var serviceKey = process.env.API_KEY,
                 numOfRows = 876, //* 날씨항목 요청개수 (시간당12,하루당290) - 876-> 어제 오늘 모래 3일치 데이터
                 base_date = yyyy + "" + mm + "" + dd,
                 //base_time = hours + "00",
@@ -110,7 +110,7 @@ exports.getlocation = async (req, res) => {
             requrl += "&pageNo=1&numOfRows=" + numOfRows;
             requrl += "&dataType=JSON";
             requrl += "&base_date=" + base_date;
-            requrl += "&base_time=" + '0'+200;
+            requrl += "&base_time=" + '0' + 200;
             requrl += "&nx=" + _nx + "&ny=" + _ny;
             requrl += "&fcst_time=" + '0000';
             return requrl;

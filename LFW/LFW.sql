@@ -1,10 +1,14 @@
-create database LFW;
-use LFW;
+-- mysql > source /SeSAC-LFW/LFW/LFW.sql;
+
+-- CREATE DATABASE LFW; -- DB 생성 
+USE LFW; -- DB 사용
+
+GRANT ALL PRIVILEGES ON *.* TO 'LFW'@'%' WITH GRANT OPTION;
+FLUSH PRIVILEGES;
 
 
-drop table User;
-insert into User values('aaa','aaa1','aaa','aaa','01011111111','aaa@gmail.com','','1');
 
+-- TABLE 생성
 CREATE TABLE `User` (
 	`user_id`	varchar(15)	NOT NULL primary key,
 	`pw`	varchar(15)	NOT NULL,
@@ -78,11 +82,75 @@ CREATE TABLE `Codi` (
     foreign key (user_id) references User(user_id)
 );
 
-select * from Memo;
 
-use LFW;
-select * from User;
-select * from mysql.user;
+-- -- table 삭제
+-- drop table likes; 
+-- drop table studymember; 
+-- drop table studygroup; 
+-- drop table user;
 
-GRANT ALL PRIVILEGES ON *.* TO 'LFW'@'%' WITH GRANT OPTION;
-FLUSH PRIVILEGES;
+
+-- -------------------------------------------------* 테스트 코드
+
+-- -- 로그인 테스트
+-- insert into user values('aa', '1234', '1', 'swith', 'swith', 'swith@naver.com', 'image', 'study', 'coding', 'coding', '2022-08-16');
+
+-- --스터디 그룹 테스트
+-- INSERT INTO studygroup (head_id, study_name, study_category, study_form, study_address, study_recruit, study_image, study_content, start_period, end_period, hashtag) VALUES("aa", "swith", "IT", "오프라인", "서울시 영등포구 문래동","6", "123456789.jpg","안녕하세요 swith입니다", '2022-08-16', '2022-12-30', "#공부#그룹#화이팅" );
+
+-- -- 조회 test
+-- SELECT * FROM user;
+-- SELECT * FROM studygroup;
+-- SELECT * FROM studymember;
+
+-- -- 스터디 가입 테스트
+-- INSERT INTO studymember (study_id, user_id) VALUES (1, "aa");
+
+-- -- 삭제 테스트
+-- DELETE FROM user WHERE user_id='aa';
+
+
+
+-- ----------------------* Back 참고용
+-- --좋아요 수 카운트
+-- SELECT COUNT(*) FROM user WHERE user_id=1;
+
+
+-- --규리쌤이 알려주신 join
+-- create database test;
+-- use test;
+-- create table user (
+-- 	user_id int(2) not null primary key,
+--     username varchar(4) 
+-- );
+
+-- insert into user values (4,'abcd');
+
+-- create table studygroup (
+-- 	study_id int(2) not null primary key,
+--     user_id int(2) not null,
+--     studyname varchar(10),
+--     foreign key (user_id) references user(user_id)
+--     );
+
+-- insert into studygroup values(2,4,'sesac4');
+    
+-- create table studymember (
+-- 	id int(5) not null primary key,
+--     study_id int(2) not null,
+--     user_id int(2) not null,
+--     foreign key (study_id) references studygroup(study_id),
+--     foreign key (user_id) references user(user_id)
+-- );
+
+-- insert into studymember values(5,2,3);
+    
+
+
+-- insert into User values('aaa','aaa1','aaa','aaa','01011111111','aaa@gmail.com','','1');
+-- select * from Memo;
+-- --------------------------------------------------*
+    
+-- select * from studymember;
+-- select * from studygroup inner join user on user.user_id = studygroup.user_id where study_id=1;
+-- SELECT * from user inner join studymember on studymember.user_id = user.user_id inner join studygroup on studygroup.study_id = studymember.study_id;

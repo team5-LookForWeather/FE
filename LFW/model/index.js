@@ -1,6 +1,6 @@
 const Sequelize = require("sequelize");
 const config = require("../config/config.json")["development"];
-
+const { Op } = require('sequelize');
 const db = {};
 const sequelize = new Sequelize(
     config.database,
@@ -9,8 +9,14 @@ const sequelize = new Sequelize(
     config
 );
 
-db.sequelize = sequelize;
 db.Sequelize = Sequelize;
+db.sequelize = sequelize;
+db.Op = Op;
+// db.User = require("./User")(sequelize, Sequelize);
+// db.Studygroup = require("./Studygroup")(sequelize, Sequelize);
+// db.Studymember = require("./Studymember")(sequelize, Sequelize);
+// db.Likes = require("./likes")(sequelize, Sequelize);
+
 
 db.User = require("./User")(sequelize, Sequelize);
 db.OOTD = require("./OOTD1/OOTD.js")(sequelize, Sequelize);
@@ -29,7 +35,8 @@ db.OOTD.belongsTo(db.User, {
     foreignKey: "user_id",
     sourceKey: "user_id",
     onDelete: "cascade"
-})
+});
+
 
 db.User.hasMany(db.OOTD_comment, {
     foreignKey: "user_id",
@@ -40,7 +47,7 @@ db.OOTD_comment.belongsTo(db.User, {
     foreignKey: "user_id",
     sourceKey: "user_id",
     onDelete: "cascade"
-})
+});
 
 db.OOTD.hasMany(db.OOTD_comment, {
     foreignKey: "OOTD_id",
@@ -51,7 +58,7 @@ db.OOTD_comment.belongsTo(db.OOTD, {
     foreignKey: "OOTD_id",
     sourceKey: "OOTD_id",
     onDelete: "cascade"
-})
+});
 
 
 db.User.hasMany(db.OOTD_picture, {
@@ -63,7 +70,7 @@ db.OOTD_picture.belongsTo(db.User, {
     foreignKey: "user_id",
     sourceKey: "user_id",
     onDelete: "cascade"
-})
+});
 
 
 db.OOTD.hasMany(db.OOTD_picture, {
@@ -75,7 +82,7 @@ db.OOTD_picture.belongsTo(db.OOTD, {
     foreignKey: "OOTD_id",
     sourceKey: "OOTD_id",
     onDelete: "cascade"
-})
+});
 
 db.User.hasMany(db.OOTD_like, {
     foreignKey: "user_id",
@@ -86,7 +93,7 @@ db.OOTD_like.belongsTo(db.User, {
     foreignKey: "user_id",
     sourceKey: "user_id",
     onDelete: "cascade"
-})
+});
 
 
 db.OOTD.hasMany(db.OOTD_like, {

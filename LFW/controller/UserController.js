@@ -15,13 +15,13 @@ exports.post_login = (req, res) => {
 
         if (result != null) {   // 로그인 성공
             req.session.regenerate(function () {
-                req.session.user = req.body.id;    //! 세션 셍상
+                req.session.user = req.body.id;    //! 세션 셍성
                 req.session.save(function () {          //! 세션 저장
                     res.send({ return: true, msg: '로그인 성공' });
                 })
             })
         } else {    // 로그인 실패
-            res.send({ return: false, msg: '등록되지 않은 사용자입니다.' });
+            res.send({ return: false, msg: '로그인 실패!' });
         }
     })
 }
@@ -63,9 +63,9 @@ exports.id_check = (req, res) => {
         .then((result) => {
             console.log(result)
             if (result == null) { // 기존 id가 아니면
-                return res.send(true); // 사용 가능
+                return res.send({ return: true, msg: '사용 가능한 아이디입니다.' }); // 사용 가능
             } else {
-                return res.send(false); // 사용 불가능
+                return res.send({ return: false, msg: '사용할 수 없는 아이디입니다.' });// 사용 불가능
             }
         })
 }
@@ -79,9 +79,9 @@ exports.nick_check = (req, res) => {
         .then((result) => {
             console.log(result)
             if (result == null) { // 기존 닉네임이 아니면
-                return res.send(true); // 사용 가능
+                return res.send({ return: true, msg: '사용 가능한 닉네임입니다.' }); // 사용 가능
             } else {
-                return res.send(false); // 사용 불가능
+                return res.send({ return: false, msg: '사용할 수 없는 닉네임입니다.' });// 사용 불가능
             }
         })
 }
@@ -99,8 +99,6 @@ exports.post_membership = (req, res) => {
         email: req.body.email,
         gender: req.body.gender,
         age: req.body.age,
-        // hint: req.body.hint,
-        // hint_answer: req.body.hint_answer,
         // category1: req.body.category1,
         // category2: req.body.category2,
         // category3: req.body.category3
@@ -108,7 +106,8 @@ exports.post_membership = (req, res) => {
 
     models.User.create(user)
         .then((result) => {
-            res.send(result);
+            console.log(result);
+            res.send({ return: result, msg: '회원가입을 축하드립니다.' });
         })
 }
 
@@ -122,10 +121,10 @@ exports.post_find_id = (req, res) => {
         where: { name: req.body.name, email: req.body.email }
     }).then((result) => {
         // console.log('아이디찾기 실행 :', result);
-        if (result == null) {
-            res.send(false);
+        if (result != null) {
+            res.send({ return: true, user_id: result.user_id });
         } else {
-            res.send({ user_id: result.user_id });
+            res.send({ return: false, msg: '아이디를 찾을 수 없습니다.' });
         }
     })
 }
@@ -138,13 +137,14 @@ exports.post_find_pw = (req, res) => {
     models.User.findOne({
         where: { user_id: req.body.user_id, email: req.body.email }
     }).then((result) => {
-        if (result == null) {
-            res.send(false);
+        if (result != null) {
+            req.session.user = req.body.id;    //! 세션 셍성
+            req.session.save(function () {          //! 세션 저장
+                // 로그인처리 & pw변경 페이지에 user_id 전달
+                res.send({ isLogin: true, return: true, msg: '로그인 성공' });
+            })
         } else {
-            const user = req.session.user;
-            req.session.user = req.body.user_id;
-            req.session.save();
-            res.render('pw_update', { isLogin: true, user: user, user_id: req.body.user_id }); // 비번변경 페이지 & id 전달
+            res.send({ return: false, msg: '비밀번호를 찾을 수 없습니다.' });
         }
     })
 }
@@ -159,7 +159,6 @@ exports.pw_update = (req, res) => {
             res.send({ pw: result.pw });
         });
 }
-
 
 // profile
 exports.profile = (req, res) => {

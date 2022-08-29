@@ -33,8 +33,14 @@
                 return rep.data;
             }).then((data) => {
                 console.log(data);
-                // alert('로그인을 환영합니다.');
-                // document.location.href = 'http://localhost:8000/';
+                if (data.return) {  // 회원이 맞을 경우, 로그인 처리 + pw변경
+                    alert("비밀번호를 변경해주세요");
+                    //!  user/find_pw/pw_update 경로로 post요청 필요
+                    // document.location.href = 'http://localhost:8000/user/find_pw/pw_update';
+                } else {            // 회원이 아닌 경우
+                    alert(data.msg);
+                    form.reset();
+                }
             })
         }
     </script>
@@ -55,7 +61,7 @@
                     <!-- 아이디 -->
                     <div>
                         <span class="box int_id">
-                            <input type="text" name="id" id="id" class="int" maxlength="20" placeholder="아이디" required>
+                            <input type="text" name="id" id="id" class="int" maxlength="30" placeholder="아이디" required>
                             <i class="fa fa1 fa-user"></i>
                         </span>
                         <span class="error_next_box"></span>
@@ -66,7 +72,7 @@
                     <!-- 이메일 -->
                     <div>
                         <span class="box int_pass">
-                            <input type="text" name="email" id="email" class="int" maxlength="20" placeholder="이메일"
+                            <input type="text" name="email" id="email" class="int" maxlength="100" placeholder="이메일"
                                 required>
                             <i class="fa fa2 fa-envelope"></i>
                         </span>

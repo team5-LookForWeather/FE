@@ -1,6 +1,6 @@
-/* .env 파일에서 환경변수 불러오기 */
-require("dotenv").config();
-const { PORT, SECRET, DB_HOST, DB_PORT, DB_NAME, DB_USER, DB_PW } = process.env;
+// /* .env 파일에서 환경변수 불러오기 */
+// require("dotenv").config();
+// const { PORT, SECRET, DB_HOST, DB_PORT, DB_NAME, DB_USER, DB_PW } = process.env;
 
 
 const express = require("express");
@@ -19,7 +19,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.json());
 app.use(cors());
 
-
 // const MySQLStore = require('express-mysql-session')(session);
 // const options = {
 //     host: DB_HOST,
@@ -30,19 +29,18 @@ app.use(cors());
 // };
 // const sessionStore = new MySQLStore(options);
 
-
 /* 세션 */
 const session = require("express-session");
 app.use(
     session({
-        secret: SECRET,
+        secret: 'SECRET',
         resave: false, //session store에 session 저장
         saveUninitialized: true,
         // store: sessionStore,
         // cookie: {     //session ID cookie의 객체 세팅
         //     maxAge: 24000 * 60 * 60,
         //     HttpOnly: true,
-        //     // secure: true,
+        //     secure: true,
         // }
     }))
 
@@ -58,7 +56,7 @@ app.use('/ootd', OotdRouter);/* OOTD 관련 경로 */
 app.use('/memo', MemoRouter);/* Memo 관련 경로 */
 
 
-app.listen(PORT, () => {
-    console.log("Server Port : ", PORT);
+app.listen(8000, () => {
+    console.log("Server 8000 : ", 8000);
 });
 

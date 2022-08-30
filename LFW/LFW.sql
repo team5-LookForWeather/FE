@@ -1,10 +1,24 @@
--- mysql > source /SeSAC-LFW/LFW/LFW.sql;
+mysql -u root -p;		-- mysql root계정으로 접속
 
--- CREATE DATABASE LFW; -- DB 생성 
+CREATE USER 'LFW'@'%' IDENTIFIED BY 'SeSACweb!';	-- LFW 계정 생성
+GRANT ALL PRIVILEGES ON *.* TO 'LFW'@'%' WITH GRANT OPTION;	-- 권한 부여
+FLUSH PRIVILEGES;	-- 변경된 권한 적용
+
+SELECT host, user, plugin from mysql.user;	-- 전체 계정 확인
+ALTER USER 'LFW'@'%' IDENTIFIED WITH mysql_native_password BY 'SeSACweb!';	-- 모든ip 외부접근 허용
+
+CREATE DATABASE LFW; -- DB 생성
 USE LFW; -- DB 사용
 
-GRANT ALL PRIVILEGES ON *.* TO 'LFW'@'%' WITH GRANT OPTION;
-FLUSH PRIVILEGES;
+-- LFW.sql 파일 실행히기 (터미널에서 입력)
+mysql> source /SeSAC-LFW/LFW/LFW.sql;	
+
+
+-- -- 명령어 --
+-- SHOW DATABASES;	-- DB 확인
+-- SHOW TABLES;	-- 테이블 확인
+-- SHOW COLUMNS FROM User;	-- 'User'테이블의 컬럼 확인 
+-- SELECT * FROM User;		-- 'User'테이블의 데이터 확인
 
 
 

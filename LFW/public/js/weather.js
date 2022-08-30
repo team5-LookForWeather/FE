@@ -133,8 +133,8 @@ function setCodi(temp) {
 
     var codiImg = document.querySelectorAll(".codiImg");
     for (var i = 0; i < codiImg.length; i++) {
-        if (i == 0) $(codiImg[i]).attr("src", `./image/codi/male/${folder}/5.jpg`);
-        else if (i == codiImg.length - 1) $(codiImg[i]).attr("src", `./image/codi/male/${folder}/1.jpg`);
-        else $(codiImg[i]).attr("src", `./image/codi/male/${folder}/${i}.jpg`);
+        if (i == 0) $(codiImg[i]).attr("src", `./image/codi/male/${folder}/5.png`);
+        else if (i == codiImg.length - 1) $(codiImg[i]).attr("src", `./image/codi/male/${folder}/1.png`);
+        else $(codiImg[i]).attr("src", `./image/codi/male/${folder}/${i}.png`);
     }
 }

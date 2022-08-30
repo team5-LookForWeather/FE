@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
 <head>
     <meta charset="UTF-8">
@@ -9,135 +9,13 @@
         integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <script src="https://kit.fontawesome.com/9ad05a77c3.js" crossorigin="anonymous"></script>
 
-    <script defer src="js/common.js"></script>
-    <!-- <script src="./community.js" defer></script> -->
-    <link rel="stylesheet" href="/css/community.css">
-
-    <title>Comment</title>
-
-    <script>
-
-        // document.getElementById('post_comment_input')
-        // .addEventListener('keyup', function(event) {
-        //     if (event.code === 'Enter')
-        //     {
-        //         event.preventDefault();
-        //         document.getElementById('form_comment').submit();
-        //     }
-        // });
-
-        function writeComment(){
-            let form = document.getElementById('form_comment');
-            
-            let html = `
-                <li class="new_comment">
-                <div class="user_comment">
-                <div class="user_comment_nickname">iAmUser</div>
-                <span class="user_comment_comment">
-                ${form.comment.value}
-                </span>
-                <img src='/image/community/close.png' class="comment_del" onclick="deleteComment() ;">
-                </div>
-                <li>
-                `;
-
-                $('.comment_list').append(html);
-            // axios({
-            //     method: 'post',
-            //     url: 'http://localhost:8000/memo/write',
-            //     data: {
-            //         // user_id: form. // 유저 아이디 가져오기
-            //         memo: form.comment.value
-            //     }
-            // })
-            // .then((rep) => {return rep.data;})
-            // .then((data) => {
-            //     // 서버에서
-            //     // res.send( { nickname: 'aa', content: '1234'});
-            //     // 프론트에서
-            //     // data.nicknameb
-            //     // data.content
-            //     let html = `
-            //     <li class="new_comment">
-            //     <div class="user_comment">
-            //     <div class="user_comment_nickname">iAmUser</div>
-            //     <span class="user_comment_comment">
-            //     ${form.comment.value}
-            //     </span>
-            //     <img src='/img/close.png' class="comment_del" onclick="deleteComment() ;">
-            //     </div>
-            //     <li>
-            //     `;
-
-            //     $('.comment_list').appendChild(html)
-            // });
-        }
-
-        function writeReply(){
-            let form = document.getElementById('reply_comment');
-            
-            let html2 = `
-                
-                <li>
-                <div class="user_comment">
-                <div class="user_comment_nickname">iAmUser</div>
-                <span class="user_reply">
-                ${form.reply.value}
-                </span>
-                <img src='/image/community/close.png' class="reply_del" onclick="deleteReply();">
-                </div>
-                <li>
-                `;
-
-                $('.comment_list').append(html2);
-            // axios({
-            //     method: 'post',
-            //     url: 'http://localhost:8000/memo/write',
-            //     data: {
-            //         // user_id: form. // 유저 아이디 가져오기
-            //         memo: form.comment.value
-            //     }
-            // })
-            // .then((rep) => {return rep.data;})
-            // .then((data) => {
-            //     // 서버에서
-            //     // res.send( { nickname: 'aa', content: '1234'});
-            //     // 프론트에서
-            //     // data.nicknameb
-            //     // data.content
-            //     let html = `
-            //     <li class="new_comment">
-            //     <div class="user_comment">
-            //     <div class="user_comment_nickname">iAmUser</div>
-            //     <span class="user_comment_comment">
-            //     ${form.comment.value}
-            //     </span>
-            //     <img src='/img/close.png' class="comment_del" onclick="deleteComment() ;">
-            //     </div>
-            //     <li>
-            //     `;
-
-            //     $('.comment_list').appendChild(html)
-            // });
-        }
-        
-        function deleteComment(id){
-            axios({
-                method: 'delete',
-                url: 'http://localhost:8000/memo/delete',
-                data: {
-                    comment: form.comment.value
-                }
-            }).then((rep) => {return rep.data;})
-            .then((data) => {
-                var userComment = document.getElementsByClassName('new_comment');
-                $(userComment).remove();
-            });
-        }
-    </script>
+    <script defer src="../js/common.js"></script>
+    <script defer src="../js/community.js"></script>
+    <link rel="stylesheet" href="../css/community.css" />
+    <title>OOTD 게시글 작성</title>
 </head>
+
 <body>
-<!-- header -->
     <div id="body-wrapper">
         <div id="body-content">
             <header id="act_header">
@@ -146,8 +24,8 @@
                         <div class="nav">
                             <div class="moblie_logo">
                                 <h1 class="logo">
-                                    <a href="#">
-                                        <img src="image/logo-5.png" alt="룩포웨더">
+                                    <a href="http://localhost:8000/">
+                                        <img src="../image/logo-5.png" alt="룩포웨더">
                                     </a>
                                 </h1>
                             </div>
@@ -160,14 +38,14 @@
                             <ul class="navbar">
                                 <div class="pc_logo">
                                     <h1 class="logo">
-                                        <a href="#">
-                                            <img src="/image/logo-5.png" alt="룩포웨더">
+                                        <a href="http://localhost:8000/">
+                                            <img src="../image/logo-5.png" alt="룩포웨더">
                                         </a>
                                     </h1>
                                 </div>
                                 <li id="menu-item-130"
                                     class="menu-item menu-item-type-post_type menu-item-object-page menu-item-130">
-                                    <a class="moblie_arrow" href="#">HOME</a>
+                                    <a class="moblie_arrow" href="http://localhost:8000/">HOME</a>
                                 </li>
 
                                 <li id="menu-item-41"
@@ -192,8 +70,8 @@
 
                                 <li class="utill mo">
                                     <ul>
-                                        <li class="login_bt"><a href="#" target="_blank">로그인</a></li>
-                                        <li class="member_bt"><a href="#" target="_blank">회원가입</a></li>
+                                        <li class="login_bt"><a href="#">로그인</a></li>
+                                        <li class="member_bt"><a href="#">마이페이지</a></li>
                                     </ul>
                                 </li>
                             </ul>
@@ -201,112 +79,111 @@
 
                             <ul class="utill pc">
                                 <li>
-                                    <a class="first_icon" href="#" target="_blank"></a>
-                                    <a class="second_icon" href="#" target="_blank"></a>
+                                    <a class="first_icon" href="#">로그인</a>
+                                    <a class="second_icon" href="#">마이페이지</a>
                                 </li>
                             </ul>
                         </div>
                     </div>
 
                 </div>
-            </header>  
-<!-- content -->
+            </header>
+
             <section>
                 <div class="container">
                     <div class="page-content">
-                        <!-- comment -->
-    <main class="main">
-        <article class="comment">
-            <!-- <h2>Comment</h2> -->
-            <div class="MainSectionHeader">
-                <h2 class="MainSectionHeader-title">
-                    <a class="MainSectionHeader-link" href="#">
-                        Comment
-                    </a>
-                </h2>
-                <div class="MainSectionHeader-sub">
-                    오늘 날씨에 대해 이야기 해요. 
-                </div>
-            </div>
+                        <!-- 타이틀 -->
+                        <div class="MainSectionHeader">
+                            <h2 class="MainSectionHeader-title">
+                                <a class="MainSectionHeader-link" href="#">
+                                    COMMUNITY
+                                </a>
+                            </h2>
+                            <div class="MainSectionHeader-sub">
 
-            <section class="user_comment_wrap">
-                <div class="comment_scroll">
-                    <ul class="comment_list">
-                        <li>
-                            <div class="user_comment">
-                                <div class="comment_nickname">user01</div>
-                                <span class="comment_comment">서울 민소매에 얇은 남방 + 여름슬랙스 비도 조금씩 오고 너무 습해.</span>
-
-                                <div>
-                                    <button class="reply" onclick="clickshow(this,'reply_comment')">
-                                        답글달기
-                                    </button>
-                                    
-                                    <img src="image/community/icon-off.png" class="like" >
-                                </div>
-
-                                <form id="reply_comment" class="reply_closed" style="display: none;"
-                                >
-                                    <div class="post_comment">
-                                    <input id="post_comment_input" type="text" placeholder="댓글 달기..." name="reply"/>
-                                    <button type="button" class="post_comment_btn" onclick="wirteReply()" >게시</button>
-                                    </div>
-                                </form>
                             </div>
-
-                        </li>
-                        <li>
-                            <div class="user_comment">
-                                <div class="comment_nickname">user02</div>
-                                <span class="comment_comment">서울 민소매 + 반바지 해 없으니까 시원해 근데 습하다 ㅜㅜ</span>
-
-                                <div>
-                                    <button class="reply" onclick="clickshow(this,'reply_comment2')">
-                                        답글달기
-                                    </button>
-                                    <img src="image/community/icon-off.png" class="like" >
-                                </div>
-
-                                <form id="reply_comment2" class="reply_closed" style="display: none;" name="form">
-                                    <div class="post_comment">
-                                    <input id="post_comment_input" type="text" placeholder="댓글 달기..." name="comment"/>
-                                    <button type="button" class="post_comment_btn" onclick="writeComment()"
-                                    >게시</button>
-                                    </div>
-                                </form>
-                            </div>
-                        </li>
-
-                    </ul>
-                </div>
-            </section>
-
-            <!-- post comment -->
-            <section class="post_comment_wrap">
-                <div class="post_comment_all">
-                    <div class="post_comment_line">
-                    </div>
-                    <form id="form_comment">
-                        <div class="post_comment">
-                        <input id="post_comment_input" type="text" placeholder="댓글 달기..." name="comment" onkeypress="if(window.event.keyCode==13){writeComment(); window.event.preventDefault(); return false;}"/>
-                        <!-- <input id="post_comment_input" type="text" placeholder="댓글 달기..." name="comment" onkeypress="if(window.event.keyCode==13){writeComment(); window.event.preventDefault(); return false;}"/> -->
-                        <button type="button" class="post_comment_btn" onclick="writeComment()" >게시</button>
                         </div>
-                    </form>
-                </div>      
-            </section>
-        </article>
-    </main>
+
+                        <!-- 컨텐츠 -->
+                        <div class="box_write">
+                            <form name="WriteFrm" method="post">
+                                <fieldset>
+                                    <legend class="blind">글쓰기</legend>
+                                    <textarea id="contents" name="memoPost.content" class="tf_write"
+                                        placeholder="로그인이 안되었을 시 Alert 창 띄우고 로그인 페이지 이동 / 로그인이 되어있다면 작성"></textarea>
+                                    <div class="set_attach">
+                                        <button type="button" class="btn_submit">작성하기</button>
+                                    </div>
+                                </fieldset>
+                            </form>
+                        </div>                          
+
+                        <div class="content">
+                            <div class="content-main">
+                                <div class="card-grid">
+                                    <article class="card">
+                                        <div class="card-header">
+                                            <div>
+                                                <span><img src="../image/profile.gif"/></span>
+                                                <!-- 작성한 아이디 또는 닉네임이 들어 갈 곳 -->
+                                                <h3>작성 아이디</h3>
+                                            </div>
+                                        </div>
+
+                                        <!-- 작성된 내용이 들어 갈 곳 -->
+                                        <div class="card-body">
+                                            <p class="card-txt">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Corporis doloribus similique enim dolor ut corrupti culpa ab cum quibusdam cumque error, at aperiam, dolore quaerat sunt numquam, delectus atque eum.</p>
+                                        </div>
+
+                                        <div class="card-footer">
+                                            <button class="reply" onclick="clickshow(this,'reply_comment')">
+                                                댓글
+                                            </button>
+
+                                            <div class="feed_info">
+                                                <div class="feed_state">
+                                                    <ul class="link_list">
+                                                        <li>
+                                                            <button type="button" class="state_btn f_icon">
+                                                                <img class="feed_icon" src="../image/icon/heart.png" alt="like_img">
+                                                            </button>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>   
+                                        </div>
+
+                                        <div class="comment_list comments_margin">
+                                            <ul class="comments_info comment_list_ul">
+                                                <li>
+                                                    <div class="comments_tit">
+                                                        <span class="user_id"></span>
+                                                        <span class="comment_contents"></span>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        </div>
+
+
+                                        <div class="community_click">
+                                            <form id="reply_comment" class="reply_closed" style="display:none;">
+                                                <div class="post_comment">
+                                                    <input id="post_comment_input" type="text" placeholder="댓글 달기..."
+                                                        name="reply" />
+                                                    <button type="button" class="post_comment_btn" onclick="wirteReply()">게시</button>
+                                                </div>
+                                            </form>
+                                        </div>   
+                                    </article>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </section>              
+            </section>
         </div>
 
 
-
-
-
-<!-- footer -->
         <footer class="footer">
             <div class="layout con">
                 <div class="menu">
@@ -347,55 +224,8 @@
                     </div>
                 </div>
             </div>
-        </footer>          
+        </footer>
     </div>
-
-
-
-
-
-
-    <script>
-        document.addEventListener('keypress', function(event) {
-            if (event.keyCode === 13) {
-                event.preventDefault();
-            };
-            }, true);
-
-            
-        // 좋아요 기능
-        $(".like").click((obj) => {
-            if ( $(obj.target).hasClass("like") ){
-                $(obj.target).removeClass("like");
-                $(obj.target).addClass("nolike");
-            } else {
-                $(obj.target).removeClass("nolike");
-                $(obj.target).addClass("like");
-
-            }
-            // let target = obj.target;
-            // console.log( target.src );
-            // if ( target.src == "image/community/icon-off.png" ) {
-            //     target.src = 'image/community/icon-on.png';
-            // }
-            // else {
-            //     target.src = "image/community/icon-off.png";
-            // }
-        })
-
-
-        // 답글 달기 클릭
-        function clickshow(elem, id) {
-            var menu = document.getElementById(id);
-            if (elem.className !='reply_closed') {
-                elem.className = 'reply_closed';
-                menu.style.display = "block";
-            } else {
-                elem.className ='reply_opened';
-                menu.style.display = "none";
-            }
-        }
-        
-    </script>
 </body>
+
 </html>

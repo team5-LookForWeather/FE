@@ -1,8 +1,3 @@
-// /* .env 파일에서 환경변수 불러오기 */
-// require("dotenv").config();
-// const { PORT, SECRET, DB_HOST, DB_PORT, DB_NAME, DB_USER, DB_PW } = process.env;
-
-
 const express = require("express");
 const app = express();
 const bodyParser = require("body-parser");
@@ -14,20 +9,12 @@ sequelize.sync();
 
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
-app.use(express.urlencoded({ extended: true }));
+
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(cors());
 
-// const MySQLStore = require('express-mysql-session')(session);
-// const options = {
-//     host: DB_HOST,
-//     port: DB_PORT,
-//     user: DB_USER,
-//     password: DB_PW,
-//     database: DB_NAME
-// };
-// const sessionStore = new MySQLStore(options);
 
 /* 세션 */
 const session = require("express-session");

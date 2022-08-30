@@ -1,5 +1,5 @@
 
-function weatherwriter( item ) {
+function weatherwriter(item) {
     let num = 254 + (hours * 12);
     let currentTMP = "";
     if (item[num].category == "TMP") { currentTMP = item[num].fcstValue }
@@ -46,7 +46,7 @@ function weatherwriter( item ) {
     **/
 
     var iconnum = null;
-    if ( PTY == "0" ) iconnum = `0_${SKY}`
+    if (PTY == "0") iconnum = `0_${SKY}`
     else iconnum = PTY;
 
     var A = document.getElementById("icon");
@@ -60,47 +60,37 @@ function weatherwriter( item ) {
     var E = document.getElementById('humidity');
     E.innerHTML = `습도 : ${REH}`;
     return currentTMP;
-} ;// weather writers
+};// weather writers
 
 function drawWeatherChart(arr) {
     var context = document.getElementById('myChart').getContext('2d');
     new Chart(context, {
         type: 'line', // 차트의 형태
         data: { // 차트에 들어갈 데이터
-            labels: [
-                //x 축
-                '1','2','3','4','5','6','7'
-            ],
-            datasets: [
-                { //데이터
-                    label: '오늘의 날씨', //차트 제목
+            labels: //x 축
+                [hours + "시", hours + 1 + "시", hours + 2 + "시", hours + 3 + "시", hours + 4 + "시", hours + 5 + "시", hours + 6 + "시", +hours + 7 + "시", hours + 8 + "시", hours + 9 + "시", hours + 10 + "시", hours + 11 + "시"
+                ],
+            fontColor: "", fontSize: 18,
+            datasets: //데이터
+                [{ 
+                    label: '기온', //차트 제목
                     fill: false, // line 형태일 때, 선 안쪽을 채우는지 안채우는지
                     data: arr, //x축 label에 대응되는 데이터 값
-                    
-                    borderWidth: 1 //경계선 굵기
-                }
-            ]
+                    borderWidth: 2, //경계선 굵기
+                    backgroundColor:"rgba(255, 201, 14, 1)", //배경색
+                    borderColor: 'rgb(75, 192, 192)', //경계선 색상
+                    tension: 0.1
+                }]
         },
-        backgroundColor: [
-            //색상
-            'rgba(255, 99, 132, 0.2)',
-            'rgba(54, 162, 235, 0.2)',
-            'rgba(255, 206, 86, 0.2)',
-            'rgba(75, 192, 192, 0.2)',
-            'rgba(153, 102, 255, 0.2)',
-            'rgba(255, 159, 64, 0.2)'
-        ],
-        borderColor: [
-            //경계선 색상
-            'rgba(255, 99, 132, 1)',
-            'rgba(54, 162, 235, 1)',
-            'rgba(255, 206, 86, 1)',
-            'rgba(75, 192, 192, 1)',
-            'rgba(153, 102, 255, 1)',
-            'rgba(255, 159, 64, 1)'
-        ],borderWidth: 1, //경계선 굵기
+
         
+
         options: {
+            responsive: false,
+            title: {
+                display: true,
+                text: '시간별 기온'
+            },
             scales: {
                 yAxes: [
                     {
@@ -114,12 +104,12 @@ function drawWeatherChart(arr) {
     });
 }
 
-function getTempArr(item, hours){
+function getTempArr(item, hours) {
     let grpTMParr = [];
     let grpTMP = null;
     for (var i = 0; i < 12; i++) {
         var num7 = 254 + (hours * 12) + (i * 12)
-        if (item[num7].category == "TMP") { grpTMP =item[num7].fcstValue }
+        if (item[num7].category == "TMP") { grpTMP = item[num7].fcstValue }
         else if (item[num7 + 1].category == "TMP") { grpTMP = item[num7 + 1].fcstValue }
         else if (item[num7 + 2].category == "TMP") { grpTMP = item[num7 + 2].fcstValue }
         else if (item[num7 + 3].category == "TMP") { grpTMP = item[num7 + 3].fcstValue }
@@ -133,18 +123,18 @@ function getTempArr(item, hours){
 
 function setCodi(temp) {
     var folder = "";
-    if ( temp < 0 ) folder = "00";
-    else if ( temp < 6 ) folder = "0-5";
-    else if ( temp < 12 ) folder = "6-11";
-    else if ( temp < 17 ) folder = "12-16";
-    else if ( temp < 23 ) folder = "17-22";
-    else if ( temp < 28 ) folder = "23-27";
+    if (temp < 0) folder = "00";
+    else if (temp < 6) folder = "0-5";
+    else if (temp < 12) folder = "6-11";
+    else if (temp < 17) folder = "12-16";
+    else if (temp < 23) folder = "17-22";
+    else if (temp < 28) folder = "23-27";
     else folder = "28";
 
     var codiImg = document.querySelectorAll(".codiImg");
-    for ( var i = 0; i < codiImg.length; i++ ){
-        if ( i == 0 ) $( codiImg[i] ).attr("src", `./image/codi/male/${folder}/5.jpg`);
-        else if ( i == codiImg.length-1 ) $( codiImg[i] ).attr("src", `./image/codi/male/${folder}/1.jpg`);
-        else $( codiImg[i] ).attr("src", `./image/codi/male/${folder}/${i}.jpg`);
+    for (var i = 0; i < codiImg.length; i++) {
+        if (i == 0) $(codiImg[i]).attr("src", `./image/codi/male/${folder}/5.jpg`);
+        else if (i == codiImg.length - 1) $(codiImg[i]).attr("src", `./image/codi/male/${folder}/1.jpg`);
+        else $(codiImg[i]).attr("src", `./image/codi/male/${folder}/${i}.jpg`);
     }
 }

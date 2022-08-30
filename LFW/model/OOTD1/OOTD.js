@@ -18,11 +18,10 @@ const OOTD = (Sequelize, DataTypes) => {
                 type: DataTypes.STRING(200),
                 allowNull: false
             },
-            hashTag: {
-                type: DataTypes.STRING(20),
+            style_tag: {
+                type: DataTypes.set('#캐주얼', '#시크', '#댄디', '#포멀', '#걸리시', '#레트로', '#로맨틱', '#스포츠', '#스트릿'),
                 allowNull: true,
                 defaultValue: ""
-
             },
             create_time: {
                 type: DataTypes.DATE,

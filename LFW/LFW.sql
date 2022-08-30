@@ -25,11 +25,11 @@ mysql> source /SeSAC-LFW/LFW/LFW.sql;
 -- TABLE 생성
 CREATE TABLE `User` (
 	`user_id`	varchar(15)	NOT NULL primary key,
-	`pw`	varchar(15)	NOT NULL,
+	`pw`	varchar(30)	NOT NULL,
 	`name`	varchar(10)	NOT NULL,
-	`nickname`	varchar(10)	NOT NULL,
+	`nickname`	varchar(20)	NOT NULL,
 	`tel`	int	NULL,
-	`email`	varchar(30)	NOT NULL,
+	`email`	varchar(100)	NOT NULL,
 	`gender` enum('F', 'M', '')	NULL,
 	`age`	int	NULL
 );
@@ -53,7 +53,7 @@ CREATE TABLE `OOTD_comment` (
 	`comment_id`	int	NOT NULL primary key auto_increment comment 'comment 식별',
 	`user_id`	varchar(15)	NOT NULL,
 	`OOTD_id`	INT	NOT NULL,
-	`comment`	mediumtext	NULL	COMMENT '댓글내용',
+	`comment`	mediumtext	NOT NULL	COMMENT '댓글내용',
 	`create_time`	DATETIME	NOT NULL,
 	`update_time`	DATETIME	NULL,
 	`delete_time`	DATETIME	NULL,

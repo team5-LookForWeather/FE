@@ -26,6 +26,7 @@
     --font-Bold:'MaplestoryOTFBold';
 
     /* 컬러 */
+    --background-color:#ededed;
     --white-color:#fff;
     --black-color:#0a0a0a;
     --black2-color:#111;
@@ -38,14 +39,6 @@
     --main-color:#0359AE;
     --sub-color:#0359AE;
     --error-color:#e00012;
-
-    /* color */
-    --background-color: #ededed;
-    --white-color: #fff;
-    --blue-color: #0359AE;
-    --lightblue-color: #3B71FC;
-    --lightgray-color: #d9d9d9;
-    --darkgray-color: rgb(59, 59, 59);
 }
 
 *{
@@ -103,6 +96,7 @@ footer {
 	/* 컨텐츠 많을 시 relative */
 	position:relative;
 }
+
 
 /*=========================================================
     컨테이너
@@ -229,12 +223,12 @@ footer {
 .headerArea .nav .utill li:first-child a {
 	display: block;
 	color:var(--black-color);
-	width:30px;
+	width:70px;
 	text-align: center;
-	line-height: 33px;
-    font-family:var(--font-Bold);
+	line-height: 20px;
+    font-family:var(--font-Light);
 	letter-spacing: 1px;
-	font-size:16px;
+	font-size:12px;
 }
 
 .headerArea .nav .utill li:last-child a {
@@ -242,8 +236,10 @@ footer {
 	margin-left: 20px;
 }
 
+/* PC 로그인 아이콘 */
 .headerArea .nav .utill li:first-child a.first_icon:before {
-	display: inline-block;
+	/* display: inline-block; */
+	display:block;
 	width: 40px;
 	height: 40px;
 	margin-right: 6px;
@@ -252,10 +248,14 @@ footer {
 	background: url(../image/icon/loginPassword.png) no-repeat;
 	background-size: contain;
 	content: '';
+	position:relative;
+	left:14px;
 }
 
+/* PC 회원가입 아이콘 */
 .headerArea .nav .utill li:last-child a.second_icon:before {
-	display: inline-block;
+	/* display: inline-block; */
+	display:block;
 	width: 40px;
 	height: 40px;
 	margin-right: 6px;
@@ -264,6 +264,8 @@ footer {
 	background: url(../image/icon/loginMember.png) no-repeat;
 	background-size: contain;
 	content: '';
+	position:relative;
+	left:12px;
 }
 
 
@@ -483,6 +485,313 @@ footer {
 		position: relative;
 	}   
 }
+
+
+
+
+
+/*=========================================================
+    섹션
+=========================================================*/
+section{
+	width:100%;
+    margin-top:5%;
+    margin-bottom:5%;
+}
+
+
+.page-content{
+    background:var(--white-color);
+    border-radius: 20px;
+    padding:2% 5%;
+}
+
+
+
+
+/*=========================================================
+    페이지 타이틀
+=========================================================*/
+.MainSectionHeader{
+	text-align:center;
+	margin-bottom:53px;
+}
+
+.MainSectionHeader-title{
+	font-size:38px;
+	line-height:1.3em;
+	color:var(--black2-color);
+	font-family: var(--font-Medium);
+	margin-bottom:0;
+}
+
+.MainSectionHeader-link{
+	color:var(--black2-color);
+}
+
+.MainSectionHeader-sub{
+	font-size:18px;
+	line-height:1.4em;
+	color:#333333;
+	margin-top:10px;
+	font-family: var(--font-Light);
+}
+
+
+
+
+/*=========================================================
+    작성하기 
+=========================================================*/
+.box_write{
+    border:1px solid #b3b3b3;
+    background:#f8f8f8;
+}
+
+fieldset{
+    border:0;
+    padding:0;
+    margin:0;
+}
+
+.blind{
+    overflow:hidden;
+    position:absolute;
+    clip:rect(0 0 0 0);
+    width:1px;
+    height:1px;
+    margin:-1px;
+}
+
+.tf_write{
+    width:100%;
+    height:116px;
+    padding:20px;
+    border:0 none;
+    font-size:14px;
+    vertical-align: top;
+    appearance: none;
+    box-sizing: border-box;
+    resize: none;
+}
+
+.set_attach{
+    position:relative;
+    min-height:43px;
+    padding-left:12px;
+    margin-bottom:-1px;
+    border-top:1px solid #b3b3b3;
+    border-bottom:1px solid #b3b3b3;
+    background:#f8f8f8;
+}
+
+.set_attach .btn_submit{
+    position:absolute;
+    bottom:-1px;
+    right:0;
+    width:100px;
+    height:43px;
+    font-size:14px;
+    line-height:20px;
+    color:#fff;
+    background:var(--main-color);
+    text-align: center;
+    border:0;
+    font-family: var(--font-Light);
+    letter-spacing: 1px;
+    /* cursor: pointer; */
+}
+
+
+
+/*=========================================================
+    작성된 내용
+=========================================================*/
+.content{
+    border-top:1px solid #eff1f6;
+    margin-top:2rem;
+    display:flex;
+    align-items: flex-start;
+}
+
+.content-main{
+    /* flex-grow:1; */
+    width:100%;
+    padding-top:2rem;
+    padding-bottom:2rem;
+}
+
+.card-grid{
+    display:grid;
+    column-gap:1.5rem;
+    row-gap:1.5rem;
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.card{
+    background:var(--white-color);
+    box-shadow:0 3px 3px 0 rgb(0 0 0 / 15%), 0 5px 15px 0 rgb(0 0 0 / 20%);
+    border-radius: 20px;
+    overflow: hidden;
+    display:flex;
+    flex-direction: column;
+    padding:0 20px 20px 20px;
+}
+
+.card-header{
+    display:flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    padding:1.5rem 0 0 0;
+}
+
+.card-header div{
+    display:flex;
+    align-items: center;
+}
+
+.card-header div span{
+    display:inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.card-header div span img{
+    width:40px;
+    height:40px;
+    border-radius: 50%;    
+}
+
+.card-header div h3{
+    margin-left:0.75rem;
+    font-family: var(--font-Light);
+}
+
+.card-body{
+    padding:0 0 1.25rem;
+}
+
+.card-footer{
+    display:flex;
+    align-items: center;
+    justify-content: flex-start;
+    border-top:1px solid #eff1f6;
+    padding:1rem 0 0.5rem 0;
+    font-family: var(--font-Light);
+}
+
+
+/* 아이콘 두개 */
+.reply, .reply_closed, .reply_opened{
+    font-size:16px;
+    font-family: var(--font-Light);
+    background: var(--white-color);
+    position: relative;
+    border: 0;
+    padding:0;
+    cursor: pointer;
+    /* outline: 0; */
+}
+
+.feed_info{
+    position:relative;
+}
+
+.feed_state{
+    display:flex;
+    align-items: center;
+
+}
+
+.link_list{
+    display:flex;
+    align-items: center;
+}
+
+.state_btn{
+    border:none;
+    padding:0;
+    width:20px;
+    position:relative;
+    top:-2px;
+    background:var(--white-color);
+}
+
+.f_icon{
+    width:20px;
+    margin-left:10px;
+    position: relative;
+    top:-1px;
+}
+
+
+.post_comment{
+    padding:1.2rem 0 0;
+}
+
+
+input#post_comment_input:focus ~ button.post_comment_btn{
+    pointer-events: initial;
+    opacity:1;
+}
+
+#post_comment_input {
+    width:87%;
+    border: none;
+    outline: none;
+    background-color: var(--lightgray-color);
+    /* padding: 10px 10px; */
+}
+
+button.post_comment_btn{
+    width:50px;
+    text-align: right;
+    color:var(--main-color);
+    outline: none;
+    border:0;
+    background:var(--white-color);
+    font-family: var(--font-Light);
+    cursor: pointer;
+    opacity: 0.6;
+}
+
+.user_id{
+    font-family: var(--font-Light);
+    font-size:12px;
+    line-height: 1.5;
+    /* margin-right:10px; */
+}
+
+span.comment_contents{
+    font-family: var(--font-Light);
+    font-size:12px;
+    line-height: 1.5;    
+    color:#676767;
+    /* padding-left:5px; */
+}
+
+ul.comments_info{
+    max-height:160px;
+    transition:max-height 0.4s ease-in-out !important;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+ul.comments_info::-webkit-scrollbar{
+    width:10px;
+}
+
+ul.comments_info::-webkit-scrollbar-thumb{
+    background-color: var(--main-color);
+    border-radius: 10px;
+    background-clip: padding-box;
+    border: 2px solid transparent;
+}
+
+/* .comment_list_ul li:last-child{
+    padding-bottom:10px;
+} */
+
 
 
 /*=========================================================
@@ -722,274 +1031,5 @@ footer > .layout > .site-box > .relate-site > .box-1.active + ul {
 		font-size:12px;
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
-/*=========================================================
-    comment 
-=========================================================*/
-
-
-
-body {
-    background-color: var(--background-color);
-    margin: 0;
-}
-
-.main {
-    /* display: flex;
-    justify-content: center; */
-	width:100%;
-    margin-top:5%;
-    margin-bottom:5%;
-}
-
-/* title */
-.MainSectionHeader{
-    text-align:center;
-    margin-bottom:53px;
-}
-.MainSectionHeader-title{
-    font-size:38px;
-    line-height:1.3em;
-    color:var(--black2-color);
-    font-family: var(--font-Medium);
-    margin-bottom:0;
-}
-.MainSectionHeader-link{
-    color:var(--black2-color);
-    
-    text-decoration: none;
-}
-.MainSectionHeader-sub{
-    font-size:18px;
-    line-height:1.4em;
-    color:#333333;
-    margin-top:10px;
-    font-family: var(--font-Light);
-}
-
-
-section{
-	width:100%;
-    margin-top:5%;
-    margin-bottom:5%;
-}
-
-/* comment */
-.comment {
-    background-color: var(--white-color);
-    /* border-radius: 20px;
-    width: 1120px;
-    height: 935px; */
-    /* margin: 80px 10px 80px 240px; */
-    /* margin: 80px auto;
-    padding: 22px 50px 50px 50px; */
-
-	background:var(--white-color);
-    border-radius: 20px;
-    padding:2% 5%;
-}
-
-
-
-/* scroll bar */
-/* 임의의 영역 생성 */
-.comment_scroll {
-    /* width: 520px;  */
-    /* width: 1020px;  */
-    overflow: scroll;
-    height: 600px;
-    overflow-x: hidden;
-}
-
-  /* 아래의 모든 코드는 영역::코드로 사용 */
-
-.comment_scroll::-webkit-scrollbar {
-    width: 5px;  /* 스크롤바의 너비 */
-}
-
-.comment_scroll::-webkit-scrollbar-thumb {
-    height: 30%; /* 스크롤바의 길이 */
-    background: var(--lightblue-color); /* 스크롤바의 색상 */
-    border-radius: 10px;
-}
-
-.comment_scroll::-webkit-scrollbar-track {
-    background: var(--lightgray-color);  /*스크롤바 뒷 배경 색상*/
-}
-
-
-
-
-
-.comment_list {
-    list-style: none;
-    padding: 0px;
-}
-.user_comment_wrap {
-    border: none;
-}
-.user_comment {
-    margin: 35px 45px;
-    /* position: relative; */
-}
-.comment_nickname {
-    margin-top: 50px;
-    margin-bottom: 10px;
-    width: 405px;
-    font-family: var(--font-Light);
-}
-.user_comment_nickname {
-    margin-top: 50px;
-    margin-bottom: 20px;
-    text-align: right;
-    /* width: 440px; */
-    width: 100%;
-    font-family: var(--font-Light);
-}
-.comment_comment {
-    background-color: var(--lightgray-color);
-    border-radius: 20px;
-    padding: 10px 20px;
-    /* width: 405px; */
-    width: 100%;
-    position: relative;
-    top: 10px;
-    word-break: break-all;
-    line-height: 20px;
-    font-family: var(--font-Light);
-}
-/* 좋아요 버튼 */
-.like {
-    border: none;
-    width: 12px;
-    position: relative;
-    top: 26px;
-    left: 10px;
-	content:url("/image/community/icon-off.png");
-}
-.nolike {
-    border: none;
-    width: 12px;
-    position: relative;
-    top: 26px;
-    left: 10px;
-	content:url("/image/community/icon-on.png");
-}
-
-.reply,
-.reply_closed,
-.reply_opened {
-    position: relative;
-    top: 25px;
-    margin-left: 20px;
-    border: 0;
-    /* outline: 0; */
-    background-color: var(--white-color);
-    font-family: var(--font-Light);
-}
-
-
-
-.like2 {
-    width: 12px;
-    position: relative;
-    top: 25px;
-    margin-left: 10px;
-}
-
-.user_comment_comment {
-    background-color: var(--lightgray-color);
-    border-radius: 20px;
-    padding: 10px 20px;
-    /* width: 405px; */
-
-    position: relative;
-    top: -10px;
-    right:0;
-
-    float:right;
-    width:auto;
-    word-break: break-all;
-    line-height: 20px;
-    font-family: var(--font-Light);
-}
-/* 댓글 삭제 버튼 */
-.comment_del {
-    border: none;
-    background-color: var(--white-color);
-    border-radius: 20px;
-    position: relative;
-    left: 1150px;
-    top: 33px;
-    width: 10px;
-}
-
-
-.user_comment_nickname::after,
-.user_comment_nickname::before,
-.user_comment_comment:before,
-.user_comment_comment:after{
-    content:"";
-    display:block;
-    clear: both;
-}
-
-/* post comment */
-.post_comment_wrap {
-    border: none;
-}
-.post_comment_line {
-    border-bottom: var(--darkgray-color) solid 1px;
-    width: 925px;
-    margin: 10px 50px;
-}
-.post_comment{
-    border-radius: 20px;
-    /* width: 435px; */
-    width: 922px;
-    padding: 22px 0px;
-    margin: 10px 50px;
-    display: flex;
-    justify-content: space-between;
-}
-#post_comment_input {
-    width: 830px;
-    border: none;
-    background-color: var(--lightgray-color);
-    border-radius: 20px;
-    padding: 10px 20px;
-}
-.post_comment_btn {
-    border: none;
-    background-color: var(--lightgray-color);
-    border-radius: 20px;
-    padding: 10px 20px;
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 

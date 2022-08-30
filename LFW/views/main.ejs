@@ -76,6 +76,10 @@
         window.onload = function () { getLocation(); timereset(); }
          // 페이지로드하자마자 실행함수!!
     </script>
+    <style>
+
+
+    </style>
     
     <title>메인</title>
 </head>
@@ -166,7 +170,7 @@
                                             <div class="swiper-wrapper MainSliderText-wrapper">
                                                 <!-- 이 부분에 날씨 정보 들어가야 한다. -->
                                                 <div class="weather">
-                                                    <button type="button" onclick="getLocation();">현재위치 가져오기</button>
+                                                    <!-- <button type="button" onclick="getLocation();">현재위치 가져오기</button> -->
                                                     <!-- <button type="button" onclick="reloadDivArea();">새로고침</button> -->
                                                     <div id="icon"></div>
                                                     <div id="time">현재시간 : </div>
@@ -176,9 +180,9 @@
                                                     <div id="humidity">습도 : </div>
                                                 </div>
                                                 <div>
-                                                    <div style="width: 200px; height: 200px;">
+                                                    <div style="width: 300px; height: 300px; display: inline-flex;" >
                                                         <!--차트가 그려질 부분-->
-                                                        <canvas id="myChart"></canvas>
+                                                        <canvas id="myChart" style="height: 300px;; width:300px"></canvas>
                                                     </div>
                                                 </div>
                                             </div>

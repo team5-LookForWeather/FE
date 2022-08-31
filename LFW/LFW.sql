@@ -93,6 +93,8 @@ CREATE TABLE `Codi` (
     foreign key (user_id) references User(user_id)
 );
 
+select distinct(ootd.ootd_id) from ootd inner join user on ootd.user_id = user.user_id;
+
 
 -- -- table 삭제
 -- drop table likes; 

@@ -1,7 +1,14 @@
 const models = require("../model");
 
-exports.ootd_index = (req, res) => {
-    res.render("ootd.ejs");
+exports.ootd_index = async (req, res) => {
+    var data = {};
+    if (req.session.user != undefined) data["isLogin"] = true;
+    else data["isLogin"] = false;
+
+    let query = "select * from ootd inner join user on ootd.user_id = user.user_id;";
+
+    data["ootd"] = await models.sequelize.query(query, {type: models.sequelize.QueryTypes.SELECT});
+    await res.render("ootd", data);
 }
 
 

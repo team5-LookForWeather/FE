@@ -30,7 +30,7 @@ exports.post_login = (req, res) => {
 exports.logout = (req, res) => {
     req.session.destroy(function (err) {
         if (err) throw err;
-        res.send(`로그아웃 성공`);
+        res.redirect('/');
     });
 }
 // /* 세션확인 - 로그아웃 */

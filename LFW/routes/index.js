@@ -5,9 +5,7 @@ const path = require('path');
 
 /* 세션 확인 미들웨어 */
 function checkSession(req, res, next) {
-    req.session.user = req.body.user_id;
-    req.session.save();
-    if (req.session.user) next();
+    if (req.session.user != undefined ) next();
     else {
         res.redirect('/user/login');
     }
@@ -25,7 +23,7 @@ const user = require('../controller/UserController');
 // 로그인 & 로그아웃
 UserRouter.get("/login", user.login);
 UserRouter.post("/login", user.post_login);
-UserRouter.get('/logout', checkSession, user.logout);
+UserRouter.get('/logout', user.logout);
 
 // 회원가입
 UserRouter.get("/membership", user.membership);

@@ -24,16 +24,13 @@ const OOTD = (Sequelize, DataTypes) => {
                 defaultValue: ""
             },
             create_time: {
-                type: DataTypes.DATE,
+                type: 'TIMESTAMP',
+                defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
                 allowNull: false
             },
             update_time: {
-                type: DataTypes.DATE,
-                allowNull: true,
-                defaultValue: ""
-            },
-            delete_time: {
-                type: DataTypes.DATE,
+                type: 'TIMESTAMP',
+                defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
                 allowNull: true,
                 defaultValue: ""
             },

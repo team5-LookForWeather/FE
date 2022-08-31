@@ -110,6 +110,12 @@ header.scrollDown {
     transform: translate(0, -160px);
 }    
 
+/* 그래프 넓이 값 정의 */
+canvas#myChart{
+	width:100% !important;
+	height:300px !important;
+}
+
 
 /*=========================================================
     컨테이너

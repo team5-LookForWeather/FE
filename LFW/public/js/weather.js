@@ -88,8 +88,8 @@ function drawWeatherChart(arr) {
         options: {
             responsive: false,
             title: {
-                display: true,
-                text: '시간별 기온'
+                display: false,
+                // text: '시간별 기온'
             },
             scales: {
                 yAxes: [

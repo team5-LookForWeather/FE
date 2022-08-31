@@ -13,7 +13,11 @@ exports.ootd_index = async (req, res) => {
 
 
 exports.ootd_upload = (req, res) => {
-    res.render("ootd-upload.ejs");
+    var data = {};
+    if (req.session.user != undefined) data["isLogin"] = true;
+    else data["isLogin"] = false;
+    
+    res.render("ootd-upload.ejs", data);
 
 }
 

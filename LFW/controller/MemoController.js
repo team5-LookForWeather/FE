@@ -3,7 +3,11 @@ const { sequelize } = require("../model/index");
 
 /* Community 페이지 */
 exports.index = (req, res) => {
-    res.render("community");
+    var data = {};
+    if (req.session.user != undefined) data["isLogin"] = true;
+    else data["isLogin"] = false;
+
+    res.render("community", data);
 
 
     // // 맨위 이동 및 표시 위해 보내줄 memo 데이터 (게시물없어도 나와야함)

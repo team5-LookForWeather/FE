@@ -5,7 +5,9 @@ const path = require('path');
 
 /* 세션 확인 미들웨어 */
 function checkSession(req, res, next) {
-    if (req.session.user_id != null) next();
+
+    if (req.session.user != undefined ) next();
+
     else {
         res.redirect('/user/login');
     }
@@ -21,9 +23,11 @@ const user = require('../controller/UserController');
 
 
 // 로그인 & 로그아웃
+
 UserRouter.get("/login", user.login);   // 로그인 화면
 UserRouter.post("/login", user.post_login); // 로그인 실행
 UserRouter.get('/logout', checkSession, user.logout);   //로그아웃 실행
+
 
 UserRouter.get("/find_id", user.find_id);   // 아이디 찾기 화면
 UserRouter.post("/find_id", user.post_find_id); // 아이디 찾기 실행

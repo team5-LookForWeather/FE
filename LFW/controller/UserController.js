@@ -27,8 +27,9 @@ exports.post_login = (req, res) => {
 
 //로그아웃 실행
 exports.logout = (req, res) => {
-    req.session.destroy(function () {
-        res.send(`로그아웃 성공`);
+    req.session.destroy(function (err) {
+        if (err) throw err;
+        res.redirect('/');
     });
 }
 

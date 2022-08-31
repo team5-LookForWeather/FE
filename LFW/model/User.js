@@ -22,7 +22,7 @@ const User = (Sequelize, DataTypes) => {
                 allowNull: false,
             },
             tel: {
-                type: DataTypes.INTEGER,
+                type: DataTypes.STRING(13),
                 allowNull: true,
                 defaultValue: "",
             },

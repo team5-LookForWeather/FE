@@ -28,7 +28,7 @@ CREATE TABLE `User` (
 	`pw`	varchar(30)	NOT NULL,
 	`name`	varchar(10)	NOT NULL,
 	`nickname`	varchar(20)	NOT NULL,
-	`tel`	int	NULL,
+	`tel`	varchar(13)	NULL,
 	`email`	varchar(100)	NOT NULL,
 	`gender` enum('F', 'M', '')	NULL,
 	`age`	int	NULL
@@ -40,11 +40,10 @@ CREATE TABLE `OOTD` (
 	`user_id`	varchar(15)	NOT NULL,
 	`OOTD_img`	varchar(200)	NOT NULL	COMMENT 'ootd파일',
 	`style_tag`	SET('#캐주얼', '#시크', '#댄디', '#포멀', '#걸리시', '#레트로', '#로맨틱', '#스포츠', '#스트릿'),
-	`create_time`	DATETIME	NOT NULL,
-	`update_time`	DATETIME	NULL,
-	`delete_time`	DATETIME	NULL,
+	`create_time`	DATETIME	DEFAULT CURRENT_TIMESTAMP,
+	`update_time`	DATETIME	DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
 	`comment`	mediumtext	NULL	COMMENT '옷에 대한 간략한 정보 적게',
-	`like`	int	NULL	COMMENT '좋아요 기능',
+	`like`	int	NULL	DEFAULT 0 COMMENT '좋아요 기능',
     foreign key (user_id) references User(user_id)
 );
 

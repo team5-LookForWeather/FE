@@ -519,7 +519,14 @@ section{
     box-sizing:border-box;
 }
 
-footer::after{
+#footer {
+    background:var(--black2-color);
+    z-index:20;
+    /* padding:0 0 35px 0; */
+    position:relative;
+}
+
+#footer::after{
     content:"";
     display:block;
     width:100%;
@@ -531,7 +538,7 @@ footer::after{
 }
 
 
-footer > .layout {
+#footer > .layout {
     background-image:url(../image/footer_logo-3.png);
     position:relative;
     background-position:25.2604px 62px;
@@ -540,18 +547,18 @@ footer > .layout {
     padding:0 25.2604px 35px;
 }
 
-footer > .layout > .menu {
+#footer > .layout > .menu {
     padding:16px 0;
     margin-bottom:25px;
 }
 
-footer > .layout > .menu > ul > li:not(:first-child) {
+#footer > .layout > .menu > ul > li:not(:first-child) {
     padding-left:15px;
     margin-left:15px;
     position:relative;
 }
 
-footer > .layout > .menu > ul > li:not(:first-child)::after {
+#footer > .layout > .menu > ul > li:not(:first-child)::after {
     content:"";
     display: block;
     width:1px;
@@ -563,7 +570,7 @@ footer > .layout > .menu > ul > li:not(:first-child)::after {
 }
 
 
-footer > .layout > .menu > ul > li {
+#footer > .layout > .menu > ul > li {
     display:block;
     color:#fff;
     opacity:1;
@@ -573,24 +580,23 @@ footer > .layout > .menu > ul > li {
 	font-family: var(--font-Light);
 }
 
-footer > .layout > .menu > ul > li:hover {
+#footer > .layout > .menu > ul > a > li:hover {
     opacity:1;
     text-decoration:underline;
 }
 
 
 /* 로고 옆 텍스트 */
-footer > .layout > .address, footer > .layout > .copy {
+#footer > .layout > .address, #footer > .layout > .copy {
     color:var(--white-color);
 	font-family: var(--font-Light);
     font-size:12px;
     line-height:22px;
     margin-left:185px;
     opacity:1;
-	text-align: left;
 }
 
-footer > .layout > .address > div {
+#footer > .layout > .address > div {
     display:inline-block;
 }
 
@@ -616,7 +622,7 @@ footer > .layout > .address > div {
 
 
 /* 패밀리 사이트 */
-footer > .layout > .site-box {
+#footer > .layout > .site-box {
     position:absolute;
     color:var(--gray-color3);
     top:80px;
@@ -624,12 +630,12 @@ footer > .layout > .site-box {
 	right:0;
 }
 
-footer > .layout > .site-box > .relate-site {
+#footer > .layout > .site-box > .relate-site {
     width:200px;
     position:relative;
 }
 
-footer > .layout > .site-box > .relate-site > .box-1 {
+#footer > .layout > .site-box > .relate-site > .box-1 {
     border:1px solid var(--white-color);
     line-height:38px;
     color: var(--white-color);
@@ -640,10 +646,9 @@ footer > .layout > .site-box > .relate-site > .box-1 {
 	font-family: var(--font-Light);
 	letter-spacing: 2px;
 	font-size:14px;
-	text-align: left;
 }
 
-footer > .layout > .site-box > .relate-site > .box-1::after {
+#footer > .layout > .site-box > .relate-site > .box-1::after {
     content:"";
     display:block;
     background-image:url(../image/icon/relate_site_arrow.png);
@@ -657,11 +662,11 @@ footer > .layout > .site-box > .relate-site > .box-1::after {
     height:11px;
 }
 
-footer > .layout > .site-box > .relate-site > .box-1.active::after {
+#footer > .layout > .site-box > .relate-site > .box-1.active::after {
     transform:rotate(-180deg);
 }
 
-footer > .layout > .site-box > .relate-site > ul {
+#footer > .layout > .site-box > .relate-site > ul {
     margin:0;
     box-sizing:border-box;
     /* border:1px solid #595959; */
@@ -677,36 +682,36 @@ footer > .layout > .site-box > .relate-site > ul {
     transition:max-height .3s;
 }
 
-footer > .layout > .site-box > .relate-site > ul a li:hover{
+#footer > .layout > .site-box > .relate-site > ul a li:hover{
 	background:var(--main-color);
 	color:var(--white-color);
 }
 
 
-footer > .layout > .site-box > .relate-site > ul > a > li {
+#footer > .layout > .site-box > .relate-site > ul > a > li {
     padding:15px 10px;
     border-bottom:1px solid var(--gray-color4);
 	font-family: var(--font-Light);
 	font-size:14px;
 }
 
-footer > .layout > .site-box > .relate-site > .box-1.active + ul {
+#footer > .layout > .site-box > .relate-site > .box-1.active + ul {
     display:block;
     max-height:210px;
 }
 
 
 @media screen and (max-width: 767px) and (min-width: 1px) {
-	footer > .layout > .menu > ul > li{
+	#footer > .layout > .menu > ul > li{
 		font-size:12px;
 	}
 
-	footer > .layout > .menu > ul > li:not(:first-child)::after{
+	#footer > .layout > .menu > ul > li:not(:first-child)::after{
 		height:10px;
 		top:2px;
 	}
 
-	footer > .layout > .menu > ul > li:not(:first-child){
+	#footer > .layout > .menu > ul > li:not(:first-child){
 		margin-left:10px;
 		padding-left:10px;
 	}
@@ -715,27 +720,29 @@ footer > .layout > .site-box > .relate-site > .box-1.active + ul {
 		padding-right:0;
 	}
 
-	footer > .layout{
+	#footer > .layout{
 		padding:0 25px 0;
 	}
 
-	footer > .layout > .site-box > .relate-site > .box-1{
+	#footer > .layout > .site-box > .relate-site > .box-1{
 		font-size:12px;
 	}
 
-	footer > .layout > .site-box > .relate-site{
+	#footer > .layout > .site-box > .relate-site{
 		width:150px;
 	}
 
-	footer > .layout > .site-box{
+	#footer > .layout > .site-box{
 		top:150px;
 		right:5%;
 		display:none;
 	}
 
-	footer > .layout > .site-box > .relate-site > ul > a > li{
+	#footer > .layout > .site-box > .relate-site > ul > a > li{
 		font-size:12px;
 	}
+
+
 }
 
 

@@ -75,7 +75,7 @@ OotdRouter.get('/ootd-upload', ootd.ootd_upload);  //ootd 업로드 페이지
 const MemoRouter = express.Router();
 const memo = require('../controller/MemoController');
 MemoRouter.get('/', memo.index);  //memo페이지
-MemoRouter.post('/write', checkSession, memo.write);  // memo 작성
+// MemoRouter.post('/write', checkSession, memo.write);  // memo 작성
 
 
 

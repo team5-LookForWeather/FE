@@ -162,6 +162,10 @@ exports.post_membership = (req, res) => {
 
 // profile 화면
 exports.profile = (req, res) => {
+    var data = {};
+    if (req.session.user != undefined) data["isLogin"] = true;
+    else data["isLogin"] = false;
+
     models.User.findOne({ where: { user_id: req.session.user } })
         .then((result) => {
             res.render("profile", { isLogin: true, user: req.session.user, user_id: result.user_id, pw: result.pw, name: result.name, tel: result.tel, email: result.email });

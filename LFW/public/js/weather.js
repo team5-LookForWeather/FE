@@ -52,11 +52,11 @@ function weatherwriter(item) {
     var A = document.getElementById("icon");
     A.innerHTML = `<img src="image/weathericon/${iconnum}.png">`;
     var B = document.getElementById('temp');
-    B.innerHTML = `현재기온 : ${currentTMP}`;
+    B.innerHTML = `${currentTMP}° <p class="summary"><span class="weather">흐림</span>어제보다 <span class="temperature up">4.9° <span class="blind">↑</span></span></p>`;
     var C = document.getElementById('lowtemp');
-    C.innerHTML = `최저온도 : ${TMN}`;
+    C.innerHTML = `최저 ${TMN} <span class="weather2">미세</span> <span class="temperature up2">좋음</span> <span class="weather2">초미세</span> <span class="temperature up2">좋음</span>`;
     var D = document.getElementById('hightemp');
-    D.innerHTML = `최고온도 : ${TMX}`;
+    D.innerHTML = `최고 ${TMX} <span class="weather3">체감</span> <span class="temperature up3">25.4°</span> <span class="weather3">북동풍</span> <span class="temperature up3">0.6m/s</span>`;
     var E = document.getElementById('humidity');
     E.innerHTML = `습도 : ${REH}`;
     return currentTMP;
@@ -88,8 +88,8 @@ function drawWeatherChart(arr) {
         options: {
             responsive: false,
             title: {
-                display: true,
-                text: '시간별 기온'
+                display: false,
+                // text: '시간별 기온'
             },
             scales: {
                 yAxes: [

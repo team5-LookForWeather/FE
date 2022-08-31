@@ -5,7 +5,9 @@ const path = require('path');
 
 /* 세션 확인 미들웨어 */
 function checkSession(req, res, next) {
+
     if (req.session.user != undefined ) next();
+
     else {
         res.redirect('/user/login');
     }
@@ -21,35 +23,30 @@ const user = require('../controller/UserController');
 
 
 // 로그인 & 로그아웃
-UserRouter.get("/login", user.login);
-UserRouter.post("/login", user.post_login);
-UserRouter.get('/logout', user.logout);
+
+UserRouter.get("/login", user.login);   // 로그인 화면
+UserRouter.post("/login", user.post_login); // 로그인 실행
+UserRouter.get('/logout', checkSession, user.logout);   //로그아웃 실행
+
+
+UserRouter.get("/find_id", user.find_id);   // 아이디 찾기 화면
+UserRouter.post("/find_id", user.post_find_id); // 아이디 찾기 실행
+UserRouter.get("/find_pw", user.find_pw);   // 비밀번호 찾기 화면
+UserRouter.post("/find_pw", user.post_find_pw);    // 비밀번호 찾기 실행
+UserRouter.get("/update_pw", checkSession, user.update_pw); // 비밀번호 변경 화면
+UserRouter.patch("/updated_pw", user.updated_pw);   // 비밀번호 변경 실행
 
 // 회원가입
-UserRouter.get("/membership", user.membership);
-UserRouter.post("/id_check", user.id_check);
-UserRouter.post("/nick_check", user.nick_check);
-UserRouter.post("/membership", user.post_membership);
+UserRouter.get("/membership", user.membership); // 회원가입 화면
+UserRouter.post("/id_check", user.id_check);    // 아이디 중복검사
+UserRouter.post("/nick_check", user.nick_check);    // 닉네임 중복검사
+UserRouter.post("/membership", user.post_membership);   //회원가입 실행
 
 
-// id 찾기
-UserRouter.get("/find_id", user.find_id);
-UserRouter.post("/find_id", user.post_find_id);
-
-// pw 찾기
-UserRouter.get("/find_pw", user.find_pw);
-UserRouter.post("/find_pw", user.post_find_pw);
-UserRouter.patch("/find_pw/pw_update", checkSession, user.pw_update);
-
-// profile
-UserRouter.get("/profile", checkSession, user.profile);
-
-// update
-// UserRouter.get("/update", user.update_profile);
-// UserRouter.patch("/update", user.update);
-
-// delete
-UserRouter.delete("/delete", user.delete);
+// profile 관련
+UserRouter.get("/profile", checkSession, user.profile); // profile 화면
+UserRouter.patch("/update", user.update);    // 회원정보 수정
+UserRouter.delete("/delete", user.delete);  // 회원탈퇴
 
 
 
@@ -81,8 +78,8 @@ OotdRouter.get('/ootd-upload', ootd.ootd_upload);  //ootd 업로드 페이지
 /* Memo 관련 */
 const MemoRouter = express.Router();
 const memo = require('../controller/MemoController');
-MemoRouter.get('/', memo.memo_index);  //memo페이지
-
+MemoRouter.get('/', memo.index);  //memo페이지
+// MemoRouter.post('/write', checkSession, memo.write);  // memo 작성
 
 
 

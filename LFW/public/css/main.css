@@ -580,7 +580,7 @@ header.scrollDown {
 	font-family: var(--font-Light);
 }
 
-#footer > .layout > .menu > ul > li:hover {
+#footer > .layout > .menu > ul > a > li:hover {
     opacity:1;
     text-decoration:underline;
 }

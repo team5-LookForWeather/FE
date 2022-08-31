@@ -18,7 +18,7 @@
     <link rel="stylesheet" href="./css/ootd.css" />
     <title>게시글 작성</title>
 
-    
+
 </head>
 
 <body>
@@ -27,71 +27,79 @@
 
             <%- include('./header.ejs') %>
 
-            <section>
-                <div class="container">
-                    <div class="page-content">
-                        <!-- 타이틀 -->
-                        <div class="MainSectionHeader">
-                            <h2 class="MainSectionHeader-title">
-                                Today's OOTD
-                            </h2>
-                            <div class="MainSectionHeader-sub">
-                                여러분의 오늘의 코디를 등록해보세요.
+                <section>
+                    <div class="container">
+                        <div class="page-content">
+                            <!-- 타이틀 -->
+                            <div class="MainSectionHeader">
+                                <h2 class="MainSectionHeader-title">
+                                    Today's OOTD
+                                </h2>
+                                <div class="MainSectionHeader-sub">
+                                    여러분의 오늘의 코디를 등록해보세요.
+                                </div>
                             </div>
-                        </div>
 
-                        <div class="MainSectionBody">
-                            <div class="MainInfluencerList">
-                                <ul class="MainInfluencerList-list">
+                            <!-- 더보기 -->
+                            <div class="MainNewsLink">
+                                    <a class="uploadLink" href="/ootd/ootd-upload" class="MainNewsLink-link">게시글 작성</a>
+                            </div>
 
-                                    <!-- 리스트 1 -->
-                                    <% for ( let i = 0; i < ootd.length; i++ ) { %>
-                                    <li class="MainInfluencerList-item">
-                                        <div class="MainInfluencerItem">
-                                            <a href="#" class="MainInfluencerItem-link">
-                                                <div class="InfluencerItemBadge">
+                            <div class="MainSectionBody">
+                                <div class="MainInfluencerList">
+                                    <ul class="MainInfluencerList-list">
+
+                                        <!-- 리스트 1 -->
+                                        <% for ( let i=0; i < ootd.length; i++ ) { %>
+                                            <li class="MainInfluencerList-item">
+                                                <div class="MainInfluencerItem">
+                                                    <a href="#" class="MainInfluencerItem-link">
+                                                        <div class="InfluencerItemBadge">
+                                                        </div>
+
+                                                        <div class="MainInfluencerItemThumb">
+                                                            <img width="336" height="433"
+                                                                src="/image/ootd/<%=ootd[i].OOTD_id%>.jpg"
+                                                                class="MainInfluencerItemThumb-img wp-post-image" alt=""
+                                                                loading="lazy" />
+                                                        </div>
+
+                                                        <div class="MainInfluencerItemName">
+                                                            <div class="MainInfluencerItemName-inner">
+                                                                <span class="MainInfluencerItemNameOver"></span>
+                                                                <span class="MainInfluencerItemNameText">
+                                                                    <span class="MainInfluencerItemNameText-text">
+                                                                        <%=ootd[i].nickname%>
+                                                                    </span>
+                                                                </span>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="MainInfluencerTag">
+                                                            <div class="MainInfluencerTag-title">
+                                                                <%=ootd[i].nickname%>
+                                                            </div>
+                                                            <div class="MainInfluencerItemTagMeta">
+                                                                <ul class="MainInfluencerItemTagMeta-list">
+                                                                    <li class="MainInfluencerItemTagMeta-item">
+                                                                        <span class="MainInfluencerItemTagMeta-text">
+                                                                            <%=ootd[i].style_tag%>
+                                                                        </span>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                        </div> <!-- .MainInfluencerTag -->
+                                                    </a>
                                                 </div>
+                                            </li>
 
-                                                <div class="MainInfluencerItemThumb">
-                                                    <img width="336" height="433"
-                                                        src="/image/ootd/<%=ootd[i].OOTD_id%>.jpg"
-                                                        class="MainInfluencerItemThumb-img wp-post-image"
-                                                        alt="" loading="lazy" />
-                                                </div>
-
-                                                <div class="MainInfluencerItemName">
-                                                    <div class="MainInfluencerItemName-inner">
-                                                        <span class="MainInfluencerItemNameOver"></span>
-                                                        <span class="MainInfluencerItemNameText">
-                                                            <span class="MainInfluencerItemNameText-text"><%=ootd[i].nickname%></span>
-                                                        </span>
-                                                    </div>
-                                                </div>
-
-                                                <div class="MainInfluencerTag">
-                                                    <div class="MainInfluencerTag-title">
-                                                        <%=ootd[i].nickname%>
-                                                    </div>
-                                                    <div class="MainInfluencerItemTagMeta">
-                                                        <ul class="MainInfluencerItemTagMeta-list">
-                                                            <li class="MainInfluencerItemTagMeta-item">
-                                                                <span
-                                                                    class="MainInfluencerItemTagMeta-text"><%=ootd[i].style_tag%></span>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                </div> <!-- .MainInfluencerTag -->
-                                            </a>
-                                        </div>
-                                    </li>
-                                    
-                                    <% } %>
-                                </ul>
+                                            <% } %>
+                                    </ul>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            </section>
+                </section>
         </div>
 
         <%- include('./footer.ejs') %>
@@ -120,7 +128,7 @@
             // jQuery('.upload-name').val(jQuery(this).val());
         });
 
-        
+
         //파일삭제
         jQuery('#file_remove').click(function () {
             jQuery(this).siblings('.upload-hidden').val('');

@@ -3,7 +3,11 @@ const axios = require("axios")
 
 /* weather페이지 */
 exports.weather_index = (req, res) => {
-    res.render("weatherAPI");
+    var data = {};
+    if (req.session.user != undefined) data["isLogin"] = true;
+    else data["isLogin"] = false;
+
+    res.render("weather", data);
 }
 
 /* 현위치로 날씨정보 받아오기 */

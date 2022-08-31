@@ -19,7 +19,7 @@ const OOTD = (Sequelize, DataTypes) => {
                 allowNull: false
             },
             style_tag: {
-                type: DataTypes.set('#캐주얼', '#시크', '#댄디', '#포멀', '#걸리시', '#레트로', '#로맨틱', '#스포츠', '#스트릿'),
+                type: DataTypes.STRING(200),
                 allowNull: true,
                 defaultValue: ""
             },

@@ -172,13 +172,13 @@ nickname.addEventListener("change", checkNick);
 
 
 function checkNick() {
-    let nickPattern = /[a-zA-Z0-9_-]{5,20}/;
+    let nickPattern = /[a-zA-Z0-9가-힣_-]{5,20}/;
     if(nickname.value === "") {
         error[4].innerHTML = "필수 정보입니다.";
         error[4].style.display = "block";
         error[4].style.color = "#e00012";
     } else if(!nickPattern.test(nickname.value)) {
-        error[4].innerHTML = "5~20자의 영문 대 소문자, 숫자만 사용 가능합니다.";
+        error[4].innerHTML = "5~20자의 한글과 영문 대 소문자, 숫자만 사용 가능합니다.";
         error[4].style.display = "block";
     } else {
         error[4].innerHTML = "멋진 닉네임이네요!";

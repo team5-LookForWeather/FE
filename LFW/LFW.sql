@@ -1,17 +1,17 @@
-mysql -u root -p;		-- mysql root계정으로 접속
+-- mysql -u root -p;		-- mysql root계정으로 접속
 
-CREATE USER 'LFW'@'%' IDENTIFIED BY 'SeSACweb!';	-- LFW 계정 생성
+CREATE USER 'LFW'@'%' IDENTIFIED BY 'SeSAC4web!';	-- LFW 계정 생성
 GRANT ALL PRIVILEGES ON *.* TO 'LFW'@'%' WITH GRANT OPTION;	-- 권한 부여
 FLUSH PRIVILEGES;	-- 변경된 권한 적용
 
 SELECT host, user, plugin from mysql.user;	-- 전체 계정 확인
-ALTER USER 'LFW'@'%' IDENTIFIED WITH mysql_native_password BY 'SeSACweb!';	-- 모든ip 외부접근 허용
+ALTER USER 'LFW'@'%' IDENTIFIED WITH mysql_native_password BY 'SeSAC4web!';	-- 모든ip 외부접근 허용
 
 CREATE DATABASE LFW; -- DB 생성
 USE LFW; -- DB 사용
 
 -- LFW.sql 파일 실행히기 (터미널에서 입력)
-mysql> source /SeSAC-LFW/LFW/LFW.sql;	
+-- mysql> source /SeSAC-LFW/LFW/LFW.sql;	
 
 
 -- -- 명령어 --
@@ -69,7 +69,7 @@ CREATE TABLE `OOTD_picture` (
 
 CREATE TABLE `OOTD_like` (
 	`OOTD_like_id`	INT	primary key auto_increment NOT NULL,
-	`OOTD_id`	int	NOT NULL,
+	`OOTD_id`	int	NOT NULL unique key,
 	`user_id`	varchar(15)	NOT NULL,
 	`OOTD_like`	int	NULL,
     foreign key (user_id) references User(user_id),

@@ -50,3 +50,23 @@ $('footer > .layout > .site-box > .relate-site > .box-1').click(function() {
     var $this = $(this);
     $this.toggleClass('active');
 });
+
+
+
+// 댓글 좋아요
+
+let commentLike = document.querySelectorAll('.comment-like');
+commentLike.forEach(function(event) {
+    event.addEventListener('click', function() {
+        var likeBtn = this.querySelector('.comment-heart');
+        var likedBtn = this.querySelector('.comment-heart-liked');
+
+        if (likeBtn.style.display === 'none') {
+            likeBtn.style.display = 'inline-block';
+            likedBtn.style.display = 'none';
+        } else {
+            likeBtn.style.display = 'none';
+            likedBtn.style.display = 'inline-block';
+        }
+    })
+})

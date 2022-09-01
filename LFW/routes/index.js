@@ -61,7 +61,7 @@ MainRouter.get('/', main.index);   //메인페이지 화면
 /* Weather 관련 */
 const WeatherRouter = express.Router();
 const weather = require('../controller/WeatherController');
-WeatherRouter.get('/', weather.weather_index);  //weather페이지
+WeatherRouter.get('/', weather.index);  //weather페이지
 WeatherRouter.post('/getlocation', weather.getlocation); //현위치로 날씨정보 받아오기
 WeatherRouter.post('/searchlocation', weather.searchlocation); //현위치로 날씨정보 받아오기
 
@@ -69,8 +69,8 @@ WeatherRouter.post('/searchlocation', weather.searchlocation); //현위치로 �
 /* OOTD 관련 */
 const OotdRouter = express.Router();
 const ootd = require('../controller/OotdController');
-OotdRouter.get('/', ootd.ootd_index);  //ootd페이지
-OotdRouter.get('/ootd-upload', ootd.ootd_upload);  //ootd 업로드 페이지
+OotdRouter.get('/', ootd.index);  //ootd페이지
+OotdRouter.get('/ootd-upload', ootd.upload);  //ootd 업로드 페이지
 
 
 /* Memo 관련 */
@@ -78,6 +78,12 @@ const MemoRouter = express.Router();
 const memo = require('../controller/MemoController');
 MemoRouter.get('/', memo.index);  //memo페이지
 // MemoRouter.post('/write', checkSession, memo.write);  // memo 작성
+
+
+/* Mypage 관련 */
+const MypageRouter = express.Router();
+const mypage = require('../controller/MypageController');
+MypageRouter.get('/', mypage.index);  //mypage페이지
 
 
 
@@ -89,7 +95,8 @@ module.exports = {
     MainRouter,
     WeatherRouter,
     OotdRouter,
-    MemoRouter
+    MemoRouter,
+    MypageRouter
 }
 
 

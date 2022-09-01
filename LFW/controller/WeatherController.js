@@ -2,12 +2,15 @@ const models = require("../model");
 const axios = require("axios")
 
 /* weather페이지 */
-exports.weather_index = (req, res) => {
+exports.index = (req, res) => {
     var data = {};
-    if (req.session.user != undefined) data["isLogin"] = true;
+    if (req.session.user != undefined) {
+        data["isLogin"] = true;
+        data["user"] = req.session.user;
+    }
     else data["isLogin"] = false;
 
-    res.render("weather", data);
+    res.render("weather.ejs", data);
 }
 
 /* 현위치로 날씨정보 받아오기 */
@@ -78,11 +81,11 @@ exports.getlocation = async (req, res) => {
 
             //basetime: 0200, 0500, 0800, 1100, 1400, 1700, 2000, 2300
             // if (hours < 2 || (hours == 2 && minutes < 10)) {    //새벽2시 이전은 전날로 계산
-                today.setDate(today.getDate() - 1);
-                yyyy = today.getFullYear();
-                mm = today.getMonth() + 1;
-                dd = today.getDate();
-                //hours = 23;
+            today.setDate(today.getDate() - 1);
+            yyyy = today.getFullYear();
+            mm = today.getMonth() + 1;
+            dd = today.getDate();
+            //hours = 23;
             // } else if (hours < 5 || (hours == 5 && minutes < 10)) {
             //     hours = 2;
             // } else if (hours < 8 || (hours == 8 && minutes < 10)) {
@@ -114,7 +117,7 @@ exports.getlocation = async (req, res) => {
             requrl += "&pageNo=1&numOfRows=" + numOfRows;
             requrl += "&dataType=JSON";
             requrl += "&base_date=" + base_date;
-            requrl += "&base_time=" + '0'+200;
+            requrl += "&base_time=" + '0' + 200;
             requrl += "&nx=" + _nx + "&ny=" + _ny;
             requrl += "&fcst_time=" + '0000';
             return requrl;

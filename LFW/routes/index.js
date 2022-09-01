@@ -11,8 +11,18 @@ function checkSession(req, res, next) {
     }
 }
 
-// const user = req.session.user;
-// res.render("index", { isLogin: true, user: user });
+const upload = multer({
+    storage: multer.diskStorage({
+        destination(req, file, done) {
+            done(null, 'public/img/ootd/');
+        },
+        filename(req, file, done) {
+            const ext = path.extname(file.originalname);
+            done(null, file.originalname + ext);
+        },
+    }),
+    limits: { fileSize: 10 * 1024 * 1024 },
+});
 
 
 /* User 관련 */
@@ -21,7 +31,6 @@ const user = require('../controller/UserController');
 
 
 // 로그인 & 로그아웃
-
 UserRouter.get("/login", user.login);   // 로그인 화면
 UserRouter.post("/login", user.post_login); // 로그인 실행
 UserRouter.get('/logout', checkSession, user.logout);   //로그아웃 실행
@@ -48,14 +57,12 @@ UserRouter.post("/delete", user.delete);  // 회원탈퇴
 
 
 
-
 /* 메인페이지 관련 */
 const MainRouter = express.Router();
 const main = require('../controller/MainController');
 MainRouter.get('/', main.index);   //메인페이지 화면
 // MainRouter.post('/search', main.main_search);   //메인페이지 검색 기능
 // MainRouter.get('/search', main.search_detail);  // 검색된 페이지에서 세부내용으로 이동
-
 
 
 /* Weather 관련 */
@@ -70,13 +77,14 @@ WeatherRouter.post('/searchlocation', weather.searchlocation); //현위치로 �
 const OotdRouter = express.Router();
 const ootd = require('../controller/OotdController');
 OotdRouter.get('/', ootd.index);  //ootd페이지
-OotdRouter.get('/ootd-upload', ootd.upload);  //ootd 업로드 페이지
+OotdRouter.get('/ootd-upload', checkSession, ootd.upload_index);  //ootd 업로드 페이지
+OotdRouter.post('/ootd-upload', upload.single('filename'), 'ootd.upload');    // ootd업로드 실행
 
 
-/* Memo 관련 */
+/* Community 관련 */
 const MemoRouter = express.Router();
 const memo = require('../controller/MemoController');
-MemoRouter.get('/', memo.index);  //memo페이지
+MemoRouter.get('/', memo.index);  //Community페이지
 // MemoRouter.post('/write', checkSession, memo.write);  // memo 작성
 
 

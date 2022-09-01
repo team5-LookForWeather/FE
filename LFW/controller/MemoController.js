@@ -47,6 +47,25 @@ exports.index = async (req, res) => {
 
 // /* memo 작성 */
 // exports.write = (req, res) => {
+// const user = req.session.user;
+
+
+// let object = {
+//     idx: req.body.idx,
+//     parentidx: req.body.parentidx,
+//     category: req.body.category,
+//     id: req.body.id,
+//     content: req.body.content,
+//     create_date: new Date(),
+// }
+// models.Comment.create(object)
+//     .then((result) => {
+//         //result == dataValues:{idx: , parentidx: ........}
+//         res.send(result);
+//     });
+
+
+
 //     console.log(req.body);
 
 //     let memo = {
@@ -63,9 +82,25 @@ exports.index = async (req, res) => {
 // }
 
 // /* memo 수정 */
-// exports.update =
-//     (req, res) => {
-//         console.log(req.body);
+// exports.update = (req, res) => {
+//         
+// console.log(req.body);
+
+// models.Community.findOne({
+//     where: { idx: req.body.idx, isdeleted: 'N',}
+// }).then((result) => {
+//     let newObj = {
+//         title: req.body.title,
+//         content: req.body.content,
+//     }    
+//     models.Community.update(newObj, { where: { idx: req.body.idx } })
+//     .then((result) => {
+//         console.log(result);
+//         res.redirect('/community/read?idx=' +req.body.idx);
+//     })
+// })
+
+// console.log(req.body);
 
 //         let memo = {
 //             user_id: req.body.user_id,
@@ -85,6 +120,22 @@ exports.index = async (req, res) => {
 
 // /* memo 삭제 */
 // exports.delete = (req, res) => {
+
+    // models.Comment.findOne({
+    //     where: { idx: req.body.idx, isdeleted: 'N',}
+    // }).then((result) => {
+    //     let newObj = {
+    //         isdeleted : 'Y',
+    //     }    
+    //     models.Comment.update(newObj, { where: { idx: req.body.idx } })
+    //     .then((result) => {
+    //         console.log(result);
+    //         res.send("댓글삭제성공");
+    //     })
+    // })
+
+
+
 //     console.log(req.body);
 
 //     let memo = {

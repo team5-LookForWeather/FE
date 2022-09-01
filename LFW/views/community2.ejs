@@ -26,9 +26,9 @@
         //     }
         // });
 
-        function writeComment(){
+        function writeComment() {
             let form = document.getElementById('form_comment');
-            
+
             let html = `
                 <li class="new_comment">
                 <div class="user_comment">
@@ -41,10 +41,10 @@
                 <li>
                 `;
 
-                $('.comment_list').append(html);
+            $('.comment_list').append(html);
             // axios({
             //     method: 'post',
-            //     url: 'http://localhost:8000/memo/write',
+            //     url: '/memo/write',
             //     data: {
             //         // user_id: form. // 유저 아이디 가져오기
             //         memo: form.comment.value
@@ -73,9 +73,9 @@
             // });
         }
 
-        function writeReply(){
+        function writeReply() {
             let form = document.getElementById('reply_comment');
-            
+
             let html2 = `
                 
                 <li>
@@ -89,10 +89,10 @@
                 <li>
                 `;
 
-                $('.comment_list').append(html2);
+            $('.comment_list').append(html2);
             // axios({
             //     method: 'post',
-            //     url: 'http://localhost:8000/memo/write',
+            //     url: '/memo/write',
             //     data: {
             //         // user_id: form. // 유저 아이디 가져오기
             //         memo: form.comment.value
@@ -120,24 +120,25 @@
             //     $('.comment_list').appendChild(html)
             // });
         }
-        
-        function deleteComment(id){
+
+        function deleteComment(id) {
             axios({
                 method: 'delete',
-                url: 'http://localhost:8000/memo/delete',
+                url: '/memo/delete',
                 data: {
                     comment: form.comment.value
                 }
-            }).then((rep) => {return rep.data;})
-            .then((data) => {
-                var userComment = document.getElementsByClassName('new_comment');
-                $(userComment).remove();
-            });
+            }).then((rep) => { return rep.data; })
+                .then((data) => {
+                    var userComment = document.getElementsByClassName('new_comment');
+                    $(userComment).remove();
+                });
         }
     </script>
 </head>
+
 <body>
-<!-- header -->
+    <!-- header -->
     <div id="body-wrapper">
         <div id="body-content">
             <header id="act_header">
@@ -209,104 +210,114 @@
                     </div>
 
                 </div>
-            </header>  
-<!-- content -->
+            </header>
+            <!-- content -->
             <section>
                 <div class="container">
                     <div class="page-content">
                         <!-- comment -->
-    <main class="main">
-        <article class="comment">
-            <!-- <h2>Comment</h2> -->
-            <div class="MainSectionHeader">
-                <h2 class="MainSectionHeader-title">
-                    <a class="MainSectionHeader-link" href="#">
-                        Comment
-                    </a>
-                </h2>
-                <div class="MainSectionHeader-sub">
-                    오늘 날씨에 대해 이야기 해요. 
-                </div>
-            </div>
-
-            <section class="user_comment_wrap">
-                <div class="comment_scroll">
-                    <ul class="comment_list">
-                        <li>
-                            <div class="user_comment">
-                                <div class="comment_nickname">user01</div>
-                                <span class="comment_comment">서울 민소매에 얇은 남방 + 여름슬랙스 비도 조금씩 오고 너무 습해.</span>
-
-                                <div>
-                                    <button class="reply" onclick="clickshow(this,'reply_comment')">
-                                        답글달기
-                                    </button>
-                                    
-                                    <img src="image/community/icon-off.png" class="like" >
+                        <main class="main">
+                            <article class="comment">
+                                <!-- <h2>Comment</h2> -->
+                                <div class="MainSectionHeader">
+                                    <h2 class="MainSectionHeader-title">
+                                        <a class="MainSectionHeader-link" href="#">
+                                            Comment
+                                        </a>
+                                    </h2>
+                                    <div class="MainSectionHeader-sub">
+                                        오늘 날씨에 대해 이야기 해요.
+                                    </div>
                                 </div>
 
-                                <form id="reply_comment" class="reply_closed" style="display: none;"
-                                >
-                                    <div class="post_comment">
-                                    <input id="post_comment_input" type="text" placeholder="댓글 달기..." name="reply"/>
-                                    <button type="button" class="post_comment_btn" onclick="wirteReply()" >게시</button>
+                                <section class="user_comment_wrap">
+                                    <div class="comment_scroll">
+                                        <ul class="comment_list">
+                                            <li>
+                                                <div class="user_comment">
+                                                    <div class="comment_nickname">user01</div>
+                                                    <span class="comment_comment">서울 민소매에 얇은 남방 + 여름슬랙스 비도 조금씩 오고 너무
+                                                        습해.</span>
+
+                                                    <div>
+                                                        <button class="reply" onclick="clickshow(this,'reply_comment')">
+                                                            답글달기
+                                                        </button>
+
+                                                        <img src="image/community/icon-off.png" class="like">
+                                                    </div>
+
+                                                    <form id="reply_comment" class="reply_closed"
+                                                        style="display: none;">
+                                                        <div class="post_comment">
+                                                            <input id="post_comment_input" type="text"
+                                                                placeholder="댓글 달기..." name="reply" />
+                                                            <button type="button" class="post_comment_btn"
+                                                                onclick="wirteReply()">게시</button>
+                                                        </div>
+                                                    </form>
+                                                </div>
+
+                                            </li>
+                                            <li>
+                                                <div class="user_comment">
+                                                    <div class="comment_nickname">user02</div>
+                                                    <span class="comment_comment">서울 민소매 + 반바지 해 없으니까 시원해 근데 습하다
+                                                        ㅜㅜ</span>
+
+                                                    <div>
+                                                        <button class="reply"
+                                                            onclick="clickshow(this,'reply_comment2')">
+                                                            답글달기
+                                                        </button>
+                                                        <img src="image/community/icon-off.png" class="like">
+                                                    </div>
+
+                                                    <form id="reply_comment2" class="reply_closed"
+                                                        style="display: none;" name="form">
+                                                        <div class="post_comment">
+                                                            <input id="post_comment_input" type="text"
+                                                                placeholder="댓글 달기..." name="comment" />
+                                                            <button type="button" class="post_comment_btn"
+                                                                onclick="writeComment()">게시</button>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </li>
+
+                                        </ul>
                                     </div>
-                                </form>
-                            </div>
+                                </section>
 
-                        </li>
-                        <li>
-                            <div class="user_comment">
-                                <div class="comment_nickname">user02</div>
-                                <span class="comment_comment">서울 민소매 + 반바지 해 없으니까 시원해 근데 습하다 ㅜㅜ</span>
-
-                                <div>
-                                    <button class="reply" onclick="clickshow(this,'reply_comment2')">
-                                        답글달기
-                                    </button>
-                                    <img src="image/community/icon-off.png" class="like" >
-                                </div>
-
-                                <form id="reply_comment2" class="reply_closed" style="display: none;" name="form">
-                                    <div class="post_comment">
-                                    <input id="post_comment_input" type="text" placeholder="댓글 달기..." name="comment"/>
-                                    <button type="button" class="post_comment_btn" onclick="writeComment()"
-                                    >게시</button>
+                                <!-- post comment -->
+                                <section class="post_comment_wrap">
+                                    <div class="post_comment_all">
+                                        <div class="post_comment_line">
+                                        </div>
+                                        <form id="form_comment">
+                                            <div class="post_comment">
+                                                <input id="post_comment_input" type="text" placeholder="댓글 달기..."
+                                                    name="comment"
+                                                    onkeypress="if(window.event.keyCode==13){writeComment(); window.event.preventDefault(); return false;}" />
+                                                <!-- <input id="post_comment_input" type="text" placeholder="댓글 달기..." name="comment" onkeypress="if(window.event.keyCode==13){writeComment(); window.event.preventDefault(); return false;}"/> -->
+                                                <button type="button" class="post_comment_btn"
+                                                    onclick="writeComment()">게시</button>
+                                            </div>
+                                        </form>
                                     </div>
-                                </form>
-                            </div>
-                        </li>
-
-                    </ul>
+                                </section>
+                            </article>
+                        </main>
+                    </div>
                 </div>
             </section>
-
-            <!-- post comment -->
-            <section class="post_comment_wrap">
-                <div class="post_comment_all">
-                    <div class="post_comment_line">
-                    </div>
-                    <form id="form_comment">
-                        <div class="post_comment">
-                        <input id="post_comment_input" type="text" placeholder="댓글 달기..." name="comment" onkeypress="if(window.event.keyCode==13){writeComment(); window.event.preventDefault(); return false;}"/>
-                        <!-- <input id="post_comment_input" type="text" placeholder="댓글 달기..." name="comment" onkeypress="if(window.event.keyCode==13){writeComment(); window.event.preventDefault(); return false;}"/> -->
-                        <button type="button" class="post_comment_btn" onclick="writeComment()" >게시</button>
-                        </div>
-                    </form>
-                </div>      
-            </section>
-        </article>
-    </main>
-                    </div>
-                </div>
-            </section>              
         </div>
 
 
 
 
 
-<!-- footer -->
+        <!-- footer -->
         <footer class="footer">
             <div class="layout con">
                 <div class="menu">
@@ -347,7 +358,7 @@
                     </div>
                 </div>
             </div>
-        </footer>          
+        </footer>
     </div>
 
 
@@ -356,16 +367,16 @@
 
 
     <script>
-        document.addEventListener('keypress', function(event) {
+        document.addEventListener('keypress', function (event) {
             if (event.keyCode === 13) {
                 event.preventDefault();
             };
-            }, true);
+        }, true);
 
-            
+
         // 좋아요 기능
         $(".like").click((obj) => {
-            if ( $(obj.target).hasClass("like") ){
+            if ($(obj.target).hasClass("like")) {
                 $(obj.target).removeClass("like");
                 $(obj.target).addClass("nolike");
             } else {
@@ -387,15 +398,16 @@
         // 답글 달기 클릭
         function clickshow(elem, id) {
             var menu = document.getElementById(id);
-            if (elem.className !='reply_closed') {
+            if (elem.className != 'reply_closed') {
                 elem.className = 'reply_closed';
                 menu.style.display = "block";
             } else {
-                elem.className ='reply_opened';
+                elem.className = 'reply_opened';
                 menu.style.display = "none";
             }
         }
-        
+
     </script>
 </body>
+
 </html>

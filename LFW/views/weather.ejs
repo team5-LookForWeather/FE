@@ -17,7 +17,10 @@
     <script defer src="./js/slider/main.js"></script>
     <script defer src="./js/common.js"></script>
     <script defer src="./js/weather.js"></script>
+    <script defer src="./js/weather2.js"></script> 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
     <script>
         function getLocation() {
             if (navigator.geolocation) {
@@ -53,10 +56,11 @@
                 fcstValue : 예보 값
                 nx, ny : 기상청 지역코드 
                 **/
+
+
                 var currentTMP = weatherwriter(response.data.item);
                 drawWeatherChart(getTempArr(response.data.item, hours));
-                setCodi(currentTMP);
-                //setImage(currentTMP);
+                setCodi2(currentTMP);
 
             });
         }; //get location & location
@@ -75,11 +79,8 @@
 
         window.onload = function () { getLocation(); timereset(); }
          // 페이지로드하자마자 실행함수!!
+    
     </script>
-    <style>
-
-
-    </style>
 
     <title>메인</title>
 </head>
@@ -128,108 +129,91 @@
                                             </div>
                                         </div>
                                     </div>
-
-
-                                    <div class="MainSliderThumb">
-                                        <div class="MainSliderThumb-container swiper-container">
-                                            <div class="swiper-wrapper MainSliderThumb-wrapper">
-                                                <div class="swiper-slide MainSliderThumb-slide">
-                                                    <img class="img_border codiImg" src="./image/slider/img01.png"
-                                                        alt="img01">
+                                    <div>
+                                    <div>
+                                    <div class="recomand_codi">
+                                        <div class="card mb-3" style="max-width: 700px;" id="card1">
+                                            <div class="row g-0">
+                                                <div class="col-md-4">
+                                                    <img src="./image/codi/male/23-27/1.png" class="img-fluid rounded-start" alt="...">
                                                 </div>
-                                                <div class="swiper-slide MainSliderThumb-slide">
-                                                    <img class="img_border codiImg" src="./image/slider/img02.png"
-                                                        alt="img02">
-                                                </div>
-                                                <div class="swiper-slide MainSliderThumb-slide">
-                                                    <img class="img_border codiImg" src="./image/slider/img03.png"
-                                                        alt="img03">
-                                                </div>
-                                                <div class="swiper-slide MainSliderThumb-slide">
-                                                    <img class="img_border codiImg" src="./image/slider/img03.png"
-                                                        alt="img04">
-                                                </div>
-                                                <div class="swiper-slide MainSliderThumb-slide">
-                                                    <img class="img_border codiImg" src="./image/slider/img03.png"
-                                                        alt="img05">
+                                                <div class="col-md-8">
+                                                    <div class="card-body">
+                                                        <h5 class="card-title">no.1</h5>
+                                                        <p class="card-text">심플한 반바지와 단색 카라티의 기본조합에 <br> 베스트로 포인트를 주어 코디해보세요</p>
+                                                        
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="MainSliderMeta">
-                                            <div class="MainSliderMetaAuto">
-                                                <button type="button" class="MainSliderMetaAuto-play">
-                                                    <span class="ab-text"></span>
-                                                </button>
-                                                <button type="button" class="MainSliderMetaAuto-pause">
-                                                    <span class="ab-text"></span>
-                                                </button>
-                                            </div>
-                                            <div class="MainSliderMetaPaging">
-                                                <div class="MainSliderMetaPaging-bar"></div>
-                                                <div class="swiper-pagination"></div>
-                                            </div>
-                                            <div class="MainSliderMetaArrow">
-                                                <div class="swiper-button-prev MainSliderMeta-prev">
-                                                    <span class="ab-text"></span>
+                                        <div class="card mb-3" style="max-width: 700px;" id="card2">
+                                            <div class="row g-0">
+                                                <div class="col-md-4" >
+                                                    <img src="./image/codi/male/23-27/2.png" class="img-fluid rounded-start" alt="...">
                                                 </div>
-                                                <div class="swiper-button-next MainSliderMeta-next">
-                                                    <span class="ab-text"></span>
+                                                <div class="col-md-8">
+                                                    <div class="card-body">
+                                                        <h5 class="card-title">no.2</h5>
+                                                        <p class="card-text">베이지색 슬랙스와 흰색 무지티 혹은 적당한 프린트티에 <br>스니커즈까지 코디해보세요</p>
+                                                        
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="card mb-4" style="max-width: 700px;" id="card3">
+                                            <div class="row g-0">
+                                                <div class="col-md-4">
+                                                    <img src="./image/codi/male/23-27/3.png" class="img-fluid rounded-start" alt="...">
+                                                </div>
+                                                <div class="col-md-8">
+                                                    <div class="card-body">
+                                                        <h5 class="card-title">no.3</h5>
+                                                        <p class="card-text">언제나 옳은 연청에 샌들!!<br>심플한 티셔츠와 같이 코디해보세요</p>
+                                                        
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="card mb-3" style="max-width: 700px;" id="card4">
+                                            <div class="row g-0">
+                                                <div class="col-md-4">
+                                                    <img src="./image/codi/male/23-27/4.png" class="img-fluid rounded-start" alt="...">
+                                                </div>
+                                                <div class="col-md-8">
+                                                    <div class="card-body">
+                                                        <h5 class="card-title">no.4</h5>
+                                                        <p class="card-text">생지데님에 어두운 프린트티 <br>그리고 볼캡에 편한 운동화로 코디해보세요</p>
+                                                        
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="card mb-3" style="max-width: 700px;" id="card5">
+                                            <div class="row g-0">
+                                                <div class="col-md-4">
+                                                    <img src="./image/codi/male/23-27/5.png" class="img-fluid rounded-start" alt="...">
+                                                </div>
+                                                <div class="col-md-8">
+                                                    <div class="card-body">
+                                                        <h5 class="card-title">no.5</h5>
+                                                        <p class="card-text">와이드핏 진에 흰색티셔츠로 코디해보세요</p>
+                                                        
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
 
+                                    </div>
+                                </div>
                             </div>
                         </div>
-
-
                     </div>
                 </div>
-
-                <div class="scroll-mouse">
-                    <a href="#cody" class="wow bounceInDown" data-wow-duration="1.4s" data-wow-delay="1.4s">
-                        <div class="scroll-icon"></div>
-                    </a>
-                </div>
-
             </div>
-
         </div>
 
-
-        <footer id="footer">
-            <div class="layout con">
-                <div class="menu">
-                    <ul class="row">
-                        <li class="cell"><a href="http://localhost:8000/">룩포웨더</a></li>
-                        <li class="cell"><a href="/weather">날씨정보</a></li>
-                        <li class="cell"><a href="/ootd">코디리뷰</a></li>
-                        <li class="cell"><a href="/memo">커뮤니티</a></li>
-                        <li class="cell"><a href="/mypage">마이페이지</a></li>
-                    </ul>
-                </div>
-                <div class="address">
-                    <div class="line_txt">조장 : 함유정</div>
-                    <div>팀원 : 방장원, 서윤지, 정예현, 최상훈</div>
-                </div>
-                <div class="copy">
-                    Copyrightⓒ 록포웨더. All Rights Reserved.
-                </div>
-                <div class="site-box row">
-                    <div class="relate-site cell">
-                        <div class="box-1">
-                            패밀리사이트
-                        </div>
-                        <ul>
-                            <a href="https://github.com/team5-LookForWeather" target="_blank" onclick="return false">
-                                <li>룩포웨더 깃헙 사이트</li>
-                            </a>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </footer>
+        <%- include('./footer.ejs') %>
     </div>
 
     <script>

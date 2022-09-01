@@ -636,6 +636,24 @@ fieldset{
     display:flex;
     flex-direction: column;
     padding:0 20px 20px 20px;
+	max-height:304px;
+    transition:max-height 0.4s ease-in-out !important;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+.card::-webkit-scrollbar{
+	display:none;
+}
+
+.card_two{
+    background:var(--white-color);
+    box-shadow:0 3px 3px 0 rgb(0 0 0 / 15%), 0 5px 15px 0 rgb(0 0 0 / 20%);
+    border-radius: 20px;
+    overflow: hidden;
+    display:flex;
+    flex-direction: column;
+    padding:0 20px 20px 20px;
 }
 
 .card-header{
@@ -676,9 +694,16 @@ fieldset{
     align-items: center;
     justify-content: flex-start;
     border-top:1px solid #eff1f6;
-    padding:1rem 0 0.5rem 0;
+    padding:0.5rem 0 0.5rem 0;
     font-family: var(--font-Light);
-	justify-content: right;
+	justify-content: left;
+}
+
+p.card-txt{
+	font-family: var(--font-Light);
+	color:#676767;
+	line-height: 1.5;
+	margin-bottom:0;
 }
 
 
@@ -732,24 +757,28 @@ button#deleteBtn{
 
 
 .post_comment{
-    padding:1.2rem 0 0;
+    /* padding:1.2rem 0 0; */
+    padding:0.5rem 0 0;
 }
 
 
-input#post_comment_input:focus ~ button.post_comment_btn{
+input#post_comment_input:focus ~ button.post_comment_btn,
+input#post_comment_input:focus ~ button.post_comment_btn2,
+input#post_comment_input:focus ~ button.post_comment_btn3{
     pointer-events: initial;
     opacity:1;
 }
 
-#post_comment_input {
-    width:87%;
+#post_comment_input, #post_comment_input2, #post_comment_input3 {
+    /* width:87%; */
+    width:85%;
     border: none;
     outline: none;
     background-color: var(--lightgray-color);
     /* padding: 10px 10px; */
 }
 
-button.post_comment_btn{
+button.post_comment_btn, button.post_comment_btn2, button.post_comment_btn3{
     width:50px;
     text-align: right;
     color:var(--main-color);
@@ -761,14 +790,15 @@ button.post_comment_btn{
     opacity: 0.6;
 }
 
-.user_id{
+
+.user_id, span.user_id2, span.user_id3{
     font-family: var(--font-Light);
     font-size:12px;
     line-height: 1.5;
     /* margin-right:10px; */
 }
 
-span.comment_contents{
+span.comment_contents, span.comment_contents2, span.comment_contents3{
     font-family: var(--font-Light);
     font-size:12px;
     line-height: 1.5;    

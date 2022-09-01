@@ -745,6 +745,7 @@ footer {
 	text-align: right;
 	display:flex;
 	justify-content: right;
+	margin-bottom:4%;
 }
 
 .uploadLink{
@@ -753,7 +754,7 @@ footer {
 	font-family: var(--font-Light);
 	line-height: 58px;
 	padding:0 40px;
-	border-radius: 20px;
+	/* border-radius: 20px; */
 	cursor: pointer;
 }
 
@@ -776,7 +777,7 @@ section{
     background:var(--white-color);
     border-radius: 20px;
     padding:2% 5%;
-	height:1500px;
+	height:700px;
 }
 
 
@@ -816,7 +817,7 @@ section{
 	MainSectionBody
 =========================================================*/
 .MainSectionBody{
-	/* float:left; */
+	float:left;
 	width:calc(100%);
 	position:relative;
 }
@@ -865,15 +866,13 @@ section{
 	MainInfluencerList
 =========================================================*/
 .MainInfluencerList-list{
-	/* margin:-16px -16px; */
-	margin-top:2%;
+	margin:-16px -16px;
 	overflow:hidden;
 }
 
 .MainInfluencerList-item{
 	padding:16px 16px;
-	/* width:20%; */
-	width:25%;
+	width:20%;
 	float:left;
 }
 
@@ -885,6 +884,7 @@ section{
 	overflow:hidden;
 	display:block;
 	position:relative;
+	cursor: pointer;
 }
 
 .MainInfluencerItemThumb{
@@ -932,11 +932,16 @@ section{
 .MainInfluencerItemName{
 	position:absolute;
 	bottom:0;
-	left:50px;
+	/* left:50px; */
+	left:0;
 	right:0;
 	padding:23px 29px;
 	z-index:5;
 	overflow:hidden;
+
+	width:100%;
+	height:100%;
+	border-radius: 20px;
 }
 
 
@@ -945,7 +950,8 @@ section{
 	content:"";
 	background:var(--main-color);
 	width:100%;
-	height:110%;
+	/* height:110%; */
+	height:100%;
 	position:absolute;
 	top:0;
 	left:0;
@@ -961,21 +967,24 @@ section{
 	content:"";
 	width:19px;
 	height:12px;
-	background-image:url(../image/svg/ico-button-arrow-h.svg);
-	background-size:19px 12px;
+	/* background-image:url(../image/svg/ico-button-arrow-h.svg); */
+	background-size:30px 30px;
 	position:absolute;
-	top:50%;
+	/* top:50%; */
+	top:90%;
 	right:29px;
 	transform:translateY(-50%);
 	opacity:0;
-	transition-property: opacity;
+	/* transition-property: opacity;
     transition-duration: 0.3s;
-	transition-timing-function:ease-out;
+	transition-timing-function:ease-out; */
 }
 
 .MainInfluencerItemName-inner{
 	display:table;
 	width:100%;
+
+	padding:10%;
 }
 
 .MainInfluencerItemNameOver{
@@ -986,10 +995,11 @@ section{
 .MainInfluencerItemNameText{
 	display:table-cell;
 	vertical-align:middle;
-	width:1%;
-	transition-property: width;
+	width:100%;
+
+	/* transition-property: width;
     transition-duration: 0.3s;
-	transition-timing-function:ease-out;
+	transition-timing-function:ease-out; */
 }
 
 .MainInfluencerItemNameText-text{
@@ -998,13 +1008,57 @@ section{
 	font-family: var(--font-Medium);
 	line-height:1.2em;
 	color:var(--white-color);
-	font-weight:bold;
-	white-space:nowrap;
-	transition-property: opacity;
+	/* white-space:nowrap; */
+	/* transition-property: opacity;
     transition-duration: 0.3s;
-	transition-timing-function:ease-out;
+	transition-timing-function:ease-out; */
 	opacity:0;
 }
+
+
+/* 2022-08-31 */
+#ootd-id{
+	font-size:18px;
+}
+
+#ootd-category{
+	padding-top:10px;
+	font-size:12px;
+	font-family: var(--font-Light);	
+}
+
+#ootd-content{
+	padding-top:20px;
+	font-family: var(--font-Light);
+	line-height:1.2em;
+	color:var(--white-color);	
+	word-break:break-all;
+}
+
+
+/* 하트 */
+.course_card_control{
+	position:absolute;
+	right:15px;
+	bottom:15px;
+	text-align: center;
+	padding-right:0.15rem;
+	padding-bottom:0.5rem;
+}
+
+img.comment-heart{
+	width:22px;
+	height:20px;
+	cursor: pointer;
+	color:#fff;
+}
+
+img.comment-heart-liked{
+	width:22px;
+	height:20px;
+}
+
+
 
 .InfluencerItemBadge{
 	display:block;
@@ -1078,8 +1132,10 @@ section{
 	}
 
 	.MainInfluencerItemName{
-		left:2.6041vw;
-		padding:1.19791vw 1.510416vw;
+		/* left:2.6041vw; */
+		left:0;
+		/* padding:1.19791vw 1.510416vw; */
+		padding:0;
 	}
 
 	.MainInfluencerItemName:after{
@@ -1264,7 +1320,6 @@ section{
 
 @media screen and (min-width:1025px){
 	.MainInfluencerItem-link:hover .MainInfluencerTag{
-		/* transform:translateX(-125%);  */
 		transform:translateX(-180%); 
 	}	
 }

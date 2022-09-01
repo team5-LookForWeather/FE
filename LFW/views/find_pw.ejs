@@ -26,7 +26,7 @@
                 method: 'post',
                 url: 'http://localhost:8000/user/find_pw',
                 data: {
-                    id: form.name.value,
+                    id: form.id.value,
                     email: form.email.value
                 }
             }).then((rep) => {
@@ -35,10 +35,9 @@
                 console.log(data);
                 if (data.return) {  // 회원이 맞을 경우, 로그인 처리 + pw변경
                     alert("비밀번호를 변경해주세요");
-                    //!  user/find_pw/pw_update 경로로 post요청 필요
-                    // document.location.href = 'http://localhost:8000/user/find_pw/pw_update';
+                    document.location.href = '/user/update_pw';
                 } else {            // 회원이 아닌 경우
-                    alert(data.msg);
+                    alert('비밀번호를 찾을 수 없습니다.');
                     form.reset();
                 }
             })

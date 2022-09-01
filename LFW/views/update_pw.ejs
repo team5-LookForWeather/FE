@@ -23,15 +23,15 @@
             }
 
             axios({
-                method: 'post',
-                url: 'http://localhost:8000/user/updated_pw',
+                method: 'patch',
+                url: '/user/updated_pw',
                 data: {
-                    pw : form.pswd1.value
+                    pw: form.pswd1.value
                 }
             }).then((rep) => {
                 return rep.data;
             }).then((data) => {
-                alert('비밀번호 변경완료');
+                alert('비밀번호가 성공적으로 변경되었습니다.');
                 document.location.href = "/";
             })
         }

@@ -5,9 +5,7 @@ const path = require('path');
 
 /* 세션 확인 미들웨어 */
 function checkSession(req, res, next) {
-
-    if (req.session.user != undefined ) next();
-
+    if (req.session.user != undefined) next();
     else {
         res.redirect('/user/login');
     }
@@ -45,8 +43,8 @@ UserRouter.post("/membership", user.post_membership);   //회원가입 실행
 
 // profile 관련
 UserRouter.get("/profile", checkSession, user.profile); // profile 화면
-UserRouter.patch("/update", user.update);    // 회원정보 수정
-UserRouter.delete("/delete", user.delete);  // 회원탈퇴
+UserRouter.post("/update", user.update);    // 회원정보 수정
+UserRouter.post("/delete", user.delete);  // 회원탈퇴
 
 
 

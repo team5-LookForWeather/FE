@@ -24,7 +24,7 @@
 
             axios({
                 method: 'post',
-                url: 'http://localhost:8000/user/login',
+                url: '/user/login',
                 data: {
                     id: form.id.value,
                     pw: form.pw.value
@@ -33,10 +33,10 @@
                 return rep.data;
             }).then((data) => {
                 if (data.return) {
-                    alert(data.msg);
+                    alert('로그인 성공');
                     document.location.href = "/";
                 } else {
-                    alert(data.msg);
+                    alert('로그인 실패! 다시 확인해주세요');
                     form.reset();
                 }
             })
@@ -100,8 +100,7 @@
                                     찾기</a></li>
                             <li><a target="_blank" href="/user/find_pw" class="find_text">비밀번호
                                     찾기</a></li>
-                            <li><a target="_blank" href="/user/membership"
-                                    class="find_text">회원가입</a></li>
+                            <li><a target="_blank" href="/user/membership" class="find_text">회원가입</a></li>
 
                         </ul>
                     </div>

@@ -36,7 +36,7 @@
                                     Today's OOTD
                                 </h2>
                                 <div class="MainSectionHeader-sub">
-                                    여러분의 오늘의 코디를 등록해보세요.
+
                                 </div>
                             </div>
 
@@ -53,24 +53,40 @@
                                         <% for ( let i=0; i < ootd.length; i++ ) { %>
                                             <li class="MainInfluencerList-item">
                                                 <div class="MainInfluencerItem">
-                                                    <a href="#" class="MainInfluencerItem-link">
+                                                    <span href="#" class="MainInfluencerItem-link">
                                                         <div class="InfluencerItemBadge">
                                                         </div>
 
                                                         <div class="MainInfluencerItemThumb">
-                                                            <img width="336" height="433"
-                                                                src="/image/ootd/<%=ootd[i].OOTD_id%>.jpg"
-                                                                class="MainInfluencerItemThumb-img wp-post-image" alt=""
-                                                                loading="lazy" />
+                                                            <img width="100%" height="360" src="/image/ootd/<%=ootd[i].OOTD_id%>.jpg" 
+                                                                class="MainInfluencerItemThumb-img wp-post-image" alt="" loading="lazy" />
                                                         </div>
 
                                                         <div class="MainInfluencerItemName">
                                                             <div class="MainInfluencerItemName-inner">
                                                                 <span class="MainInfluencerItemNameOver"></span>
                                                                 <span class="MainInfluencerItemNameText">
-                                                                    <span class="MainInfluencerItemNameText-text">
+                                                                    <span id="ootd-id" class="MainInfluencerItemNameText-text">
                                                                         <%=ootd[i].nickname%>
                                                                     </span>
+
+                                                                    <span id="ootd-category" class="MainInfluencerItemNameText-text">
+                                                                        <%=ootd[i].style_tag%>
+                                                                    </span>
+
+                                                                    <span id="ootd-content" class="MainInfluencerItemNameText-text">
+                                                                        <%=ootd[i].comment%>
+                                                                    </span>                                                                    
+
+                                                                    <span id="ootd-heart" class="MainInfluencerItemNameText-text">
+                                                                        <div class="course_card_control active_btn comment-like">
+                                                                            <div class="tooltip is-tooltip-warning is-tooltip-left course-card__button-like add_cart e-like" data-tooltip="좋아요">
+                                                                                <img class="comment-heart" src="./image/icon/heart_w.png" alt="하트" style="display: inline-block;">
+                                                                                <img class="comment-heart-liked" src="./image/icon/liked.png" alt="좋아요된하트" style="display: none;">
+                                                                            </div>
+                                                                        </div>                                                                 
+                                                                    </span>                                                                    
+
                                                                 </span>
                                                             </div>
                                                         </div>
@@ -89,7 +105,7 @@
                                                                 </ul>
                                                             </div>
                                                         </div> <!-- .MainInfluencerTag -->
-                                                    </a>
+                                                    </span>
                                                 </div>
                                             </li>
 

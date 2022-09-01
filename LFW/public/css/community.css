@@ -89,12 +89,12 @@ footer {
     z-index:20;
 	
 	/* 컨텐츠 적을 시 absolute */
-	position: absolute;
+	/* position: absolute;
 	left:0;
-	bottom:0;
+	bottom:0; */
 
 	/* 컨텐츠 많을 시 relative */
-	/* position:relative; */
+	position:relative;
 }
 
 
@@ -678,6 +678,7 @@ fieldset{
     border-top:1px solid #eff1f6;
     padding:1rem 0 0.5rem 0;
     font-family: var(--font-Light);
+	justify-content: right;
 }
 
 
@@ -691,6 +692,11 @@ fieldset{
     padding:0;
     cursor: pointer;
     /* outline: 0; */
+}
+
+/* 수정&삭제 */
+button#deleteBtn{
+	margin-left:10px;
 }
 
 .feed_info{

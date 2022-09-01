@@ -1,8 +1,7 @@
 const models = require("../model");
-const { sequelize } = require("../model/index");
 
 /* Community 페이지 */
-exports.index = (req, res) => {
+exports.index = async (req, res) => {
     var data = {};
     if (req.session.user != undefined) {
         data["isLogin"] = true;
@@ -10,7 +9,10 @@ exports.index = (req, res) => {
     }
     else data["isLogin"] = false;
 
-    res.render("community", data);
+    let query = "select * from Memo inner join user on Memo.user_id = user.user_id;";
+
+    data["memo"] = await models.sequelize.query(query, { type: models.sequelize.QueryTypes.SELECT });
+    await res.render("community", data);
 
 
     // // 맨위 이동 및 표시 위해 보내줄 memo 데이터 (게시물없어도 나와야함)

@@ -34,13 +34,14 @@ app.use(
 
 
 /* 라우터 */
-const { UserRouter, MainRouter, WeatherRouter, OotdRouter, MemoRouter } = require('./routes');
+const { UserRouter, MainRouter, WeatherRouter, OotdRouter, MemoRouter, MypageRouter } = require('./routes');
 
 app.use('/user', UserRouter);/* User 관련 경로 */
 app.use('/', MainRouter);/* 메인페이지 관련 경로 */
 app.use('/weather', WeatherRouter);/* Weather 관련 경로 */
 app.use('/ootd', OotdRouter);/* OOTD 관련 경로 */
 app.use('/memo', MemoRouter);/* Memo 관련 경로 */
+app.use('/mypage', MypageRouter);/* Memo 관련 경로 */
 
 
 app.listen(8000, () => {

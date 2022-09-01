@@ -16,11 +16,11 @@ exports.post_login = (req, res) => {
             req.session.regenerate(function () {
                 req.session.user = req.body.id;     //! 세션 셍성
                 req.session.save(function () {      //! 세션 저장
-                    res.send({ return: true, msg: '로그인 성공' });
+                    res.send({ isLogin: true, user: req.session.user, return: true });
                 })
             })
         } else {    // 로그인 실패
-            res.send({ return: false, msg: '로그인 실패!' });
+            res.send({ return: false });
         }
     })
 }
@@ -36,42 +36,39 @@ exports.logout = (req, res) => {
 
 
 
-
 // 아이디 찾기 화면
 exports.find_id = (req, res) => {
-    res.render("find_id.ejs");
+    res.render('find_id');
 }
 // 아이디 찾기 실행
 exports.post_find_id = (req, res) => {
     models.User.findOne({
         where: { name: req.body.name, email: req.body.email }
     }).then((result) => {
-        // console.log('아이디찾기 실행 :', result);
         if (result != null) {
             res.send({ return: true, user_id: result.user_id });
         } else {
-            res.send({ return: false, msg: '아이디를 찾을 수 없습니다.' });
+            res.send({ return: false });
         }
     })
 }
 
 // 비밀번호 찾기 화면
 exports.find_pw = (req, res) => {
-    res.render("find_pw");
+    res.render('find_pw');
 }
 // 비밀번호 찾기 실행
 exports.post_find_pw = (req, res) => {
     models.User.findOne({
-        where: { user_id: req.body.user_id, email: req.body.email }
+        where: { user_id: req.body.id, email: req.body.email }
     }).then((result) => {
         if (result != null) {
             req.session.user = req.body.id;    //! 세션 셍성
             req.session.save(function () {          //! 세션 저장
-                // 로그인처리 & pw변경 페이지에 user_id 전달
-                res.send({ isLogin: true, return: true, msg: '로그인 성공' });
+                res.send({ isLogin: true, return: true });
             })
         } else {
-            res.send({ return: false, msg: '비밀번호를 찾을 수 없습니다.' });
+            res.send({ return: false });
         }
     })
 }
@@ -89,7 +86,7 @@ exports.updated_pw = (req, res) => {
 
     models.User.update(newPW, { where: { user_id: req.session.user } })
         .then((result) => {
-            res.send({ pw: result.pw });
+            res.send({ isLogin: true, return: true });
         });
 }
 
@@ -145,15 +142,12 @@ exports.post_membership = (req, res) => {
         email: req.body.email,
         gender: req.body.gender,
         age: req.body.age,
-        // category1: req.body.category1,
-        // category2: req.body.category2,
-        // category3: req.body.category3
     }
 
     models.User.create(user)
         .then((result) => {
             console.log(result);
-            res.send({ return: result, msg: '회원가입을 축하드립니다.' });
+            res.send({ return: result });
         })
 }
 
@@ -162,37 +156,66 @@ exports.post_membership = (req, res) => {
 
 // profile 화면
 exports.profile = (req, res) => {
-    var data = {};
-    if (req.session.user != undefined) data["isLogin"] = true;
-    else data["isLogin"] = false;
 
     models.User.findOne({ where: { user_id: req.session.user } })
         .then((result) => {
-            res.render("profile", { isLogin: true, user: req.session.user, user_id: result.user_id, pw: result.pw, name: result.name, tel: result.tel, email: result.email });
+
+            var data = {};
+            if (req.session.user != undefined) {
+                data["isLogin"] = true;
+                data["user"] = req.session.user;
+                data['id'] = result.user_id;
+                data['pswd1'] = result.pw;
+                data['name'] = result.name;
+                data['nick'] = result.nickname;
+                data['mobile'] = result.tel;
+                data['email'] = result.email;
+                data['gender'] = result.gender;
+                data['age'] = result.age;
+
+            }
+            else data["isLogin"] = false;
+
+            res.render("profile", data);
         })
 }
 
 // 회원정보수정
 exports.update = (req, res) => {
-    let user = {
-        pw: req.body.pw,
-        name: req.body.name,
-        tel: req.body.tel,
-        email: req.body.email
-    }
-    models.User.update(user, { where: { id: req.body.id } })
+    models.User.findOne({ where: { user_id: req.session.user } })
         .then((result) => {
-            res.send("회원정보가 수정되었습니다.")
+            let user = {
+                user_id: req.session.user,
+                pw: result.pw,
+                name: result.name,
+                nickname: result.nickname,
+                tel: result.tel,
+                email: result.email,
+                gender: result.gender,
+                age: result.age
+            }
+
+            if (req.body.pw) user.pw = req.body.pw;
+            if (req.body.nick) user.nickname = req.body.nick;
+            if (req.body.tel) user.tel = req.body.tel;
+            if (req.body.email) user.email = req.body.email;
+            if (req.body.age) user.age = req.body.age;
+
+            models.User.update(user, { where: { user_id: req.session.user } })
+                .then((result) => {
+                    res.send(true);
+                })
         })
 }
 
 // 회원탈퇴
 exports.delete = (req, res) => {
     console.log(req.body);
-    models.User.destroy({ where: { id: req.body.id } })
+
+    models.User.destroy({ where: { user_id: req.session.user } })
         .then((result) => {
             req.session.destroy(function () {
-                res.render('/', { isLogin: false });
+                res.send({ isLogin: false });
             });
         })
 }

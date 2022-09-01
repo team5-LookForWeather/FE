@@ -53,7 +53,7 @@ CREATE TABLE `OOTD_like` (
 	`OOTD_id`	int	NOT NULL,
 	`user_id`	varchar(15)	NOT NULL,
     foreign key (user_id) references User(user_id),
-    foreign key (OOTD_id) references OOTD(OOTD_id),
+    foreign key (OOTD_id) references OOTD(OOTD_id)
 );
 
 CREATE TABLE `Memo` (

@@ -62,14 +62,24 @@ function weatherwriter(item) {
     return currentTMP;
 };// weather writers
 
+let thetimearr = []
+for (var i=0; i<12; i++ ){
+    var thetime = hours + i;
+    
+    if (thetime >24) {
+        thetime = thetime-24;
+    }
+    thetimearr.push(thetime);
+}
+
+
 function drawWeatherChart(arr) {
     var context = document.getElementById('myChart').getContext('2d');
     new Chart(context, {
         type: 'line', // 차트의 형태
         data: { // 차트에 들어갈 데이터
             labels: //x 축
-                [hours + "시", hours + 1 + "시", hours + 2 + "시", hours + 3 + "시", hours + 4 + "시", hours + 5 + "시", hours + 6 + "시", +hours + 7 + "시", hours + 8 + "시", hours + 9 + "시", hours + 10 + "시", hours + 11 + "시"
-                ],
+                [thetimearr[0] + "시", thetimearr[1] + "시" , thetimearr[2] + "시", thetimearr[3] + "시", thetimearr[4] + "시", thetimearr[5] + "시", thetimearr[6] + "시", thetimearr[7] + "시", thetimearr[8] + "시",  thetimearr[9] + "시", thetimearr[10] + "시", thetimearr[11] + "시"                ],
             fontColor: "", fontSize: 18,
             datasets: //데이터
                 [{ 
@@ -83,6 +93,7 @@ function drawWeatherChart(arr) {
                 }]
         },
 
+        
         
 
         options: {

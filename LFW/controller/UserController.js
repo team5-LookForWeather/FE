@@ -10,13 +10,21 @@ exports.post_login = (req, res) => {
     models.User.findOne({
         where: { user_id: req.body.id, pw: req.body.pw }
     }).then((result) => {
-        console.log(result);
-
+       
         if (result != null) {   // 로그인 성공
-            req.session.regenerate(function () {
-                req.session.user = req.body.id;     //! 세션 셍성
+            req.session.regenerate(function () {//! 세션 생성
+                req.session.user = req.body.id;
+                req.session.gender = result.gender;
+                
+                var data = {};
+                data["isLogin"] = true;
+                data['return'] = true;
+                data["user"] = req.session.user;
+                data['gender'] = result.gender;
+
                 req.session.save(function () {      //! 세션 저장
-                    res.send({ isLogin: true, user: req.session.user, return: true });
+                    console.log(data);
+                    res.send(data);
                 })
             })
         } else {    // 로그인 실패

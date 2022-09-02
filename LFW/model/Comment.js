@@ -1,20 +1,20 @@
-const OOTD_comment = (Sequelize, DataTypes) => {
+const Comment = (Sequelize, DataTypes) => {
 
     const model = Sequelize.define(
-        'OOTD_comment',
+        'Comment',
         {
-            comment_id : {
+            comment_id: {
                 type: DataTypes.INTEGER,
                 autoIncrement: true,
                 allowNull: false,
                 primaryKey: true
             },
-            user_id: {
-                type: DataTypes.STRING(15),
+            comment_date: {
+                type: DataTypes.DATE,
                 allowNull: false
             },
-            OOTD_id: {
-                type: DataTypes.INTEGER,
+            user_id: {
+                type: DataTypes.STRING(15),
                 allowNull: false
             },
             comment: {
@@ -22,30 +22,27 @@ const OOTD_comment = (Sequelize, DataTypes) => {
                 allowNull: false
             },
             create_time: {
-                type: DataTypes.DATE,
+                type: "TIMESTAMP",
+                defaultValue: Sequelize.literal("CURRENT_TIMESTAMP"),
                 allowNull: false
             },
             update_time: {
-                type: DataTypes.DATE,
-                allowNull: true,
-                defaultValue: ""
+                type: "TIMESTAMP",
+                defaultValue: Sequelize.literal('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'),
+                allowNull: false
             },
-            delete_time: {
-                type: DataTypes.DATE,
-                allowNull: true,
-                defaultValue: ""
-            },
-            
+
         },
         {
             timestamps: false,
-            tableName: 'OOTD_comment',
+            tableName: 'Comment',
             freezeTableName: true,
             charset: "utf8",
+
             collate: "utf8_general_ci"
         }
     );
     return model;
 }
 
-module.exports = OOTD_comment;
+module.exports = Comment;

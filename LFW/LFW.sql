@@ -36,8 +36,7 @@ CREATE TABLE `Codi` (
 
 CREATE TABLE `OOTD` (
 	`OOTD_id`	int	NOT NULL primary key auto_increment	COMMENT 'ootd 게시글 식별값',
-	`user_id`	varchar(15)	NOT NULL,
-	`OOTD_img` 	varchar(200) NULL COMMENT '이미지 파일명.확장자',	
+	`user_id`	varchar(15)	NOT NULL,	
 	`style_tag`	varchar(100) NULL,
 	`content`	mediumtext	NULL	COMMENT '옷에 대한 간략한 정보 적게',
 	`heart`	int	NULL	DEFAULT 0 COMMENT '좋아요 기능',
@@ -95,8 +94,8 @@ insert into User(user_id, pw, name, nickname, tel, email, gender, age) values('i
 insert into User(user_id, pw, name, nickname, tel, email, gender, age) values('sesac','1234','sesac','sesac','010-1234-5678','sesac@naver.com','F',33);		
 
 -- OOTD게시물 테스트
-insert into OOTD(`OOTD_id`, `user_id`, `OOTD_img`, `style_tag`, `content`, `heart`) values(1,'1','1.png','#캐주얼','화창한 날씨에 입는 캐주얼룩','3');	
-insert into OOTD(`OOTD_id`, `user_id`, `OOTD_img`, `style_tag`, `content`, `heart`) values(2,'idle','2.png','#스포츠#스트릿','운동하기 딱조아','5');
+insert into OOTD(`OOTD_id`, `user_id`, `style_tag`, `content`, `heart`) values(1,'1','#캐주얼','화창한 날씨에 입는 캐주얼룩','3');	
+insert into OOTD(`OOTD_id`, `user_id`, `style_tag`, `content`, `heart`) values(2,'idle','#스포츠#스트릿','운동하기 딱조아','5');
 
 
 -- Community - Memo 테스트

@@ -17,7 +17,7 @@
     <script defer src="./js/slider/main.js"></script>
     <script defer src="./js/common.js"></script>
     <script defer src="./js/weather.js"></script>
-    <script defer src="./js/weather2.js"></script> 
+    <script defer src="./js/weather2.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
     <script>
         function getLocation() {
@@ -36,7 +36,7 @@
             // 사용자 위경도 전송
             await axios({
                 method: 'post',
-                url: "//localhost:8000/weather/getlocation",
+                url: "/weather/getlocation",
                 data: {
                     latitude: latitude,
                     longitude: longitude
@@ -77,7 +77,7 @@
 
         window.onload = function () { getLocation(); timereset(); }
          // 페이지로드하자마자 실행함수!!
-    
+
     </script>
 
     <title>메인</title>
@@ -90,119 +90,119 @@
             <%- include('./header.ejs') %>
 
 
-            <div class="site">
-                <div id="site-content" class="site-content">
-                    <div class="siteMain">
-                        <div class="MainBanner">
-                            <div class="site-container">
-                                <div class="MainSlider">
+                <div class="site">
+                    <div id="site-content" class="site-content">
+                        <div class="siteMain">
+                            <div class="MainBanner">
+                                <div class="site-container">
+                                    <div class="MainSlider">
 
-                                    <div class="MainSliderText">
-                                        <div class="MainSliderText-container swiper-container">
-                                            <div class="swiper-wrapper MainSliderText-wrapper">
-                                                <!-- 이 부분에 날씨 정보 들어가야 한다. -->
-                                                <div class="w-box">
-                                                    <div class="weather">
-                                                        <!-- <button type="button" onclick="getLocation();">현재위치 가져오기</button> -->
-                                                        <!-- <button type="button" onclick="reloadDivArea();">새로고침</button> -->
-                                                        <div id="icon"></div>
-                                                        <div id="time">
+                                        <div class="MainSliderText">
+                                            <div class="MainSliderText-container swiper-container">
+                                                <div class="swiper-wrapper MainSliderText-wrapper">
+                                                    <!-- 이 부분에 날씨 정보 들어가야 한다. -->
+                                                    <div class="w-box">
+                                                        <div class="weather">
+                                                            <!-- <button type="button" onclick="getLocation();">현재위치 가져오기</button> -->
+                                                            <!-- <button type="button" onclick="reloadDivArea();">새로고침</button> -->
+                                                            <div id="icon"></div>
+                                                            <div id="time">
+                                                            </div>
+                                                            <div id="temp"></div>
+                                                            <div class="lh-box">
+                                                                <div id="lowtemp"></div>
+                                                                <div id="hightemp"></div>
+                                                            </div>
+                                                            <div id="humidity">습도 : </div>
                                                         </div>
-                                                        <div id="temp"></div>
-                                                        <div class="lh-box">
-                                                            <div id="lowtemp"></div>
-                                                            <div id="hightemp"></div>
+
+
+                                                        <div>
+                                                            <div class="chart-box">
+                                                                <!--차트가 그려질 부분-->
+                                                                <canvas id="myChart"></canvas>
+                                                            </div>
                                                         </div>
-                                                        <div id="humidity">습도 : </div>
                                                     </div>
+                                                </div>
+                                            </div>
+                                        </div>
 
 
-                                                    <div>
-                                                        <div class="chart-box">
-                                                            <!--차트가 그려질 부분-->
-                                                            <canvas id="myChart"></canvas>
-                                                        </div>
+                                        <div class="MainSliderThumb">
+                                            <div class="MainSliderThumb-container swiper-container">
+                                                <div class="swiper-wrapper MainSliderThumb-wrapper">
+                                                    <div class="swiper-slide MainSliderThumb-slide">
+                                                        <img class="img_border codiImg" src="./image/slider/img01.png"
+                                                            alt="img01">
+                                                    </div>
+                                                    <div class="swiper-slide MainSliderThumb-slide">
+                                                        <img class="img_border codiImg" src="./image/slider/img02.png"
+                                                            alt="img02">
+                                                    </div>
+                                                    <div class="swiper-slide MainSliderThumb-slide">
+                                                        <img class="img_border codiImg" src="./image/slider/img03.png"
+                                                            alt="img03">
+                                                    </div>
+                                                    <div class="swiper-slide MainSliderThumb-slide">
+                                                        <img class="img_border codiImg" src="./image/slider/img03.png"
+                                                            alt="img04">
+                                                    </div>
+                                                    <div class="swiper-slide MainSliderThumb-slide">
+                                                        <img class="img_border codiImg" src="./image/slider/img03.png"
+                                                            alt="img05">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="MainSliderMeta">
+                                                <div class="MainSliderMetaAuto">
+                                                    <button type="button" class="MainSliderMetaAuto-play">
+                                                        <span class="ab-text"></span>
+                                                    </button>
+                                                    <button type="button" class="MainSliderMetaAuto-pause">
+                                                        <span class="ab-text"></span>
+                                                    </button>
+                                                </div>
+                                                <div class="MainSliderMetaPaging">
+                                                    <div class="MainSliderMetaPaging-bar"></div>
+                                                    <div class="swiper-pagination"></div>
+                                                </div>
+                                                <div class="MainSliderMetaArrow">
+                                                    <div class="swiper-button-prev MainSliderMeta-prev">
+                                                        <span class="ab-text"></span>
+                                                    </div>
+                                                    <div class="swiper-button-next MainSliderMeta-next">
+                                                        <span class="ab-text"></span>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
 
-
-                                    <div class="MainSliderThumb">
-                                        <div class="MainSliderThumb-container swiper-container">
-                                            <div class="swiper-wrapper MainSliderThumb-wrapper">
-                                                <div class="swiper-slide MainSliderThumb-slide">
-                                                    <img class="img_border codiImg" src="./image/slider/img01.png"
-                                                        alt="img01">
-                                                </div>
-                                                <div class="swiper-slide MainSliderThumb-slide">
-                                                    <img class="img_border codiImg" src="./image/slider/img02.png"
-                                                        alt="img02">
-                                                </div>
-                                                <div class="swiper-slide MainSliderThumb-slide">
-                                                    <img class="img_border codiImg" src="./image/slider/img03.png"
-                                                        alt="img03">
-                                                </div>
-                                                <div class="swiper-slide MainSliderThumb-slide">
-                                                    <img class="img_border codiImg" src="./image/slider/img03.png"
-                                                        alt="img04">
-                                                </div>
-                                                <div class="swiper-slide MainSliderThumb-slide">
-                                                    <img class="img_border codiImg" src="./image/slider/img03.png"
-                                                        alt="img05">
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="MainSliderMeta">
-                                            <div class="MainSliderMetaAuto">
-                                                <button type="button" class="MainSliderMetaAuto-play">
-                                                    <span class="ab-text"></span>
-                                                </button>
-                                                <button type="button" class="MainSliderMetaAuto-pause">
-                                                    <span class="ab-text"></span>
-                                                </button>
-                                            </div>
-                                            <div class="MainSliderMetaPaging">
-                                                <div class="MainSliderMetaPaging-bar"></div>
-                                                <div class="swiper-pagination"></div>
-                                            </div>
-                                            <div class="MainSliderMetaArrow">
-                                                <div class="swiper-button-prev MainSliderMeta-prev">
-                                                    <span class="ab-text"></span>
-                                                </div>
-                                                <div class="swiper-button-next MainSliderMeta-next">
-                                                    <span class="ab-text"></span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
                                 </div>
-
                             </div>
+
+
                         </div>
-
-
                     </div>
                 </div>
-            </div>
 
-        <%- include('./footer.ejs') %>
-    </div>
+                <%- include('./footer.ejs') %>
+        </div>
 
-    <script>
-        var date = new Date();
-        var month = date.getMonth() + 1;
-        var day = date.getDate();
-        var hours = date.getHours();
-        var minutes = date.getMinutes();
-        var time = document.getElementById("time")
-        function timereset() {
-            // time.innerHTML = `현재시간 : ${month}월 ${day}일 ${hours}시 ${minutes}분`;
-            time.innerHTML = `2022.0${month}.${day}. ${hours}:${minutes} 업데이트`;
-        }
+        <script>
+            var date = new Date();
+            var month = date.getMonth() + 1;
+            var day = date.getDate();
+            var hours = date.getHours();
+            var minutes = date.getMinutes();
+            var time = document.getElementById("time")
+            function timereset() {
+                // time.innerHTML = `현재시간 : ${month}월 ${day}일 ${hours}시 ${minutes}분`;
+                time.innerHTML = `2022.0${month}.${day}. ${hours}:${minutes} 업데이트`;
+            }
 
-    </script>
+        </script>
 
 </body>
 

@@ -635,39 +635,38 @@ input[type="checkbox"]:checked~.wpcf7-list-item-label::before {
 
 
 /* 대표 사진 */
-.file-box {
-	margin-top: 7px;
-	display: flex;
-	justify-content: space-between;
-	position: relative;
+.file-box{
+    margin-top:7px;
+    display:flex;
+    justify-content: space-between;
+    position: relative;
 }
 
-.form-box .form .file-box .upload-name {
-	width: calc(100% - 230px);
+.form-box .form .file-box .upload-name{
+    width:calc(100% - 230px);
 }
 
-.file-box label {
-	background: var(--black2-color);
-	color: var(--white-color);
+.file-box label{
+    background:var(--black2-color);
+    color:var(--white-color);
 }
 
-.file-box button {
-	background: var(--white-color);
+.file-box button{
+    background:var(--white-color);
 }
 
-.file-box label,
-.file-box button {
-	width: 104px;
-	line-height: 58px;
-	border: 1px solid var(--black2-color);
-	border-radius: 20px;
-	text-align: center;
-	cursor: pointer;
-	font-size: 16px;
-	font-family: var(--font-Light);
+.file-box label, .file-box button{
+    width:104px;
+    line-height: 58px;
+    border:1px solid var(--black2-color);
+    border-radius: 20px;
+    text-align: center;
+    cursor: pointer;
+    font-size:16px;
+    font-family: var(--font-Light);
 }
 
-/* .file-box input[type="file"]{
+.file-box input[type="file"]{
     position:absolute;
     width:1px;
     height:1px;
@@ -678,7 +677,7 @@ input[type="checkbox"]:checked~.wpcf7-list-item-label::before {
     border:0;
     top:50%;
     right:10px;
-} */
+}
 
 
 /* 목록가기 | 등록하기 */

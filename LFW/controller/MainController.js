@@ -6,6 +6,7 @@ exports.index = (req, res) => {
     if (req.session.user != undefined) {
         data["isLogin"] = true;
         data["user"] = req.session.user;
+        data['gender'] = req.session.gender;
     }
     else data["isLogin"] = false;
 

@@ -52,15 +52,26 @@ function weatherwriter(item) {
     var A = document.getElementById("icon");
     A.innerHTML = `<img src="image/weathericon/${iconnum}.png">`;
     var B = document.getElementById('temp');
-    B.innerHTML = `${currentTMP}° <p class="summary"><span class="weather">흐림</span>어제보다 <span class="temperature up">4.9° <span class="blind">↑</span></span></p>`;
+    B.innerHTML = `${currentTMP}° <p class="summary"><span class="weather">맑음</span>어제보다 <span class="temperature up">0.2° <span class="blind">↓</span></span></p>`;
     var C = document.getElementById('lowtemp');
     C.innerHTML = `최저 ${TMN} <span class="weather2">미세</span> <span class="temperature up2">좋음</span> <span class="weather2">초미세</span> <span class="temperature up2">좋음</span>`;
     var D = document.getElementById('hightemp');
-    D.innerHTML = `최고 ${TMX} <span class="weather3">체감</span> <span class="temperature up3">25.4°</span> <span class="weather3">북동풍</span> <span class="temperature up3">0.6m/s</span>`;
+    D.innerHTML = `최고 ${TMX} <span class="weather3">체감</span> <span class="temperature up3">27.2°</span> <span class="weather3">동풍</span> <span class="temperature up3">2.5m/s</span>`;
     var E = document.getElementById('humidity');
     E.innerHTML = `습도 : ${REH}`;
     return currentTMP;
 };// weather writers
+
+let thetimearr = []
+for (var i=0; i<12; i++ ){
+    var thetime = hours + i;
+    
+    if (thetime >24) {
+        thetime = thetime-24;
+    }
+    thetimearr.push(thetime);
+}
+
 
 function drawWeatherChart(arr) {
     var context = document.getElementById('myChart').getContext('2d');
@@ -68,8 +79,7 @@ function drawWeatherChart(arr) {
         type: 'line', // 차트의 형태
         data: { // 차트에 들어갈 데이터
             labels: //x 축
-                [hours + "시", hours + 1 + "시", hours + 2 + "시", hours + 3 + "시", hours + 4 + "시", hours + 5 + "시", hours + 6 + "시", +hours + 7 + "시", hours + 8 + "시", hours + 9 + "시", hours + 10 + "시", hours + 11 + "시"
-                ],
+                [thetimearr[0] + "시", thetimearr[1] + "시" , thetimearr[2] + "시", thetimearr[3] + "시", thetimearr[4] + "시", thetimearr[5] + "시", thetimearr[6] + "시", thetimearr[7] + "시", thetimearr[8] + "시",  thetimearr[9] + "시", thetimearr[10] + "시", thetimearr[11] + "시"                ],
             fontColor: "", fontSize: 18,
             datasets: //데이터
                 [{ 
@@ -84,8 +94,12 @@ function drawWeatherChart(arr) {
         },
 
         
+        
 
         options: {
+				legend: {
+			        display: false
+			    },
             responsive: false,
             title: {
                 display: false,
@@ -134,6 +148,29 @@ function setCodi(temp) {
     var codiImg = document.querySelectorAll(".codiImg");
     for (var i = 0; i < codiImg.length; i++) {
         if (i == 0) $(codiImg[i]).attr("src", `./image/codi/male/${folder}/5.png`);
+        else if (i == codiImg.length - 1) $(codiImg[i]).attr("src", `./image/codi/male/${folder}/1.png`);
+        else $(codiImg[i]).attr("src", `./image/codi/male/${folder}/${i}.png`);
+    }
+}
+
+
+
+function setCodi2(temp) {
+    var folder = "";
+    if (temp < 0) folder = "00";
+    else if (temp < 6) folder = "0-5";
+    else if (temp < 12) folder = "6-11";
+    else if (temp < 17) folder = "12-16";
+    else if (temp < 23) folder = "17-22";
+    else if (temp < 28) folder = "23-27";
+    else folder = "28";
+
+    var codiImg = document.querySelectorAll(".codiImg");
+    for (var i = 0; i < codiImg.length; i++) {
+        if (i == 0) {
+            $(codiImg[i]).attr("src", `./image/codi/male/${folder}/5.png`);
+            // $(codiImg[i]).innerHTML(`<div><p></p></div>`)
+        }
         else if (i == codiImg.length - 1) $(codiImg[i]).attr("src", `./image/codi/male/${folder}/1.png`);
         else $(codiImg[i]).attr("src", `./image/codi/male/${folder}/${i}.png`);
     }

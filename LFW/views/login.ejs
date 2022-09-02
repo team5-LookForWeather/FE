@@ -33,6 +33,7 @@
                 return rep.data;
             }).then((data) => {
                 if (data.return) {
+                    console.log(data);  
                     alert('로그인 성공');
                     document.location.href = "/";
                 } else {

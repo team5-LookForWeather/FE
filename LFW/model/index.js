@@ -16,11 +16,23 @@ db.Op = Op;
 
 db.User = require("./User")(sequelize, Sequelize);
 db.OOTD = require("./OOTD.js")(sequelize, Sequelize);
-// db.OOTD_picture = require("./OOTD1/OOTD_picture.js")(sequelize, Sequelize);
-db.OOTD_like = require("./OOTD_like.js")(sequelize, Sequelize);
-db.OOTD_comment = require("./OOTD_comment.js")(sequelize, Sequelize);
-db.Memo = require("./MEMO.js")(sequelize, Sequelize);
+db.Heart = require("./Heart.js")(sequelize, Sequelize);
+db.Comment = require("./Comment.js")(sequelize, Sequelize);
+db.Memo = require("./Memo.js")(sequelize, Sequelize);
 db.Codi = require("./Codi.js")(sequelize, Sequelize);
+
+
+db.User.hasMany(db.Codi, {
+    foreignKey: "user_id",
+    sourceKey: "user_id",
+    onDelete: "cascade"
+});
+db.Codi.belongsTo(db.User, {
+    foreignKey: "user_id",
+    sourceKey: "user_id",
+    onDelete: "cascade"
+})
+
 
 db.User.hasMany(db.OOTD, {
     foreignKey: "user_id",
@@ -34,52 +46,28 @@ db.OOTD.belongsTo(db.User, {
 });
 
 
-db.User.hasMany(db.OOTD_comment, {
+db.User.hasMany(db.Heart, {
     foreignKey: "user_id",
     sourceKey: "user_id",
     onDelete: "cascade"
 });
-db.OOTD_comment.belongsTo(db.User, {
+db.Heart.belongsTo(db.User, {
     foreignKey: "user_id",
     sourceKey: "user_id",
     onDelete: "cascade"
 });
 
-db.OOTD.hasMany(db.OOTD_comment, {
+db.OOTD.hasMany(db.Heart, {
     foreignKey: "OOTD_id",
     sourceKey: "OOTD_id",
     onDelete: "cascade"
 });
-db.OOTD_comment.belongsTo(db.OOTD, {
-    foreignKey: "OOTD_id",
-    sourceKey: "OOTD_id",
-    onDelete: "cascade"
-});
-
-
-
-db.User.hasMany(db.OOTD_like, {
-    foreignKey: "user_id",
-    sourceKey: "user_id",
-    onDelete: "cascade"
-});
-db.OOTD_like.belongsTo(db.User, {
-    foreignKey: "user_id",
-    sourceKey: "user_id",
-    onDelete: "cascade"
-});
-
-
-db.OOTD.hasMany(db.OOTD_like, {
-    foreignKey: "OOTD_id",
-    sourceKey: "OOTD_id",
-    onDelete: "cascade"
-});
-db.OOTD_like.belongsTo(db.OOTD, {
+db.Heart.belongsTo(db.OOTD, {
     foreignKey: "OOTD_id",
     sourceKey: "OOTD_id",
     onDelete: "cascade"
 })
+
 
 db.User.hasMany(db.Memo, {
     foreignKey: "user_id",
@@ -92,14 +80,17 @@ db.Memo.belongsTo(db.User, {
     onDelete: "cascade"
 })
 
-db.User.hasMany(db.Codi, {
+
+db.User.hasMany(db.Comment, {
     foreignKey: "user_id",
     sourceKey: "user_id",
     onDelete: "cascade"
 });
-db.Codi.belongsTo(db.User, {
+db.Comment.belongsTo(db.User, {
     foreignKey: "user_id",
     sourceKey: "user_id",
     onDelete: "cascade"
-})
+});
+
+
 module.exports = db;

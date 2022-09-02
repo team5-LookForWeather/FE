@@ -3,11 +3,11 @@ const Memo = (Sequelize, DataTypes) => {
     const model = Sequelize.define(
         'Memo',
         {
-            memo_id : {
+            memo_id: {
                 type: DataTypes.INTEGER,
                 autoIncrement: true,
                 allowNull: false,
-                primaryKey: true  
+                primaryKey: true
             },
             user_id: {
                 type: DataTypes.STRING(15),
@@ -18,16 +18,14 @@ const Memo = (Sequelize, DataTypes) => {
                 allowNull: true
             },
             create_time: {
-                type: DataTypes.DATE,
+                type: "TIMESTAMP",
+                defaultValue: Sequelize.literal("CURRENT_TIMESTAMP"),
                 allowNull: false
             },
             update_time: {
-                type: DataTypes.DATE,
-                allowNull: true
-            },
-            delete_time: {
-                type: DataTypes.DATE,
-                allowNull: true
+                type: "TIMESTAMP",
+                defaultValue: Sequelize.literal('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'),
+                allowNull: false
             }
         },
         {

@@ -8,7 +8,7 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"
         integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <script src="https://kit.fontawesome.com/9ad05a77c3.js" crossorigin="anonymous"></script>
-    
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 
     <script defer src="../js/common.js"></script>
     <link rel="stylesheet" href="../css/ootd-upload.css" />
@@ -22,29 +22,30 @@
 <body>
     <div id="body-wrapper">
         <div id="body-content">
-            
+
             <%- include('./header.ejs') %>
 
-            <section>
-                <div class="container">
-                    <div class="page-content">
-                        <!-- 타이틀 -->
-                        <div class="MainSectionHeader">
-                            <h2 class="MainSectionHeader-title">
+                <section>
+                    <div class="container">
+                        <div class="page-content">
+                            <!-- 타이틀 -->
+                            <div class="MainSectionHeader">
+                                <h2 class="MainSectionHeader-title">
                                     Today's OOTD
-                            </h2>
-                            <div class="MainSectionHeader-sub">
-                                여러분의 오늘의 코디를 등록해보세요.
+                                </h2>
+                                <div class="MainSectionHeader-sub">
+                                    여러분의 오늘의 코디를 등록해보세요.
+                                </div>
                             </div>
-                        </div>
 
-                        <div class="form-box">
-                            <form id="form1" method="post" enctype="multipart/form-data">
-                                <input type="hidden" id="frontend_write_post_nonce" name="frontend_write_post_nonce"
-                                    value="b961abca9f">
-                                <input type="hidden" name="_wp_http_referer" value="/participation/class/talk/write/">
-                                <ul class="form">
-                                    <!-- <li>
+                            <div class="form-box">
+                                <form id="form1" action='/ootd/ootd-upload' method="POST" enctype="multipart/form-data">
+                                    <input type="hidden" id="frontend_write_post_nonce" name="frontend_write_post_nonce"
+                                        value="b961abca9f">
+                                    <input type="hidden" name="_wp_http_referer"
+                                        value="/participation/class/talk/write/">
+                                    <ul class="form">
+                                        <!-- <li>
                                         <div class="input">
                                             <label>
                                                 <span class="label require">작성자 명</span>
@@ -58,7 +59,7 @@
                                             </label>
                                         </div>
                                     </li> -->
-                                    <!-- <li>
+                                        <!-- <li>
                                         <div class="input full">
                                             <label>
                                                 <span class="label require">제목</span>
@@ -68,124 +69,126 @@
                                     </li> -->
 
 
-                                    <li>
-                                        <div class="input full">
-                                            <label>
-                                                <span class="label require">카테고리</span>
+                                        <li>
+                                            <div class="input full">
+                                                <label>
+                                                    <span class="label require">카테고리</span>
 
-                                                <span class="wpcf7-form-control-wrap">
-                                                    <span class="wpcf7-form-control wpcf7-checkbox">
-                                                        <span class="wpcf7-list-item first">
-                                                            <label>
-                                                                <input type="checkbox" name="style_tag" value="캐주얼"
-                                                                    checked="checked">
-                                                                <span class="wpcf7-list-item-label">#캐주얼</span>
-                                                            </label>
-                                                        </span>
+                                                    <span class="wpcf7-form-control-wrap">
+                                                        <span class="wpcf7-form-control wpcf7-checkbox">
+                                                            <span class="wpcf7-list-item first">
+                                                                <label>
+                                                                    <input type="checkbox" name="style_tag" value="#캐주얼"
+                                                                        checked="checked">
+                                                                    <span class="wpcf7-list-item-label">#캐주얼</span>
+                                                                </label>
+                                                            </span>
 
-                                                        <span class="wpcf7-list-item">
-                                                            <label>
-                                                                <input type="checkbox" name="style_tag" value="시크">
-                                                                <span class="wpcf7-list-item-label">#시크</span>
-                                                            </label>
-                                                        </span>
+                                                            <span class="wpcf7-list-item">
+                                                                <label>
+                                                                    <input type="checkbox" name="style_tag" value="#시크">
+                                                                    <span class="wpcf7-list-item-label">#시크</span>
+                                                                </label>
+                                                            </span>
 
-                                                        <span class="wpcf7-list-item">
-                                                            <label>
-                                                                <input type="checkbox" name="style_tag" value="댄디">
-                                                                <span class="wpcf7-list-item-label">#댄디</span>
-                                                            </label>
-                                                        </span>
+                                                            <span class="wpcf7-list-item">
+                                                                <label>
+                                                                    <input type="checkbox" name="style_tag" value="#댄디">
+                                                                    <span class="wpcf7-list-item-label">#댄디</span>
+                                                                </label>
+                                                            </span>
 
-                                                        <span class="wpcf7-list-item">
-                                                            <label>
-                                                                <input type="checkbox" name="style_tag" value="포멀">
-                                                                <span class="wpcf7-list-item-label">#포멀</span>
-                                                            </label>
-                                                        </span>
+                                                            <span class="wpcf7-list-item">
+                                                                <label>
+                                                                    <input type="checkbox" name="style_tag" value="#포멀">
+                                                                    <span class="wpcf7-list-item-label">#포멀</span>
+                                                                </label>
+                                                            </span>
 
-                                                        <span class="wpcf7-list-item">
-                                                            <label>
-                                                                <input type="checkbox" name="style_tag" value="걸리시">
-                                                                <span class="wpcf7-list-item-label">#걸리시</span>
-                                                            </label>
-                                                        </span>
+                                                            <span class="wpcf7-list-item">
+                                                                <label>
+                                                                    <input type="checkbox" name="style_tag"
+                                                                        value="#걸리시">
+                                                                    <span class="wpcf7-list-item-label">#걸리시</span>
+                                                                </label>
+                                                            </span>
 
 
-                                                        <span class="wpcf7-list-item last">
-                                                            <label>
-                                                                <input type="checkbox" name="style_tag" value="레트로">
-                                                                <span class="wpcf7-list-item-label">#레트로</span>
-                                                            </label>
-                                                        </span>
+                                                            <span class="wpcf7-list-item last">
+                                                                <label>
+                                                                    <input type="checkbox" name="style_tag"
+                                                                        value="#레트로">
+                                                                    <span class="wpcf7-list-item-label">#레트로</span>
+                                                                </label>
+                                                            </span>
 
-                                                        <span class="wpcf7-list-item last">
-                                                            <label>
-                                                                <input type="checkbox" name="style_tag" value="로맨틱">
-                                                                <span class="wpcf7-list-item-label">#로맨틱</span>
-                                                            </label>
-                                                        </span>
+                                                            <span class="wpcf7-list-item last">
+                                                                <label>
+                                                                    <input type="checkbox" name="style_tag"
+                                                                        value="#로맨틱">
+                                                                    <span class="wpcf7-list-item-label">#로맨틱</span>
+                                                                </label>
+                                                            </span>
 
-                                                        <span class="wpcf7-list-item last">
-                                                            <label>
-                                                                <input type="checkbox" name="style_tag" value="스포츠">
-                                                                <span class="wpcf7-list-item-label">#스포츠</span>
-                                                            </label>
-                                                        </span>
+                                                            <span class="wpcf7-list-item last">
+                                                                <label>
+                                                                    <input type="checkbox" name="style_tag"
+                                                                        value="#스포츠">
+                                                                    <span class="wpcf7-list-item-label">#스포츠</span>
+                                                                </label>
+                                                            </span>
 
-                                                        <span class="wpcf7-list-item last">
-                                                            <label>
-                                                                <input type="checkbox" name="style_tag" value="스트릿">
-                                                                <span class="wpcf7-list-item-label">#스트릿</span>
-                                                            </label>
+                                                            <span class="wpcf7-list-item last">
+                                                                <label>
+                                                                    <input type="checkbox" name="style_tag"
+                                                                        value="#스트릿">
+                                                                    <span class="wpcf7-list-item-label">#스트릿</span>
+                                                                </label>
+                                                            </span>
                                                         </span>
                                                     </span>
-                                                </span>
-                                            </label>
-                                        </div>
-                                    </li>
-
-
-                                    <li>
-                                        <div class="input full">
-                                            <label>
-                                                <span class="label require">내용</span>
-                                                <textarea class="basic t_basic" name="talk_comment"
-                                                    rows="20"></textarea>
-                                            </label>
-                                        </div>
-                                    </li>
-
-
-
-                                    <li>
-                                        <div class="full">
-                                            <span class="label require">대표 사진</span>
-                                            <div class="file-box">
-                                                <input class="upload-name basic" name="file_name" value=""
-                                                    disabled="disabled" placeholder="파일은 최대 10MB까지 업로드 하실 수 있습니다.">
-                                                <label for="file_attach">등록</label>
-                                                <button id="file_remove" type="button">삭제</button>
-                                                <!-- <label for="file_remove">삭제</label> -->
-                                                <input id="file_attach" class="upload-hidden" type="file"
-                                                    name="talk_file">
+                                                </label>
                                             </div>
-                                        </div>
-                                    </li>
+                                        </li>
 
-                                </ul>
-                                <div class="bt-box">
-                                    <!-- <a class="bt_list pop_bt" href="/participation/class/talk/">목록가기</a> -->
-                                    <a class="bt_list " href="#">목록가기</a>
-                                    <!-- <button class="bt_on pop_bt" type="submit">등록하기</button> -->
-                                    <button class="bt_on" type="submit">등록하기</button>
-                                    <!-- <input type="submit" value="문의하기"> -->
-                                </div>
-                            </form>
+
+                                        <li>
+                                            <div class="input full">
+                                                <label>
+                                                    <span class="label require">내용</span>
+                                                    <textarea class="basic t_basic" name="comment" rows="20"></textarea>
+                                                </label>
+                                            </div>
+                                        </li>
+
+
+
+                                        <li>
+                                            <div class="full">
+                                                <span class="label require">대표 사진</span>
+
+
+                                                <div class="file-box">
+                                                    <input type="file" id='fileInput' class="upload-name basic"
+                                                        name="filename" placeholder="파일은 최대 10MB까지 업로드 하실 수 있습니다.">
+                                                    <label type="file" for="fileInput">등록</label>
+                                                    <button id="file_remove" type="button">삭제</button>
+                                                </div>
+                                        </li>
+
+                                    </ul>
+                                    <div class="bt-box">
+                                        <!-- <a class="bt_list pop_bt" href="/participation/class/talk/">목록가기</a> -->
+                                        <a class="bt_list " href="/ootd">목록가기</a>
+                                        <!-- <button class="bt_on pop_bt" type="submit">등록하기</button> -->
+                                        <button class="bt_on" type="submit" id="sendButton">등록하기</button>
+                                        <!-- <input type="submit" value="문의하기"> -->
+                                    </div>
+                                </form>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </section>
+                </section>
         </div>
 
 
@@ -195,6 +198,29 @@
     </div>
 
     <script defer>
+        function saveOOTD() {
+            va
+        }
+        async function saveImg(input) {
+            const fileInput = document.querySelector("#fileInput");
+            const sendButton = document.querySelector("#sendButton");
+
+            var formData = new FormData();    // form Data 객체 생성
+            formData.append('style_tag', style_tag);
+            formData.append('comment', comment);
+            formData.append("filename", fileInput.files[0]);   // 파일 인풋에 들어간 파일들은 files 리스트로 저장, files[0]으로 찾기
+
+            async function exec() {
+                await axios.post('/ootd/ootd-upload', formData, {
+                    headers: {
+                        "Content-Type": "multipart/form-data",
+                    },
+                }).then((res) => {
+                    window.location.href = "/ootd";
+                })
+            }
+        }
+
         //파일첨부
         jQuery('#file_attach').change(function () {
             var ext = $(this).val().split(".").pop().toLowerCase();
@@ -205,7 +231,7 @@
             var maxSize = 1024 * 1024 * 10;
             if (fileSize > maxSize) {
                 alert('파일을 10MB 이하로 첨부해주세요.');
-                jQuery('input[name=file_name]').val('');
+                jQuery('input[name=filename]').val('');
                 return false;
             }
 
@@ -220,7 +246,7 @@
         //파일삭제
         jQuery('#file_remove').click(function () {
             jQuery(this).siblings('.upload-hidden').val('');
-            jQuery(this).siblings('input[name=file_name]').val('');
+            jQuery(this).siblings('input[name=filename]').val('');
 
             // jQuery('input[name=file_name]').val('');
             // alert('첨부한 파일이 삭제되었습니다.');

@@ -3,19 +3,14 @@ const OOTD = (Sequelize, DataTypes) => {
     const model = Sequelize.define(
         'OOTD',
         {
-            OOTD_id : {
+            OOTD_id: {
                 type: DataTypes.INTEGER,
                 autoIncrement: true,
                 allowNull: false,
                 primaryKey: true
-                
             },
             user_id: {
                 type: DataTypes.STRING(15),
-                allowNull: false
-            },
-            OOTD_img: {
-                type: DataTypes.STRING(200),
                 allowNull: false
             },
             style_tag: {
@@ -23,26 +18,24 @@ const OOTD = (Sequelize, DataTypes) => {
                 allowNull: true,
                 defaultValue: ""
             },
+            content: {
+                type: DataTypes.TEXT('medium'),
+                allowNull: true
+            },
+            heart: {
+                type: DataTypes.INTEGER,
+                allowNull: true,
+                defaultValue: 0
+            },
             create_time: {
-                type: 'TIMESTAMP',
-                defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
+                type: "TIMESTAMP",
+                defaultValue: Sequelize.literal("CURRENT_TIMESTAMP"),
                 allowNull: false
             },
             update_time: {
-                type: 'TIMESTAMP',
-                defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
-                allowNull: true,
-                defaultValue: ""
-            },
-            comment: {
-                type: DataTypes.TEXT('medium'),
-                allowNull: true,
-                defaultValue: ""
-            },
-            like: {
-                type: DataTypes.INTEGER,
-                allowNull: true,
-                defaultValue: ""
+                type: "TIMESTAMP",
+                defaultValue: Sequelize.literal('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'),
+                allowNull: false
             }
         },
         {

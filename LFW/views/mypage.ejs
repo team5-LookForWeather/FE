@@ -18,76 +18,8 @@
 <body>
     <div id="body-wrapper">
         <div id="body-content">
-            <header id="act_header">
-                <div class="headerArea">
-                    <div class="container">
-                        <div class="nav">
-                            <div class="moblie_logo">
-                                <h1 class="logo">
-                                    <a href="http://localhost:8000/">
-                                        <img src="../image/logo-5.png" alt="룩포웨더">
-                                    </a>
-                                </h1>
-                            </div>
 
-
-                            <div class="nav-icon">
-                                <div></div>
-                            </div>
-
-                            <ul class="navbar">
-                                <div class="pc_logo">
-                                    <h1 class="logo">
-                                        <a href="http://localhost:8000/">
-                                            <img src="../image/logo-5.png" alt="룩포웨더">
-                                        </a>
-                                    </h1>
-                                </div>
-                                <li id="menu-item-130"
-                                    class="menu-item menu-item-type-post_type menu-item-object-page menu-item-130">
-                                    <a class="moblie_arrow" href="http://localhost:8000/">HOME</a>
-                                </li>
-
-                                <li id="menu-item-41"
-                                    class="menu-item menu-item-type-post_type menu-item-object-page menu-item-41">
-                                    <a href="#">WEATHER</a>
-                                </li>
-
-                                <li id="menu-item-40"
-                                    class="menu-item menu-item-type-post_type menu-item-object-page menu-item-40">
-                                    <a href="#">OOTD</a>
-                                </li>
-
-                                <li id="menu-item-131"
-                                    class="menu-item menu-item-type-post_type menu-item-object-page menu-item-131">
-                                    <a href="#">COMMUNITY</a>
-                                </li>
-
-                                <li id="menu-item-132"
-                                    class="menu-item menu-item-type-post_type menu-item-object-page menu-item-132">
-                                    <a href="#">MYPAGE</a>
-                                </li>
-
-                                <li class="utill mo">
-                                    <ul>
-                                        <li class="login_bt"><a href="#">로그인</a></li>
-                                        <li class="member_bt"><a href="#">마이페이지</a></li>
-                                    </ul>
-                                </li>
-                            </ul>
-
-
-                            <ul class="utill pc">
-                                <li>
-                                    <a class="first_icon" href="#">로그인</a>
-                                    <a class="second_icon" href="#">마이페이지</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-
-                </div>
-            </header>
+            <%- include('./header.ejs') %>
 
             <section>
                 <div class="container">
@@ -149,7 +81,7 @@
                             <div class="content-last">
                                 <div class="cont_shortcut">
                                     <ul>
-                                        <a href="#">
+                                        <a href="/weather">
                                             <li class="li_one">
                                                 <div>
                                                     <i class="fa fa-plus" aria-hidden="true"></i>
@@ -159,7 +91,7 @@
                                                 <p class="cont_bg"> </p>
                                             </li>
                                         </a>
-                                        <a href="#">
+                                        <a href="/ootd">
                                             <li class="li_two">
                                                 <div>
                                                     <i class="fa fa-plus" aria-hidden="true"></i>
@@ -169,7 +101,7 @@
                                                 <p class="cont_bg"> </p>
                                             </li>
                                         </a>
-                                        <a href="#">
+                                        <a href="/memo">
                                             <li class="li_three">
                                                 <div>
                                                     <i class="fa fa-plus" aria-hidden="true"></i>
@@ -179,7 +111,7 @@
                                                 <p class="cont_bg"> </p>
                                             </li>
                                         </a>
-                                        <a href="#">
+                                        <a href="/user/profile">
                                             <li class="li_four">
                                                 <div>
                                                     <i class="fa fa-plus" aria-hidden="true"></i>
@@ -198,39 +130,8 @@
             </section>
         </div>
 
+        <%- include('./footer.ejs') %>
 
-        <footer class="footer">
-            <div class="layout con">
-                <div class="menu">
-                    <ul class="row">
-                        <li class="cell"><a href="http://localhost:8000/">룩포웨더</a></li>
-                        <li class="cell"><a href="/weather">날씨정보</a></li>
-                        <li class="cell"><a href="/ootd">코디리뷰</a></li>
-                        <li class="cell"><a href="/memo">커뮤니티</a></li>
-                        <li class="cell"><a href="/mypage">마이페이지</a></li>
-                    </ul>
-                </div>
-                <div class="address">
-                    <div class="line_txt">조장 : 함유정</div>
-                    <div>팀원 : 방장원, 서윤지, 정예현, 최상훈</div>
-                </div>
-                <div class="copy">
-                    Copyrightⓒ 록포웨더. All Rights Reserved.
-                </div>
-                <div class="site-box row">
-                    <div class="relate-site cell">
-                        <div class="box-1">
-                            패밀리사이트
-                        </div>
-                        <ul>
-                            <a href="https://github.com/team5-LookForWeather" target="_blank" onclick="return false">
-                                <li>룩포웨더 깃헙 사이트</li>
-                            </a>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </footer>
     </div>
 </body>
 

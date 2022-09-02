@@ -14,11 +14,10 @@ function checkSession(req, res, next) {
 const upload = multer({
     storage: multer.diskStorage({
         destination(req, file, done) {
-            done(null, 'public/img/ootd/');
+            done(null, 'public/image/ootd/');
         },
         filename(req, file, done) {
-            const ext = path.extname(file.originalname);
-            done(null, file.originalname + ext);
+            done(null, file.originalname);
         },
     }),
     limits: { fileSize: 10 * 1024 * 1024 },
@@ -78,7 +77,7 @@ const OotdRouter = express.Router();
 const ootd = require('../controller/OotdController');
 OotdRouter.get('/', ootd.index);  //ootd페이지
 OotdRouter.get('/ootd-upload', checkSession, ootd.upload_index);  //ootd 업로드 페이지
-OotdRouter.post('/ootd-upload', upload.single('filename'), 'ootd.upload');    // ootd업로드 실행
+OotdRouter.post('/ootd-upload', upload.single('filename'), ootd.upload);    // ootd업로드 실행
 
 
 /* Community 관련 */

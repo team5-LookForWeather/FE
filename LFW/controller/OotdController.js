@@ -1,4 +1,5 @@
 const models = require("../model");
+const fs = require('fs').promises;
 
 /* OOTD 페이지 */
 exports.index = async (req, res) => {
@@ -28,18 +29,21 @@ exports.upload_index = (req, res) => {
 }
 
 
-exports.upload = (req, res) => {
-    console.log(req.file, req.body);
+exports.upload = async (req, res) => {
+    let styletag = "";
+    for (var i = 0; i < req.body.style_tag.length; i++) {
+        styletag = styletag + req.body.style_tag[i];
+    }
     let img = {
         user_id: req.session.user,
-        OOTD_img: req.file.filename,
-        style_tag: req.body.style_tag,
-        comment: req.body.comment,
+        style_tag: styletag,
+        content: req.body.comment,
     }
-    models.OOTD.create(img)
-        .then((result) => {
-            res.render('ootd');
-        })
+    let result = await models.OOTD.create(img);
+
+    await fs.rename(`public/image/ootd/${req.file.filename}`, `public/image/ootd/${result.OOTD_id}.jpg`);
+
+    await res.redirect("/ootd");
 }
 
 // router.get("/", ootd.get_ootd);

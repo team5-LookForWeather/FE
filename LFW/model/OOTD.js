@@ -8,7 +8,6 @@ const OOTD = (Sequelize, DataTypes) => {
                 autoIncrement: true,
                 allowNull: false,
                 primaryKey: true
-
             },
             user_id: {
                 type: DataTypes.STRING(15),
@@ -19,24 +18,24 @@ const OOTD = (Sequelize, DataTypes) => {
                 allowNull: true,
                 defaultValue: ""
             },
-            create_time: {
-                type: 'TIMESTAMP',
-                defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
-                allowNull: false
-            },
-            update_time: {
-                type: 'TIMESTAMP',
-                defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
-            },
             content: {
                 type: DataTypes.TEXT('medium'),
-                allowNull: true,
-                defaultValue: ""
+                allowNull: true
             },
             heart: {
                 type: DataTypes.INTEGER,
                 allowNull: true,
                 defaultValue: 0
+            },
+            create_time: {
+                type: "TIMESTAMP",
+                defaultValue: Sequelize.literal("CURRENT_TIMESTAMP"),
+                allowNull: false
+            },
+            update_time: {
+                type: "TIMESTAMP",
+                defaultValue: Sequelize.literal('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'),
+                allowNull: false
             }
         },
         {

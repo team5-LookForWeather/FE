@@ -1,30 +1,26 @@
-const OOTD_like = (Sequelize, DataTypes) => {
+const Heart = (Sequelize, DataTypes) => {
 
     const model = Sequelize.define(
-        'OOTD_like',
+        'Heart',
         {
-            OOTD_like_id : {
+            heart_id: {
                 type: DataTypes.INTEGER,
                 allowNull: false,
                 primaryKey: true,
                 autoIncrement: true,
             },
-            OOTD_id : {
+            OOTD_id: {
                 type: DataTypes.INTEGER,
                 allowNull: false
             },
-            user_id : {
+            user_id: {
                 type: DataTypes.STRING(15),
                 allowNull: false
-            },
-            OOTD_like: {
-                type: DataTypes.INTEGER,
-                allowNull: true
             }
         },
         {
             timestamps: false,
-            tableName: 'OOTD_like',
+            tableName: 'Heart',
             freezeTableName: true,
             charset: "utf8",
             collate: "utf8_general_ci"
@@ -33,4 +29,4 @@ const OOTD_like = (Sequelize, DataTypes) => {
     return model;
 }
 
-module.exports = OOTD_like;
+module.exports = Heart;

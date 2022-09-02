@@ -644,6 +644,7 @@ input[type="checkbox"]:checked~.wpcf7-list-item-label::before {
 
 .form-box .form .file-box .upload-name{
     width:calc(100% - 230px);
+	line-height: 60px;
 }
 
 .file-box label{
@@ -667,7 +668,8 @@ input[type="checkbox"]:checked~.wpcf7-list-item-label::before {
 }
 
 .file-box input[type="file"]{
-    position:absolute;
+    /* position:absolute; */
+	position: relative;
     width:1px;
     height:1px;
     padding:0;

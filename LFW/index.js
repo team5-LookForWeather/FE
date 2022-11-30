@@ -7,6 +7,9 @@ const path = require("path");
 const cors = require("cors");
 
 const models = require("./model");
+// (async () => {
+//     await models.sequelize.sync();
+//    })();
 const multer = require('multer');
 
 app.set("view engine", "ejs");

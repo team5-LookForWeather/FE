@@ -10,7 +10,7 @@ exports.index = async (req, res) => {
     }
     else data["isLogin"] = false;
 
-    let query = "select * from OOTD inner join user on ootd.user_id = user.user_id;";
+    let query = "select * from OOTD inner join User on OOTD.user_id = User.user_id;";
     data["ootd"] = await models.sequelize.query(query, { type: models.sequelize.QueryTypes.SELECT });
     await res.render("ootd", data);
 }
@@ -40,6 +40,7 @@ exports.upload = async (req, res) => {
         content: req.body.comment,
     }
     let result = await models.OOTD.create(img);
+    console.log( req.file );
 
     await fs.rename(`public/image/ootd/${req.file.filename}`, `public/image/ootd/${result.OOTD_id}.jpg`);
 

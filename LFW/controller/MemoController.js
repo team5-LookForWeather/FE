@@ -9,7 +9,7 @@ exports.index = async (req, res) => {
     }
     else data["isLogin"] = false;
 
-    let query = "select * from Memo inner join user on Memo.user_id = user.user_id;";
+    let query = "select * from Memo inner join User on Memo.user_id = User.user_id;";
 
     data["memo"] = await models.sequelize.query(query, { type: models.sequelize.QueryTypes.SELECT });
     await res.render("community", data);

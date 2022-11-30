@@ -23,14 +23,14 @@ jQuery(document).on("click", ".nav .navbar.active>li.menu-item-has-children > a"
 
 
 
-// let header = document.querySelector('header');
-// let headerMoving = function (direction) {
-//     if (direction === "up") {
-//         header.className = '';
-//     } else if (direction === "down") {
-//         header.className = 'scrollDown';
-//     }
-// };
+let header = document.querySelector('header');
+let headerMoving = function (direction) {
+    if (direction === "up") {
+        header.className = '';
+    } else if (direction === "down") {
+        header.className = 'scrollDown';
+    }
+};
 
 
 let prevScrollTop = 0;

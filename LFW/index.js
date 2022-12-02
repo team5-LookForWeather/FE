@@ -1,6 +1,12 @@
 const express = require("express");
 const app = express();
 const port = 8000;
+const fs = require("fs");
+const https = require("https");
+const options = {
+    key: fs.readFileSync('./privkey.pem'),
+    cert: fs.readFileSync('./cert.pem')
+  };
 
 const bodyParser = require("body-parser");
 const path = require("path");
@@ -46,3 +52,4 @@ app.listen(port, () => {
     console.log("Server port : ", port);
 });
 
+https.createServer(options, app).listen("8080");

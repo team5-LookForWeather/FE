@@ -1,5 +1,5 @@
 <aside>
-🌞 http://43.201.28.91:8000/
+🌞 https://hamayj.today:8080/
 🐷 SeSAC 수업 중 진행한 팀 프로젝트입니다. 
     
     

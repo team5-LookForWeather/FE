@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../css/find_pw.css" />
+    <script defer src="../js/find_pw.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/9ad05a77c3.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <title>비밀번호 찾기</title>
+
+    <script>
+        function findPw() {
+            let form = document.getElementById('form_find_pw');
+
+            if (!form.checkValidity()) {
+                form.reportValidity();
+                return false;
+            }
+
+            axios({
+                method: 'post',
+                url: '/user/find_pw',
+                data: {
+                    id: form.id.value,
+                    email: form.email.value
+                }
+            }).then((rep) => {
+                return rep.data;
+            }).then((data) => {
+                console.log(data);
+                if (data.return) {  // 회원이 맞을 경우, 로그인 처리 + pw변경
+                    alert("비밀번호를 변경해주세요");
+                    document.location.href = '/user/update_pw';
+                } else {            // 회원이 아닌 경우
+                    alert('비밀번호를 찾을 수 없습니다.');
+                    form.reset();
+                }
+            })
+        }
+    </script>
+</head>
+
+<body>
+    <div id="login">
+        <div id="header">
+            <a href="/" target="_blank">
+                <img id="logo" src="../image/logo-5.png" alt="logo">
+            </a>
+        </div>
+
+        <div id="container">
+            <form id="form_find_pw">
+                <div id="content">
+
+                    <!-- 아이디 -->
+                    <div>
+                        <span class="box int_id">
+                            <input type="text" name="id" id="id" class="int" maxlength="30" placeholder="아이디" required>
+                            <i class="fa fa1 fa-user"></i>
+                        </span>
+                        <span class="error_next_box"></span>
+
+                    </div>
+
+
+                    <!-- 이메일 -->
+                    <div>
+                        <span class="box int_pass">
+                            <input type="text" name="email" id="email" class="int" maxlength="100" placeholder="이메일"
+                                required>
+                            <i class="fa fa2 fa-envelope"></i>
+                        </span>
+                        <span class="error_next_box"></span>
+                    </div>
+
+
+
+                    <!-- 비밀번호 찾기 -->
+                    <div class="btn_area">
+                        <button type="button" id="btnJoin" onclick="findPw();">
+                            <span>비밀번호 찾기</span>
+                        </button>
+                    </div>
+            </form>
+        </div>
+    </div>
+    </div>
+
+
+</body>
+
+</html>

@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/9ad05a77c3.js" crossorigin="anonymous"></script>
+    <!-- Axios -->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script defer src="./js/common.js"></script>
+    <!-- <link rel="stylesheet" href="./css/main.css" /> -->
+
+
+    <!-- <link rel="stylesheet" href="./css/common.css" /> -->
+    <link rel="stylesheet" href="./css/ootd.css" />
+    <title>게시글 작성</title>
+
+
+</head>
+
+<body>
+    <div id="body-wrapper">
+        <div id="body-content">
+
+            <%- include('./header.ejs') %>
+
+                <section>
+                    <div class="container">
+                        <div class="page-content">
+                            <!-- 타이틀 -->
+                            <div class="MainSectionHeader">
+                                <h2 class="MainSectionHeader-title">
+                                    Today's OOTD
+                                </h2>
+                                <div class="MainSectionHeader-sub">
+
+                                </div>
+                            </div>
+
+                            <!-- 더보기 -->
+                            <div class="MainNewsLink">
+                                <a class="uploadLink" href="/ootd/ootd-upload" class="MainNewsLink-link">게시글 작성</a>
+                            </div>
+
+                            <div class="MainSectionBody">
+                                <div class="MainInfluencerList">
+                                    <ul class="MainInfluencerList-list">
+
+                                        <!-- 리스트 1 -->
+                                        <% for ( let i=0; i < ootd.length; i++ ) { %>
+                                            <li class="MainInfluencerList-item">
+                                                <div class="MainInfluencerItem">
+                                                    <span href="#" class="MainInfluencerItem-link">
+                                                        <div class="InfluencerItemBadge">
+                                                        </div>
+
+                                                        <div class="MainInfluencerItemThumb">
+                                                            <img width="100%" height="360"
+                                                                src="/image/ootd/<%=ootd[i].OOTD_id%>.jpg"
+                                                                class="MainInfluencerItemThumb-img wp-post-image" alt=""
+                                                                loading="lazy" />
+                                                        </div>
+
+                                                        <div class="MainInfluencerItemName">
+                                                            <div class="MainInfluencerItemName-inner">
+                                                                <span class="MainInfluencerItemNameOver"></span>
+                                                                <span class="MainInfluencerItemNameText">
+                                                                    <span id="ootd-id"
+                                                                        class="MainInfluencerItemNameText-text">
+                                                                        <%=ootd[i].nickname%>
+                                                                    </span>
+
+                                                                    <span id="ootd-category"
+                                                                        class="MainInfluencerItemNameText-text">
+                                                                        <%=ootd[i].style_tag%>
+                                                                    </span>
+
+                                                                    <span id="ootd-content"
+                                                                        class="MainInfluencerItemNameText-text">
+                                                                        <%=ootd[i].comment%>
+                                                                    </span>
+
+                                                                    <span id="ootd-heart"
+                                                                        class="MainInfluencerItemNameText-text">
+                                                                        <div
+                                                                            class="course_card_control active_btn comment-like">
+                                                                            <div class="tooltip is-tooltip-warning is-tooltip-left course-card__button-like add_cart e-like"
+                                                                                data-tooltip="좋아요">
+                                                                                <img class="comment-heart"
+                                                                                    src="./image/icon/heart_w.png"
+                                                                                    alt="하트"
+                                                                                    style="display: inline-block;">
+                                                                                <img class="comment-heart-liked"
+                                                                                    src="./image/icon/liked.png"
+                                                                                    alt="좋아요된하트" style="display: none;">
+                                                                            </div>
+                                                                        </div>
+                                                                    </span>
+
+                                                                </span>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="MainInfluencerTag">
+                                                            <div class="MainInfluencerTag-title">
+                                                                <%=ootd[i].nickname%>
+                                                            </div>
+                                                            <div class="MainInfluencerItemTagMeta">
+                                                                <ul class="MainInfluencerItemTagMeta-list">
+                                                                    <li class="MainInfluencerItemTagMeta-item">
+                                                                        <span class="MainInfluencerItemTagMeta-text">
+                                                                            <%=ootd[i].style_tag%>
+                                                                        </span>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                        </div> <!-- .MainInfluencerTag -->
+                                                    </span>
+                                                </div>
+                                            </li>
+
+                                            <% } %>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+        </div>
+
+        <%- include('./footer.ejs') %>
+
+    </div>
+
+    <script defer>
+        //파일첨부
+        jQuery('#file_attach').change(function () {
+            var ext = $(this).val().split(".").pop().toLowerCase();
+
+            //console.log(this);
+
+            var fileSize = this.files[0].size;
+            var maxSize = 1024 * 1024 * 10;
+            if (fileSize > maxSize) {
+                alert('파일을 10MB 이하로 첨부해주세요.');
+                jQuery('input[name=file_name]').val('');
+                return false;
+            }
+
+            var fileValue = jQuery(this).val().split("\\");
+            var fileName = fileValue[fileValue.length - 1]; // 파일명
+
+            jQuery(this).siblings('.upload-name').val(fileName);
+            // jQuery('.upload-name').val(jQuery(this).val());
+        });
+
+
+        //파일삭제
+        jQuery('#file_remove').click(function () {
+            jQuery(this).siblings('.upload-hidden').val('');
+            jQuery(this).siblings('input[name=file_name]').val('');
+
+            // jQuery('input[name=file_name]').val('');
+            // alert('첨부한 파일이 삭제되었습니다.');
+        });
+    </script>
+</body>
+
+</html>

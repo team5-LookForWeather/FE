@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>회원가입</title>
+    <link rel="stylesheet" href="../css/membership.css" />
+    <script defer src="../js/membership.js"></script>
+    <!-- Axios -->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <!-- modal -->
+    <link href="//cdn.jsdelivr.net/npm/@sweetalert2/theme-material-ui/material-ui.css" rel="stylesheet">
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
+
+
+    <script>
+        /* !!!아이디 중복 검사 */
+        function idCheck() {
+            let form = document.getElementById('form_membership');
+
+            axios({
+                method: 'post',
+                url: '/user/id_check',
+                data: {
+                    user_id: form.id.value,
+                }
+            }).then((rep) => {
+                return rep.data;
+            }).then((data) => {
+                // data는 UserController에서 true, false 형식으로 msg와 함께 보낸다.
+                if (data.return) {
+                    alert(data.msg);
+                } else {
+                    alert(data.msg);
+                    form.reset();
+                }
+            });
+        }
+
+        /* !!!닉네임 중복 검사 */
+        function nickCheck() {
+            let form = document.getElementById('form_membership');
+
+            axios({
+                method: 'post',
+                url: 'user/nick_check',
+                data: {
+                    nickName: form.nick.value,
+                }
+            }).then((rep) => {
+                return rep.data;
+            }).then((data) => {
+                console.log(data);
+                // data는 UserController에서 true, false 형식으로 보낸다.
+                if (data.return) {
+                    alert(data.msg);
+                } else {
+                    alert(data.msg);
+                    form.reset();
+                }
+            });
+        }
+
+
+        /* 가입하기 버튼 클릭 시*/
+        function membership() {
+            let form = document.getElementById('form_membership');
+
+            // 유효성 검사
+            if (!form.checkValidity()) {
+                form.reportValidity();
+                return false;
+            }
+
+            axios({
+                method: 'post',
+                url: '/user/membership',
+                data: {
+                    user_id: form.id.value,
+                    pw: form.pswd1.value,
+                    name: form.name.value,
+                    nickName: form.nick.value,
+                    tel: form.mobile.value,
+                    email: form.email.value,
+                    gender: form.gender.value,
+                    age: form.age.value
+                }
+            }).then((rep) => {
+                return rep.data;
+            }).then((data) => {
+                console.log(data.return);
+                alert('회원가입을 축하드립니다.');
+                document.location.href = '/';
+            })
+        }
+    </script>
+</head>
+
+<body>
+    <div id="membership">
+        <div id="header">
+            <a href="/" target="_blank">
+                <img id="logo" src="../image/logo-5.png" alt="logo">
+            </a>
+        </div>
+
+        <div id="container">
+            <form id="form_membership">
+                <div id="content">
+                    <!-- 아이디 -->
+                    <div>
+                        <h3 class="join_title">
+                            <label for="id">아이디</label>
+                        </h3>
+                        <span class="box int_id">
+                            <input type="text" name="id" id="id" class="int" maxlength="30" required>
+                            <button type="button" onclick="idCheck()" class="checkBtn1">아이디 중복 확인</button>
+                            <img id="id_check_sucess" style="display: none;">
+                        </span>
+                        <span class="error_next_box"></span>
+
+                    </div>
+
+
+                    <!-- 비밀번호 -->
+                    <div>
+                        <h3 class="join_title"><label for="pswd1">비밀번호</label></h3>
+                        <span class="box int_pass">
+                            <input type="password" name="pswd1" id="pswd1" class="int" maxlength="30" required>
+                            <span id="alertTxt">사용불가</span>
+                            <img src="../image/icon/check-1.png" id="pswd1_img1" class="pswdImg">
+                        </span>
+                        <span class="error_next_box"></span>
+                    </div>
+
+
+                    <!-- 비밀번호 재확인 -->
+                    <div>
+                        <h3 class="join_title"><label for="pswd2">비밀번호 재확인</label></h3>
+                        <span class="box int_pass_check">
+                            <input type="password" name="pswd2" id="pswd2" class="int" maxlength="30" required>
+                            <img src="../image/icon/check-1-2.png" id="pswd2_img1" class="pswdImg">
+                        </span>
+                        <span class="error_next_box"></span>
+                    </div>
+
+
+                    <!-- 이름 -->
+                    <div>
+                        <h3 class="join_title"><label for="name">이름</label></h3>
+                        <span class="box int_name">
+                            <input type="text" name="name" id="name" class="int" maxlength="20" required>
+                        </span>
+                        <span class="error_next_box"></span>
+                    </div>
+
+                    <!-- 닉네임 -->
+                    <div>
+                        <h3 class="join_title">
+                            <label for="nick">닉네임</label>
+                        </h3>
+                        <span class="box int_nick">
+                            <input type="text" name="nick" id="nick" class="int" maxlength="20" required>
+                            <button type="button" onclick="nickCheck()" class="checkBtn2">닉네임 중복 확인</button>
+                        </span>
+                        <span class="error_next_box"></span>
+                    </div>
+
+
+                    <!-- 전화번호 -->
+                    <div>
+                        <h3 class="join_title"><label for="mobile">휴대전화</label></h3>
+                        <span class="box int_mobile">
+                            <input type="tel" name="mobile" id="mobile" class="int" maxlength="16" placeholder="전화번호 입력"
+                                required>
+                        </span>
+                        <span class="error_next_box"></span>
+                    </div>
+
+
+                    <!-- 이메일 -->
+                    <div>
+                        <h3 class="join_title"><label for="email">이메일</label>
+                        </h3>
+                        <span class="box int_email">
+                            <input type="text" name="email" id="email" class="int" maxlength="100" placeholder="선택입력"
+                                required>
+                        </span>
+                        <span class="error_next_box">이메일 주소를 다시 확인해주세요.</span>
+                    </div>
+
+
+                    <!-- 성별 -->
+                    <div>
+                        <h3 class="join_title"><label for="gender">성별</label></h3>
+                        <span class="box gender_code">
+                            <select name="gender" id="gender" class="sel" required>
+                                <option>성별</option>
+                                <option value="M">남자</option>
+                                <option value="F">여자</option>
+                            </select>
+                        </span>
+                        <span class="error_next_box">필수 정보입니다.</span>
+                    </div>
+
+
+
+                    <!-- 생년월일 -->
+                    <div>
+                        <h3 class="join_title"><label for="age">나이</label></h3>
+                        <span class="box int_age">
+                            <input type="text" name="age" id="age" class="int" maxlength="5" required>
+                        </span>
+                        <span class="error_next_box"></span>
+                    </div>
+
+
+                    <!-- 가입하기 -->
+                    <div class="btn_area">
+                        <button type="button" id="btnJoin" onclick="membership();">
+                            <span>가입하기</span>
+                        </button>
+                    </div>
+
+                    <div>
+                        <span class="copy">
+                            <br>
+                        </span>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <script defer>
+        $(document).ready(function () {
+            $("input").focus(function () {
+                $(this.parentNode).css('border', '1px solid #0359AE');
+            })
+
+            $("input").blur(function () {
+                $(this.parentNode).css('border', '1px solid #dadada');
+            })
+        });
+
+        $(document).ready(function () {
+            $("select").focus(function () {
+                $(this.parentNode).css('border', '1px solid #0359AE');
+            })
+
+            $("select").blur(function () {
+                $(this.parentNode).css('border', '1px solid #dadada');
+            })
+        });
+    </script>
+</body>
+
+</html>

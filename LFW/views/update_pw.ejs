@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../css/update_pw.css" />
+    <script defer src="../js/update_pw.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/9ad05a77c3.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <title>비밀번호 변경하기</title>
+
+    <script>
+        function changePw() {
+            let form = document.getElementById('form_update_pw');
+
+            if (!form.checkValidity()) {
+                form.reportValidity();
+                return false;
+            }
+
+            axios({
+                method: 'patch',
+                url: '/user/updated_pw',
+                data: {
+                    pw: form.pswd1.value
+                }
+            }).then((rep) => {
+                return rep.data;
+            }).then((data) => {
+                alert('비밀번호가 성공적으로 변경되었습니다.');
+                document.location.href = "/";
+            })
+        }
+    </script>
+</head>
+
+<body>
+    <div id="login">
+        <div id="header">
+            <a href="/" target="_blank">
+                <img id="logo" src="../image/logo-5.png" alt="logo">
+            </a>
+        </div>
+
+        <div id="container">
+            <form id="form_update_pw">
+                <div id="content">
+
+                    <!-- 비밀번호 -->
+                    <div>
+                        <h3 class="join_title"><label for="pswd1">비밀번호 변경</label></h3>
+                        <span class="box int_pass">
+                            <input type="password" name="pswd1" id="pswd1" class="int" maxlength="30" required>
+                            <span id="alertTxt">사용불가</span>
+                            <img src="../image/icon/check-1.png" id="pswd1_img1" class="pswdImg">
+                        </span>
+                        <span class="error_next_box"></span>
+                    </div>
+
+
+                    <!-- 비밀번호 재확인 -->
+                    <div>
+                        <h3 class="join_title"><label for="pswd2">비밀번호 재확인</label></h3>
+                        <span class="box int_pass_check">
+                            <input type="password" name="pswd2" id="pswd2" class="int" maxlength="30" required>
+                            <img src="../image/icon/check-1-2.png" id="pswd2_img1" class="pswdImg">
+                        </span>
+                        <span class="error_next_box"></span>
+                    </div>
+
+
+
+                    <!-- 비밀번호 찾기 -->
+                    <div class="btn_area">
+                        <button type="button" id="btnJoin" onclick="changePw();">
+                            <span>비밀번호 변경하기</span>
+                        </button>
+                    </div>
+            </form>
+        </div>
+    </div>
+    </div>
+
+
+</body>
+
+</html>

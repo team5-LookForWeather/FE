@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/9ad05a77c3.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+    <link rel="stylesheet" href="./css/weather.css" />
+
+    <script defer src="./js/slider/jquery.min.js"></script>
+    <script defer src="./js/slider/swiper-4.5.0.min.js"></script>
+    <script defer src="./js/slider/main.js"></script>
+    <script defer src="./js/common.js"></script>
+    <script defer src="./js/weather.js"></script>
+    <script defer src="./js/weather2.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
+    <script>
+        function getLocation() {
+            if (navigator.geolocation) {
+                console.log('geolocation');
+                navigator.geolocation.getCurrentPosition(locationSuccess, locationError);
+            } else {
+                console.log("지오 로케이션 없음")
+            }
+        };
+
+        async function locationSuccess(p) {
+            var latitude = p.coords.latitude, longitude = p.coords.longitude;
+            console.log(latitude, longitude);
+
+            // 사용자 위경도 전송
+            await axios({
+                method: 'post',
+                url: "/weather/getlocation",
+                data: {
+                    latitude: latitude,
+                    longitude: longitude
+                }
+            }).then(async function (response) {
+                // 날씨정보 JSON파일로 받기 ( 팀노션 - API관리 참고 )
+                // 한시간당 12항목 (numOfRows = 12) 받을 수 있습니다 
+                // response.data 가공해서 쓰세요
+                /* -배열안에 들어가는 데이터 명시-
+                baseDate : 발표시각의 날짜
+                baseTime : 발표시각의 시분
+                category : 데이터 종류
+                fcstDate : 예보시각의 날짜
+                fcstTime : 예보시각의 시분
+                fcstValue : 예보 값
+                nx, ny : 기상청 지역코드 
+                **/
+
+
+                var currentTMP = weatherwriter(response.data.item);
+                drawWeatherChart(getTempArr(response.data.item, hours));
+                setCodi(currentTMP);
+
+            });
+        }; //get location & location
+
+        function locationError(error) {
+            var errorTypes = {
+                0: "알 수 없는 에러",
+                1: "허용 안눌렀음",
+                2: "위치가 안잡힘",
+                3: "응답시간 지남"
+            };
+            var errorMsg = errorTypes[error.code];
+            console.log(errorMsg)
+
+        }   // locationError
+
+        window.onload = function () { getLocation(); timereset(); }
+         // 페이지로드하자마자 실행함수!!
+
+    </script>
+
+    <title>메인</title>
+</head>
+
+<body>
+    <div id="body-wrapper">
+        <div id="body-content">
+
+            <%- include('./header.ejs') %>
+
+
+                <div class="site">
+                    <div id="site-content" class="site-content">
+                        <div class="siteMain">
+                            <div class="MainBanner">
+                                <div class="site-container">
+                                    <div class="MainSlider">
+
+                                        <div class="MainSliderText">
+                                            <div class="MainSliderText-container swiper-container">
+                                                <div class="swiper-wrapper MainSliderText-wrapper">
+                                                    <!-- 이 부분에 날씨 정보 들어가야 한다. -->
+                                                    <div class="w-box">
+                                                        <div class="weather">
+                                                            <!-- <button type="button" onclick="getLocation();">현재위치 가져오기</button> -->
+                                                            <!-- <button type="button" onclick="reloadDivArea();">새로고침</button> -->
+                                                            <div id="icon"></div>
+                                                            <div id="time">
+                                                            </div>
+                                                            <div id="temp"></div>
+                                                            <div class="lh-box">
+                                                                <div id="lowtemp"></div>
+                                                                <div id="hightemp"></div>
+                                                            </div>
+                                                            <div id="humidity">습도 : </div>
+                                                        </div>
+
+
+                                                        <div>
+                                                            <div class="chart-box">
+                                                                <!--차트가 그려질 부분-->
+                                                                <canvas id="myChart"></canvas>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="MainSliderThumb">
+                                            <div class="MainSliderThumb-container swiper-container">
+                                                <div class="swiper-wrapper MainSliderThumb-wrapper">
+                                                    <div class="swiper-slide MainSliderThumb-slide">
+                                                        <img class="img_border codiImg" src="./image/slider/img01.png"
+                                                            alt="img01">
+                                                    </div>
+                                                    <div class="swiper-slide MainSliderThumb-slide">
+                                                        <img class="img_border codiImg" src="./image/slider/img02.png"
+                                                            alt="img02">
+                                                    </div>
+                                                    <div class="swiper-slide MainSliderThumb-slide">
+                                                        <img class="img_border codiImg" src="./image/slider/img03.png"
+                                                            alt="img03">
+                                                    </div>
+                                                    <div class="swiper-slide MainSliderThumb-slide">
+                                                        <img class="img_border codiImg" src="./image/slider/img03.png"
+                                                            alt="img04">
+                                                    </div>
+                                                    <div class="swiper-slide MainSliderThumb-slide">
+                                                        <img class="img_border codiImg" src="./image/slider/img03.png"
+                                                            alt="img05">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="MainSliderMeta">
+                                                <div class="MainSliderMetaAuto">
+                                                    <button type="button" class="MainSliderMetaAuto-play">
+                                                        <span class="ab-text"></span>
+                                                    </button>
+                                                    <button type="button" class="MainSliderMetaAuto-pause">
+                                                        <span class="ab-text"></span>
+                                                    </button>
+                                                </div>
+                                                <div class="MainSliderMetaPaging">
+                                                    <div class="MainSliderMetaPaging-bar"></div>
+                                                    <div class="swiper-pagination"></div>
+                                                </div>
+                                                <div class="MainSliderMetaArrow">
+                                                    <div class="swiper-button-prev MainSliderMeta-prev">
+                                                        <span class="ab-text"></span>
+                                                    </div>
+                                                    <div class="swiper-button-next MainSliderMeta-next">
+                                                        <span class="ab-text"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+
+                <%- include('./footer.ejs') %>
+        </div>
+
+        <script>
+            var date = new Date();
+            var month = date.getMonth() + 1;
+            var day = date.getDate();
+            var hours = date.getHours();
+            var minutes = date.getMinutes();
+            var time = document.getElementById("time")
+            function timereset() {
+                // time.innerHTML = `현재시간 : ${month}월 ${day}일 ${hours}시 ${minutes}분`;
+                time.innerHTML = `2022.0${month}.${day}. ${hours}:${minutes} 업데이트`;
+            }
+
+        </script>
+
+</body>
+
+
+
+
+</html>

@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/9ad05a77c3.js" crossorigin="anonymous"></script>
+
+    <!-- <script defer src="../js/common.js"></script> -->
+    <script defer src="../js/community.js"></script>
+    <link rel="stylesheet" href="../css/community.css" />
+    <title>OOTD 게시글 작성</title>
+
+    <script>
+        // 커뮤니티 글 작성하기
+        function writeCommunity(){
+
+        }
+
+        // 커뮤니티 글 수정
+        function editCommunity(){
+
+        }
+
+        // 커뮤니티 글 삭제
+        function deleteCommunity(){
+
+        }
+    </script>
+</head>
+
+<body>
+    <div id="body-wrapper">
+        <div id="body-content">
+
+            <%- include('./header.ejs') %>            
+
+            <section>
+                <div class="container">
+                    <div class="page-content">
+                        <!-- 타이틀 -->
+                        <div class="MainSectionHeader">
+                            <h2 class="MainSectionHeader-title">
+                                    COMMUNITY
+                            </h2>
+                            <div class="MainSectionHeader-sub">
+
+                            </div>
+                        </div>
+
+                        <!-- 컨텐츠 -->
+                        <div class="box_write">
+                            <form name="WriteFrm" method="post">
+                                <fieldset>
+                                    <legend class="blind">글쓰기</legend>
+                                    <textarea id="contents" name="memoPost.content" class="tf_write"
+                                        placeholder="로그인이 안되었을 시 Alert 창 띄우고 로그인 페이지 이동 / 로그인이 되어있다면 작성"></textarea>
+                                    <div class="set_attach">
+                                        <button type="button" class="btn_submit" onclick="writeCommunity();">작성하기</button>
+                                    </div>
+                                </fieldset>
+                            </form>
+                        </div>
+
+                        <div class="content">
+                            <div class="content-main">
+                                <div class="card-grid">
+                                    
+                                    <article class="card">
+                                        <div class="card-header">
+                                            <div>
+                                                <span><img src="../image/profile.gif" /></span>
+                                                <!-- 작성한 아이디 또는 닉네임이 들어 갈 곳 -->
+                                                <h3>작성 아이디1</h3>
+                                            </div>
+                                        </div>
+
+                                        <!-- 작성된 내용이 들어 갈 곳 -->
+                                        <div class="card-body">
+                                            <p class="card-txt">요즘 제가 즐겨 신고 있는 마크모크 샌들은 푹신한 샌들 소재로 신을때 다리 아프지도 않았고 오히려 푹신푹신해서 신고다니기 편했어요 😊
+                                                색깔도 그렇고 디자인도 심플하면서 아기자기해서 어느 옷에나 예쁘게 코디할수 있었답니다!
+                                                키가 작으신분들은 귀엽게 입으면 넘 잘 어울리실거 같어요😍
+                                            </p>
+                                        </div>
+
+                                        <div class="card-footer">
+                                            <!-- <button class="reply" onclick="clickshow(this,'reply_comment')">댓글</button> -->
+
+                                            <div class="feed_info">
+                                                <!-- <div class="feed_state">
+                                                    <ul class="link_list">
+                                                        <li>
+                                                            <button type="button" class="state_btn f_icon">
+                                                                <img class="feed_icon" src="../image/icon/heart.png"
+                                                                    alt="like_img">
+                                                            </button>
+                                                        </li>
+                                                    </ul>
+                                                </div> -->
+                                            </div>
+
+                                            <!-- <button type="button" id="reviseBtn" class="reply" onclick="editCommunity();">수정</button>
+                                            <button type="button" id="deleteBtn" class="reply" onclick="deleteCommunity();">삭제</button> -->
+                                        </div>
+
+                                        <div class="comment_list comments_margin">
+                                            <ul class="comments_info comment_list_ul">
+                                                <li>
+                                                    <div class="comments_tit">
+                                                        <span class="user_id"></span>
+                                                        <span class="comment_contents"></span>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        </div>
+
+
+                                        <div class="community_click">
+                                            <form id="reply_comment" class="reply_closed">
+                                                <div class="post_comment">
+                                                    <input id="post_comment_input" type="text" placeholder="댓글 달기..."
+                                                        name="reply" />
+                                                    <button type="button" class="post_comment_btn">게시</button>
+                                                </div>
+                                            </form>
+                                        </div>                                        
+                                    </article>
+
+                                    <article class="card">
+                                        <div class="card-header">
+                                            <div>
+                                                <span><img src="../image/profile.gif" /></span>
+                                                <!-- 작성한 아이디 또는 닉네임이 들어 갈 곳 -->
+                                                <h3>작성 아이디2</h3>
+                                            </div>
+                                        </div>
+
+                                        <!-- 작성된 내용이 들어 갈 곳 -->
+                                        <div class="card-body">
+                                            <p class="card-txt">좋은 기회 얻어 마크모크 테라 무신사 에디션 제품 체험해보게 되었습니다! 😋
+                                                성별에 구애받지 않고 모두에게 잘 어울리는 제품입니다. 개인적으로 검정색 양말에 매칭하거나, 와이드 팬츠에 착용하는게 가장 예쁜 것 같습니다. 
+                                                유행하는 피셔맨 신발 장르라서 제공받고 교복처럼 착용하며 지냈습니다 🙂
+                                            </p>
+                                        </div>
+
+                                        <div class="card-footer">
+                                            <!-- <button class="reply" onclick="clickshow(this,'reply_comment')">댓글</button> -->
+
+                                            <div class="feed_info">
+                                                <!-- <div class="feed_state">
+                                                    <ul class="link_list">
+                                                        <li>
+                                                            <button type="button" class="state_btn f_icon">
+                                                                <img class="feed_icon" src="../image/icon/heart.png"
+                                                                    alt="like_img">
+                                                            </button>
+                                                        </li>
+                                                    </ul>
+                                                </div> -->
+                                            </div>
+
+                                            <!-- <button type="button" id="reviseBtn" class="reply" onclick="editCommunity();">수정</button>
+                                            <button type="button" id="deleteBtn" class="reply" onclick="deleteCommunity();">삭제</button> -->
+                                        </div>
+
+                                        <div class="comment_list comments_margin">
+                                            <ul class="comments_info comment_list_ul2">
+                                                <li>
+                                                    <div class="comments_tit">
+                                                        <span class="user_id"></span>
+                                                        <span class="comment_contents"></span>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        </div>
+
+
+                                        <div class="community_click">
+                                            <form id="reply_comment" class="reply_closed">
+                                                <div class="post_comment">
+                                                    <input id="post_comment_input2" type="text" placeholder="댓글 달기..."
+                                                        name="reply" />
+                                                    <button type="button" class="post_comment_btn2">게시</button>
+                                                </div>
+                                            </form>
+                                        </div>                                        
+                                    </article>
+
+                                    <article class="card">
+                                        <div class="card-header">
+                                            <div>
+                                                <span><img src="../image/profile.gif" /></span>
+                                                <!-- 작성한 아이디 또는 닉네임이 들어 갈 곳 -->
+                                                <h3>작성 아이디3</h3>
+                                            </div>
+                                        </div>
+
+                                        <!-- 작성된 내용이 들어 갈 곳 -->
+                                        <div class="card-body">
+                                            <p class="card-txt">이번에 몬스터 리퍼플릭 에서 미니 메신저 백 제품을 체험해보게 되었습니다!
+                                                요즘엔 큰가방을 드는 것보다 적절한 크기에 가방을 자주 사용하는게 너무 좋았어요😋
+                                                처음에 받았을때 포장 느낌은 일반 가방 배송처럼 왔는데요 버클방식이라 내용물이 빠질일이 없어서 되게 좋은거 같더라구요!
+                                            </p>
+                                        </div>
+
+                                        <div class="card-footer">
+                                            <!-- <button class="reply" onclick="clickshow(this,'reply_comment')">댓글</button> -->
+
+                                            <div class="feed_info">
+                                                <!-- <div class="feed_state">
+                                                    <ul class="link_list">
+                                                        <li>
+                                                            <button type="button" class="state_btn f_icon">
+                                                                <img class="feed_icon" src="../image/icon/heart.png"
+                                                                    alt="like_img">
+                                                            </button>
+                                                        </li>
+                                                    </ul>
+                                                </div> -->
+                                            </div>
+
+                                            <!-- <button type="button" id="reviseBtn" class="reply" onclick="editCommunity();">수정</button>
+                                            <button type="button" id="deleteBtn" class="reply" onclick="deleteCommunity();">삭제</button> -->
+                                        </div>
+
+                                        <div class="comment_list comments_margin">
+                                            <ul class="comments_info comment_list_ul3">
+                                                <li>
+                                                    <div class="comments_tit">
+                                                        <span class="user_id"></span>
+                                                        <span class="comment_contents"></span>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        </div>
+
+
+                                        <div class="community_click">
+                                            <form id="reply_comment" class="reply_closed">
+                                                <div class="post_comment">
+                                                    <input id="post_comment_input3" type="text" placeholder="댓글 달기..."
+                                                        name="reply" />
+                                                    <button type="button" class="post_comment_btn3">게시</button>
+                                                </div>
+                                            </form>
+                                        </div>                                        
+                                    </article>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+
+        <%- include('./footer.ejs') %>
+
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/9ad05a77c3.js" crossorigin="anonymous"></script>
+
+    <script defer src="../js/common.js"></script>
+    <script defer src="../js/mypage.js"></script>
+    <link rel="stylesheet" href="../css/mypage.css" />
+    <title>마이페이지</title>
+</head>
+
+<body>
+    <div id="body-wrapper">
+        <div id="body-content">
+
+            <%- include('./header.ejs') %>
+
+            <section>
+                <div class="container">
+                    <div class="page-content">
+                        <!-- 타이틀 -->
+                        <div class="MainSectionHeader">
+                            <h2 class="MainSectionHeader-title">
+                                    MYPAGE
+                            </h2>
+                            <div class="MainSectionHeader-sub">
+
+                            </div>
+                        </div>
+
+                        <!-- 컨텐츠 -->
+                        <div class="content-wrap">
+                            <div class="content-left">
+                                <table id="calendar" align="center" cellpadding="0" cellspacing="0">
+                                    <thead>
+                                        <tr class="btn-wrap clearfix">
+                                            <td class="arrow_td1">
+                                                <label id="prev"><i class="fa-solid fa-chevron-left"></i></label>
+                                            </td>
+                                            <td class="arrow_td2" align="center" id="current-year-month" colspan="5">
+                                            </td>
+                                            <td class="arrow_td3">
+                                                <label id="next"><i class="fa-solid fa-chevron-right"></i></label>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="sun bt_line" align="center">일</td>
+                                            <td class="bt_line" align="center">월</td>
+                                            <td class="bt_line" align="center">화</td>
+                                            <td class="bt_line" align="center">수</td>
+                                            <td class="bt_line" align="center">목</td>
+                                            <td class="bt_line" align="center">금</td>
+                                            <td class="sat bt_line" align="center">토</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="calendar-body" class="calendar-body"></tbody>
+                                </table>
+                            </div>
+
+                            <div class="content-right">
+                                <div class="main-wrap">
+                                    <div id="main-day" class="main-day"></div>
+                                    <div id="main-date" class="main-date"></div>
+                                </div>
+                                <div class="todo-wrap">
+                                    <div class="todo-title">Comment</div>
+                                    <div class="input-wrap">
+                                        <input type="text" placeholder="코멘트를 작성해주세요" id="input-box" class="input-box" />
+                                        <button type="button" id="input-data" class="input-data">등록</button>
+                                        <div id="input-list" class="input-list"></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="content-last">
+                                <div class="cont_shortcut">
+                                    <ul>
+                                        <a href="/weather">
+                                            <li class="li_one">
+                                                <div>
+                                                    <i class="fa fa-plus" aria-hidden="true"></i>
+                                                    <h3 class="rect_h3">날씨정보</h3>
+                                                </div>
+                                                <p class="cont_desc"></p>
+                                                <p class="cont_bg"> </p>
+                                            </li>
+                                        </a>
+                                        <a href="/ootd">
+                                            <li class="li_two">
+                                                <div>
+                                                    <i class="fa fa-plus" aria-hidden="true"></i>
+                                                    <h3 class="rect_h3">OOTD</h3>
+                                                </div>
+                                                <p class="cont_desc"></p>
+                                                <p class="cont_bg"> </p>
+                                            </li>
+                                        </a>
+                                        <a href="/memo">
+                                            <li class="li_three">
+                                                <div>
+                                                    <i class="fa fa-plus" aria-hidden="true"></i>
+                                                    <h3 class="rect_h3">커뮤니티</h3>
+                                                </div>
+                                                <p class="cont_desc"></p>
+                                                <p class="cont_bg"> </p>
+                                            </li>
+                                        </a>
+                                        <a href="/user/profile">
+                                            <li class="li_four">
+                                                <div>
+                                                    <i class="fa fa-plus" aria-hidden="true"></i>
+                                                    <h3 class="rect_h3">회원정보</h3>
+                                                </div>
+                                                <p class="cont_desc"></p>
+                                                <p class="cont_bg"> </p>
+                                            </li>
+                                        </a>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <%- include('./footer.ejs') %>
+
+    </div>
+</body>
+
+</html>

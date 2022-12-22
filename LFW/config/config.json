@@ -1,0 +1,16 @@
+{
+    "development" : {
+        "host" : "127.0.0.1",
+        "port" : 3306,
+        "database" : "LFW",
+        "username" : "LFW",
+        "password" : "SeSAC4web!",
+        "dialect" : "mysql"
+    },
+    "production" : {
+        
+    },
+    "test" :{
+
+    }
+}
